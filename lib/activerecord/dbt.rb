@@ -1,7 +1,7 @@
 require "activerecord/dbt/version"
 require "activerecord/dbt/railtie"
 
-module Activerecord
+module ActiveRecord
   module Dbt
     # Your code goes here...
   end

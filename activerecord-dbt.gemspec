@@ -2,7 +2,7 @@ require_relative "lib/activerecord/dbt/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "activerecord-dbt"
-  spec.version     = Activerecord::Dbt::VERSION
+  spec.version     = ActiveRecord::Dbt::VERSION
   spec.authors     = ["yamotech"]
   spec.email       = ["nothings.2c9@gmail.com"]
   spec.homepage    = "https://github.com/yamotech/activerecord-dbt"

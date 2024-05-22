@@ -1,4 +1,4 @@
-# Activerecord::Dbt
+# ActiveRecord::Dbt
 Short description and motivation.
 
 ## Usage

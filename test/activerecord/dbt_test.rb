@@ -1,7 +1,7 @@
 require "test_helper"
 
-class Activerecord::DbtTest < ActiveSupport::TestCase
+class ActiveRecord::DbtTest < ActiveSupport::TestCase
   test "it has a version number" do
-    assert Activerecord::Dbt::VERSION
+    assert ActiveRecord::Dbt::VERSION
   end
 end

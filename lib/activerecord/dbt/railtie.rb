@@ -1,4 +1,4 @@
-module Activerecord
+module ActiveRecord
   module Dbt
     class Railtie < ::Rails::Railtie
     end
