@@ -1,4 +1,4 @@
-require_relative "lib/activerecord/dbt/version"
+require_relative "lib/active_record/dbt/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "activerecord-dbt"

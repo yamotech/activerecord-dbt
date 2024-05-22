@@ -1,5 +1,5 @@
-require "activerecord/dbt/version"
-require "activerecord/dbt/railtie"
+require "active_record/dbt/version"
+require "active_record/dbt/railtie"
 
 module ActiveRecord
   module Dbt
