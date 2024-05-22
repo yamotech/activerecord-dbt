@@ -1,5 +1,6 @@
-require "active_record/dbt/version"
-require "active_record/dbt/railtie"
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem_extension(ActiveRecord)
+loader.setup
 
 module ActiveRecord
   module Dbt
