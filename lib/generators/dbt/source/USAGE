@@ -1,0 +1,8 @@
+Description:
+    Create a source file for dbt.
+
+Example:
+    bin/rails generate dbt:source
+
+    This will create:
+        tmp/dbt/src_#{application_name}.yml
