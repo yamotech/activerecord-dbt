@@ -4,6 +4,12 @@ loader.setup
 
 module ActiveRecord
   module Dbt
-    # Your code goes here...
+    def self.configure
+      yield config = ActiveRecord::Dbt::Config.instance
+
+      config
+    end
+
+    class Error < StandardError; end
   end
 end
