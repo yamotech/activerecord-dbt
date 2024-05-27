@@ -1,0 +1,5 @@
+{% docs <%= source_name %>_description %}
+
+# TODO: Write a description for <%= source_name %>.
+
+{% enddocs %}

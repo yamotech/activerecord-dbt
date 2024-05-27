@@ -1,0 +1,7 @@
+# table_name:
+#   table_logical_name: Write table name.
+#   table_description: |
+#     Write a description of the table.<br/>
+#     You can write multiple lines.
+#   columns:
+#     colume_name: Write a description of column.
