@@ -5,6 +5,4 @@ Example:
     bin/rails generate dbt:config
 
     This will create:
-        lib/dbt/source_header.yml
-        lib/dbt/source_header.md
         lib/dbt/descriptions.yml

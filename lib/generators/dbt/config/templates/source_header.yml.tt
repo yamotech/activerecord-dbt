@@ -1,6 +1,0 @@
-version: 2
-
-sources:
-  - name: <%= source_name %>
-    description: >
-      {{ doc('<%= source_name %>_description') }}
