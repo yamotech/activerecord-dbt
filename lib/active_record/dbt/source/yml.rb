@@ -4,12 +4,22 @@ module ActiveRecord
       class Yml
         SOURCE_TABLE_DESCRIPTION_PATH = "lib/dbt/descriptions.yml".freeze
 
-        attr_reader :config
+        attr_reader :descriptions
 
         include ActiveRecord::Dbt::Parser
 
         def initialize
-          @config = parse_yaml(SOURCE_TABLE_DESCRIPTION_PATH)
+          @descriptions = parse_yaml(SOURCE_TABLE_DESCRIPTION_PATH)
+        end
+
+        def config
+          {
+            "version" => 2,
+            "sources" => [
+              "name" => descriptions.dig(:sources, :name),
+              "description" => descriptions.dig(:sources, :description)
+            ]
+          }
         end
       end
     end

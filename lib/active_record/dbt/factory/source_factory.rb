@@ -3,7 +3,8 @@ module ActiveRecord
     module Factory
       module SourceFactory
         def self.build
-          ActiveRecord::Dbt::Source::Yml.new.config
+          config = ActiveRecord::Dbt::Source::Yml.new.config
+          YAML.dump(config)
         end
       end
     end

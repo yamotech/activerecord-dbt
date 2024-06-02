@@ -1,6 +1,0 @@
-version: 2
-
-sources:
-  - name: <%= config[:sources][:name] %>
-    description: |
-      <%= config[:sources][:description] %>
