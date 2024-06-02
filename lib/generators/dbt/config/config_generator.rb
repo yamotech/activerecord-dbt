@@ -4,13 +4,17 @@ module Dbt
       source_root File.expand_path("templates", __dir__)
 
       def copy_source_description_file
-        copy_file "descriptions.yml", config.description_path
+        template "descriptions.yml.tt", description_path, application_name
       end
 
       private
 
-      def config
-        @config ||= ActiveRecord::Dbt::Config.instance
+      def description_path
+        ActiveRecord::Dbt::Config.instance.description_path
+      end
+
+      def application_name
+        Rails.application.class.name.sub(/::Application$/, '').downcase
       end
     end
   end

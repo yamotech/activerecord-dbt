@@ -1,3 +1,3 @@
 ActiveRecord::Dbt.configure do |c|
-  c.source_name = 'TODO: Write dbt source name.'
+  c.description_path = "lib/dbt/descriptions.yml"
 end

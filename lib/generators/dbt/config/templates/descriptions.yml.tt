@@ -1,0 +1,31 @@
+sources:
+  name: <%= application_name %>
+  description: |
+    Write a description of the <%= application_name %> source.
+    You can write multiple lines.
+
+tables:
+  ar_internal_metadata:
+    logical_name: Internal Metadata
+    description: |
+      By default Rails will store information about your Rails environment and schema
+      in an internal table named `ar_internal_metadata`.
+    columns:
+      key: Key
+      value: Value
+      created_at: Created At
+      updated_at: Updated At
+  schema_migrations:
+    logical_name: Schema Migrations
+    description: |
+      Rails keeps track of which migrations have been committed to the database and
+      stores them in a neighboring table in that same database called `schema_migrations`.
+    columns:
+      version: The version number of the migration.
+  <table_name>:
+    logical_name: Write a table logical name.
+    description: |
+      Write a description of the table.
+      You can write multiple lines.
+    columns:
+      <colume_name>: Write a description of the column.

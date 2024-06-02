@@ -4,13 +4,13 @@ module Dbt
       source_root File.expand_path("templates", __dir__)
 
       def create_source_yml_file
-        create_file "tmp/dbt/src_#{application_name}.yml", ActiveRecord::Dbt::Factory::SourceFactory.build
+        create_file "tmp/dbt/src_#{source_name}.yml", ActiveRecord::Dbt::Factory::SourceFactory.build
       end
 
       private
 
-      def application_name
-        Rails.application.class.name.sub(/::Application$/, '').downcase
+      def source_name
+        ActiveRecord::Dbt::Config.instance.source_name
       end
     end
   end
