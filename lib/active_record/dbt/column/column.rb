@@ -24,19 +24,11 @@ module ActiveRecord
 
         private
 
-        # TODO: I18n
         def description
           @description ||=
             descriptions.dig(:tables, table_name, :columns, name) ||
-            i18n_text("activerecord.attributes.#{table_name.singularize}.#{name}") ||
+            I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
             "Write a description of the #{table_name}.#{name} column."
-        end
-
-        def i18n_text(text)
-          # TODO: I18n
-          I18n.t(text, raise: true)
-        rescue I18n::MissingTranslationData
-          nil
         end
       end
     end

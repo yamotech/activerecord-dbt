@@ -31,10 +31,9 @@ module ActiveRecord
           ].join("\n")
         end
 
-        # TODO: I18n
         def logical_name
           @logical_name ||= descriptions.dig(:tables, name, :logical_name) ||
-            I18n.t("activerecord.models.#{name.singularize}") ||
+            I18n.t("activerecord.models.#{name.singularize}", default: nil) ||
             "Write a description of the #{name} table."
         end
 
