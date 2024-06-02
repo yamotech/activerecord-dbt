@@ -2,8 +2,6 @@ module ActiveRecord
   module Dbt
     module Column
       class Test
-        include ActiveRecord::Dbt::Parser
-
         include ActiveRecord::Dbt::Column::Testable::AcceptedValuesTestable
         include ActiveRecord::Dbt::Column::Testable::NotNullTestable
         include ActiveRecord::Dbt::Column::Testable::RelationshipsTestable
@@ -12,13 +10,14 @@ module ActiveRecord
         attr_reader :table_name, :column, :primary_keys, :foreign_keys, :descriptions
 
         delegate :name, :type, to: :column
+        delegate :descriptions, to: :@config
 
         def initialize(table_name, column, primary_keys: [], foreign_keys: [{}])
           @table_name = table_name
           @column = column
           @primary_keys = primary_keys
           @foreign_keys = foreign_keys
-          @descriptions = parse_yaml(ActiveRecord::Dbt::Source::Yml::SOURCE_TABLE_DESCRIPTION_PATH)
+          @config = ActiveRecord::Dbt::Config.instance
         end
 
         def config

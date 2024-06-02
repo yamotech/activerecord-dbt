@@ -2,14 +2,14 @@ module ActiveRecord
   module Dbt
     module Table
       class Yml
-        include ActiveRecord::Dbt::Parser
-
         attr_reader :name, :columns, :descriptions
+
+        delegate :descriptions, to: :@config
 
         def initialize(name, columns)
           @name = name
           @columns = columns
-          @descriptions = parse_yaml(ActiveRecord::Dbt::Source::Yml::SOURCE_TABLE_DESCRIPTION_PATH)
+          @config = ActiveRecord::Dbt::Config.instance
         end
 
         def config

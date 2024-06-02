@@ -2,15 +2,13 @@ module ActiveRecord
   module Dbt
     module Source
       class Yml
-        SOURCE_TABLE_DESCRIPTION_PATH = "lib/dbt/descriptions.yml".freeze
-
         attr_reader :tables, :descriptions
 
-        include ActiveRecord::Dbt::Parser
+        delegate :descriptions, to: :@config
 
         def initialize(tables)
           @tables = tables
-          @descriptions = parse_yaml(SOURCE_TABLE_DESCRIPTION_PATH)
+          @config = ActiveRecord::Dbt::Config.instance
         end
 
         def config
