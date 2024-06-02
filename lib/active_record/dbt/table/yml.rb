@@ -4,10 +4,11 @@ module ActiveRecord
       class Yml
         include ActiveRecord::Dbt::Parser
 
-        attr_reader :name, :descriptions
+        attr_reader :name, :columns, :descriptions
 
-        def initialize(name)
+        def initialize(name, columns)
           @name = name
+          @columns = columns
           @descriptions = parse_yaml(ActiveRecord::Dbt::Source::Yml::SOURCE_TABLE_DESCRIPTION_PATH)
         end
 
@@ -15,7 +16,7 @@ module ActiveRecord
           {
             "name" => name,
             "description" => description,
-            # "columns" => columns
+            "columns" => columns.map(&:config)
           }
         end
 
@@ -30,6 +31,7 @@ module ActiveRecord
           ].join("\n")
         end
 
+        # TODO: I18n
         def logical_name
           @logical_name ||= descriptions.dig(:tables, name, :logical_name) ||
             I18n.t("activerecord.models.#{name.singularize}") ||

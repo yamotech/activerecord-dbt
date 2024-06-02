@@ -11,4 +11,4 @@ tables:
       Write a description of the table.
       You can write multiple lines.
     columns:
-      <colume_name>: Write a description of column.
+      <colume_name>: Write a description of the column.
