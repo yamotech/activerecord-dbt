@@ -4,21 +4,23 @@ module ActiveRecord
       class Column
         include ActiveRecord::Dbt::Parser
 
-        attr_reader :table_name, :column, :descriptions
+        attr_reader :table_name, :column, :column_test, :descriptions
 
         delegate :name, to: :column
 
-        def initialize(table_name, column)
+        def initialize(table_name, column, column_test)
           @table_name = table_name
           @column = column
+          @column_test = column_test
           @descriptions = parse_yaml(ActiveRecord::Dbt::Source::Yml::SOURCE_TABLE_DESCRIPTION_PATH)
         end
 
         def config
           {
             "name" => name,
-            "description" => description
-          }
+            "description" => description,
+            "tests" => column_test.config
+          }.compact
         end
 
         private
