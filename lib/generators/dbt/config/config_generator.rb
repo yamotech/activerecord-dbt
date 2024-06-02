@@ -4,7 +4,7 @@ module Dbt
       source_root File.expand_path("templates", __dir__)
 
       def copy_source_description_file
-        copy_file "descriptions.yml", "lib/dbt/descriptions.yml"
+        copy_file "descriptions.yml", ActiveRecord::Dbt::Source::Yml::SOURCE_TABLE_DESCRIPTION_PATH
       end
 
       private
