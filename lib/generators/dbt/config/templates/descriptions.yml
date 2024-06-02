@@ -6,7 +6,7 @@ sources:
 
 tables:
   <table_name>:
-    logical_name: Write a table name.
+    logical_name: Write a table logical name.
     description: |
       Write a description of the table.
       You can write multiple lines.
