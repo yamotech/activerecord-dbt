@@ -4,6 +4,8 @@ module ActiveRecord
   module Dbt
     class Config
       include Singleton
+
+      include ActiveRecord::Dbt::Configuration::DataSync
       include ActiveRecord::Dbt::Configuration::Parser
 
       attr_accessor :description_path

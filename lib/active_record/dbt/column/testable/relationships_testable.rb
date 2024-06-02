@@ -5,7 +5,7 @@ module ActiveRecord
         module RelationshipsTestable
           REQUIRED_RELATIONSHIPS_TESTABLE_METHODS = %i[@config foreign_keys name].freeze
 
-          delegate :source_name, to: :@config
+          delegate :source_name, :data_sync_delayed?, to: :@config
           delegate :to_table, to: :foreign_key
 
           REQUIRED_RELATIONSHIPS_TESTABLE_METHODS.each do |method_name|
@@ -19,9 +19,10 @@ module ActiveRecord
 
             {
               "relationships" => {
+                "severity" => data_sync_delayed? ? "warn" : nil,
                 "to" => "source('#{source_name}', '#{to_table}')",
                 "field" => field
-              }
+              }.compact
             }
           end
 
