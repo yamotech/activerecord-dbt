@@ -4,6 +4,10 @@ module ActiveRecord
       module UsedDbtPackage
         attr_writer :used_dbt_package_names
 
+        def used_dbt_utils?
+          used_dbt_package_names.include?('dbt-labs/dbt_utils')
+        end
+
         private
 
         def used_dbt_package_names
