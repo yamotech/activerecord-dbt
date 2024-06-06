@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      post: Post
+    enum:
+      post:
+        status:
+          draft: Draft
+          published: Published
+          deleted: Deleted
+    attributes:
+      post:
+        id: ID
+        user_id: User
+        title: Title
+        content: Content
+        created_at: Created At
+        updated_at: Updated At
