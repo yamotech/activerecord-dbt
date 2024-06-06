@@ -7,7 +7,7 @@ module ActiveRecord
         include ActiveRecord::Dbt::Column::Testable::RelationshipsTestable
         include ActiveRecord::Dbt::Column::Testable::UniqueTestable
 
-        attr_reader :table_name, :column, :primary_keys, :foreign_keys, :descriptions
+        attr_reader :table_name, :column, :primary_keys, :foreign_keys
 
         delegate :name, :type, to: :column
         delegate :descriptions, to: :@config

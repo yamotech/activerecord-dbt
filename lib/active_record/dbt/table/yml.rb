@@ -2,7 +2,7 @@ module ActiveRecord
   module Dbt
     module Table
       class Yml
-        attr_reader :name, :columns, :descriptions
+        attr_reader :name, :columns
 
         delegate :descriptions, to: :@config
 

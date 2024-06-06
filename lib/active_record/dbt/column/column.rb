@@ -2,7 +2,7 @@ module ActiveRecord
   module Dbt
     module Column
       class Column
-        attr_reader :table_name, :column, :column_test, :descriptions
+        attr_reader :table_name, :column, :column_test
 
         delegate :name, to: :column
         delegate :descriptions, to: :@config
