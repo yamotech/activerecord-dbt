@@ -7,6 +7,7 @@ module ActiveRecord
 
       include ActiveRecord::Dbt::Configuration::DataSync
       include ActiveRecord::Dbt::Configuration::Parser
+      include ActiveRecord::Dbt::Configuration::UsedDbtPackage
 
       attr_accessor :description_path
 
