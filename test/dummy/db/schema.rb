@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_09_144327) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_09_145656) do
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
     t.string "establishment_date"
@@ -28,6 +28,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_144327) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "posts_tags", id: false, force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["post_id", "tag_id"], name: "index_posts_tags_on_post_id_and_tag_id", unique: true
+    t.index ["tag_id", "post_id"], name: "index_posts_tags_on_tag_id_and_post_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -64,6 +71,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_144327) do
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "posts_tags", "posts"
+  add_foreign_key "posts_tags", "tags"
   add_foreign_key "profiles", "users"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
