@@ -38,9 +38,7 @@ module ActiveRecord
 
           def enums
             table_name.singularize.classify.constantize.defined_enums
-          rescue NameError => e
-            puts "#{e.class}: #{e.message}"
-
+          rescue NameError
             {}
           end
 
