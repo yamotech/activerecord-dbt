@@ -2,6 +2,7 @@ class User < ApplicationRecord
   belongs_to :company, optional: true
   has_one :profile
   has_many :posts
+  has_many :tags, through: :user_tags
 
   has_many :active_relationships,
            class_name: :Relationship,
