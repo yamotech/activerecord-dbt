@@ -8,6 +8,10 @@ module ActiveRecord
           used_dbt_package_names.include?('dbt-labs/dbt_utils')
         end
 
+        def used_dbterd?
+          used_dbt_package_names.include?('datnguye/dbterd')
+        end
+
         private
 
         def used_dbt_package_names
