@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email       = ["nothings.2c9@gmail.com"]
   spec.homepage    = "https://github.com/yamotech/activerecord-dbt"
   spec.summary     = "Generate dbt files from the information of the database connected by ActiveRecord."
-  spec.description = "Generate dbt files related to sources, models, and tests from the information of the database connected by ActiveRecord."
+  spec.description = spec.summary
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
