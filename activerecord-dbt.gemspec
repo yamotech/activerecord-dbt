@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "lib/active_record/dbt/version"
 
 Gem::Specification.new do |spec|
