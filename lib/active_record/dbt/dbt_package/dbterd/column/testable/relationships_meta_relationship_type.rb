@@ -43,12 +43,17 @@ module ActiveRecord
               # * [Syntax | DBML](https://dbml.dbdiagram.io/docs/#relationships--foreign-key-definitions)
               #   * DBML supports 'one-to-many', 'many-to-one', 'one-to-one', and 'many-to-many'.
               def relationship_type
-                case
-                # when one_to_many? then 'one-to-many'
-                # when zero_to_many? then 'zero-to-many'
-                # when many_to_many? then 'many-to-many'
-                when one_to_one? then 'one-to-one'
-                when many_to_one? then 'many-to-one'
+                # if one_to_many?
+                #   'one-to-many'
+                # elsif zero_to_many?
+                #   'zero-to-many'
+                # elsif many_to_many?
+                #   'many-to-many'
+                # elsif one_to_one?
+                if one_to_one?
+                  'one-to-one'
+                elsif many_to_one?
+                  'many-to-one'
                 else
                   raise NotSpecifiedOrNotInvalidIdError, 'Not specified/Invalid value'
                 end
