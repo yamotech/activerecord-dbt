@@ -28,10 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activerecord", ">= 7.0"
   spec.add_dependency "activesupport", ">= 7.0"
   spec.add_dependency "zeitwerk", ">= 2.6"
-
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'rubocop-rails'
-  spec.add_development_dependency 'rubocop-rspec'
 end
