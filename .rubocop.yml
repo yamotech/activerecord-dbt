@@ -1,0 +1,27 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "test/**/*"
+
+Rails:
+  Enabled: true
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
