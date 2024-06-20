@@ -17,9 +17,9 @@ module ActiveRecord
             return nil unless type == :boolean || enum_values.present?
 
             {
-              "accepted_values" => {
-                "values" => values,
-                "quote" => quote?
+              'accepted_values' => {
+                'values' => values,
+                'quote' => quote?
               }
             }
           end

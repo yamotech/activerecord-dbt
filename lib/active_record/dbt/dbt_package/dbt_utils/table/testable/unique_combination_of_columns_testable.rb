@@ -26,8 +26,8 @@ module ActiveRecord
 
                   array.push(
                     {
-                      "dbt_utils.unique_combination_of_columns" => {
-                        "combination_of_columns" => unique_indexes
+                      'dbt_utils.unique_combination_of_columns' => {
+                        'combination_of_columns' => unique_indexes
                       }
                     }
                   )

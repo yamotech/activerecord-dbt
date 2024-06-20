@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Specify your gem's dependencies in activerecord-dbt.gemspec.
 gemspec
 
-gem "rails"
+gem 'rails'
 
-gem "puma"
-gem "sqlite3", "~> 1.4"
+gem 'puma'
+gem 'sqlite3', '~> 1.4'
 
 group :development do
   gem 'rspec-rails'

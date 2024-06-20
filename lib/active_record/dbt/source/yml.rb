@@ -15,11 +15,11 @@ module ActiveRecord
 
         def config
           {
-            "version" => 2,
-            "sources" => [
-              "name" => descriptions.dig(:sources, :name),
-              "description" => descriptions.dig(:sources, :description),
-              "tables" => tables.map(&:config)
+            'version' => 2,
+            'sources' => [
+              'name' => descriptions.dig(:sources, :name),
+              'description' => descriptions.dig(:sources, :description),
+              'tables' => tables.map(&:config)
             ]
           }
         end

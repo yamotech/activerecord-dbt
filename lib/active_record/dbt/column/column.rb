@@ -18,9 +18,9 @@ module ActiveRecord
 
         def config
           {
-            "name" => name,
-            "description" => description,
-            "tests" => column_test.config
+            'name' => name,
+            'description' => description,
+            'tests' => column_test.config
           }.compact
         end
 

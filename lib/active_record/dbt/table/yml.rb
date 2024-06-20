@@ -18,10 +18,10 @@ module ActiveRecord
 
         def config
           {
-            "name" => table_name,
-            "description" => description,
-            "tests" => table_test.config,
-            "columns" => columns.map(&:config)
+            'name' => table_name,
+            'description' => description,
+            'tests' => table_test.config,
+            'columns' => columns.map(&:config)
           }.compact
         end
 

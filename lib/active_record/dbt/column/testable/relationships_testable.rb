@@ -22,11 +22,11 @@ module ActiveRecord
             return nil if foreign_key.blank?
 
             {
-              "relationships" => {
-                "severity" => data_sync_delayed? ? "warn" : nil,
-                "to" => "source('#{source_name}', '#{to_table}')",
-                "field" => primary_key,
-                "meta" => relationships_meta_relationship_type
+              'relationships' => {
+                'severity' => data_sync_delayed? ? 'warn' : nil,
+                'to' => "source('#{source_name}', '#{to_table}')",
+                'field' => primary_key,
+                'meta' => relationships_meta_relationship_type
               }.compact
             }
           end
