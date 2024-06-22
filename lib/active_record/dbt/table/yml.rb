@@ -18,14 +18,21 @@ module ActiveRecord
 
         def config
           {
-            'name' => table_name,
-            'description' => description,
-            'tests' => table_test.config,
+            **table_properties,
             'columns' => columns.map(&:config)
           }.compact
         end
 
         private
+
+        def table_properties
+          {
+            'name' => table_name,
+            'description' => description,
+            **table_overrides.except(:columns),
+            'tests' => table_test.config
+          }
+        end
 
         def description
           return logical_name if table_description.blank?
@@ -38,13 +45,19 @@ module ActiveRecord
 
         def logical_name
           @logical_name ||=
-            descriptions.dig(:tables, table_name, :logical_name) ||
+            descriptions.dig(:table_descriptions, table_name, :logical_name) ||
             I18n.t("activerecord.models.#{table_name.singularize}", default: nil) ||
             "Write a description of the #{table_name} table."
         end
 
         def table_description
-          @table_description ||= descriptions.dig(:tables, table_name, :description)
+          @table_description ||= descriptions.dig(:table_descriptions, table_name, :description)
+        end
+
+        def table_overrides
+          @table_overrides ||=
+            descriptions.dig(:table_overrides, table_name) ||
+            {}
         end
       end
     end

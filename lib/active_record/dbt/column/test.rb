@@ -23,12 +23,37 @@ module ActiveRecord
         end
 
         def config
-          [
-            unique_test,
-            not_null_test,
-            relationships_test,
-            accepted_values_test
-          ].compact.presence
+          (tests.keys | tests_overrides_hash.keys).map do |key|
+            tests_overrides_hash[key] || tests[key]
+          end.presence
+        end
+
+        private
+
+        def tests
+          {
+            'unique_test' => unique_test,
+            'not_null_test' => not_null_test,
+            'relationships_test' => relationships_test,
+            'accepted_values_test' => accepted_values_test
+          }.compact
+        end
+
+        def tests_overrides_hash
+          @tests_overrides_hash ||=
+            tests_overrides.index_by do |tests_override|
+              "#{extract_key(tests_override)}_test"
+            end
+        end
+
+        def extract_key(item)
+          item.is_a?(Hash) ? item.keys.first : item
+        end
+
+        def tests_overrides
+          @tests_overrides ||=
+            descriptions.dig(:table_overrides, table_name, :columns, name, :tests) ||
+            []
         end
       end
     end

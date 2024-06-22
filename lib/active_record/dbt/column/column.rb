@@ -20,6 +20,7 @@ module ActiveRecord
           {
             'name' => name,
             'description' => description,
+            **column_overrides.except(:tests),
             'tests' => column_test.config
           }.compact
         end
@@ -28,9 +29,15 @@ module ActiveRecord
 
         def description
           @description ||=
-            descriptions.dig(:tables, table_name, :columns, name) ||
+            descriptions.dig(:table_descriptions, table_name, :columns, name) ||
             I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
             "Write a description of the #{table_name}.#{name} column."
+        end
+
+        def column_overrides
+          @column_overrides ||=
+            descriptions.dig(:table_overrides, table_name, :columns, name) ||
+            {}
         end
       end
     end
