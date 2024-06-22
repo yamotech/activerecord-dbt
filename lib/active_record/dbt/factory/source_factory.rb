@@ -8,7 +8,7 @@ module ActiveRecord
           tables_factory = ActiveRecord::Dbt::Factory::TablesFactory.build
           config = ActiveRecord::Dbt::Source::Yml.new(tables_factory).config
 
-          YAML.dump(config)
+          YAML.dump(config.deep_stringify_keys)
         end
       end
     end

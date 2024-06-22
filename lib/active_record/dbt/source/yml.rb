@@ -17,11 +17,16 @@ module ActiveRecord
           {
             'version' => 2,
             'sources' => [
-              'name' => descriptions.dig(:sources, :name),
-              'description' => descriptions.dig(:sources, :description),
+              **source_properties,
               'tables' => tables.map(&:config)
             ]
           }
+        end
+
+        private
+
+        def source_properties
+          descriptions[:sources]
         end
       end
     end
