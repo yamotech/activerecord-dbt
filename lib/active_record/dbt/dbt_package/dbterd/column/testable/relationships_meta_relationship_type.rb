@@ -9,7 +9,7 @@ module ActiveRecord
             module RelationshipsMetaRelationshipType
               REQUIRED_RELATIONSHIP_TYPE_TESTABLE_METHODS = %i[@config foreign_key].freeze
 
-              delegate :used_dbterd?, to: :@config
+              delegate :used_dbterd?, :add_log, to: :@config
 
               REQUIRED_RELATIONSHIP_TYPE_TESTABLE_METHODS.each do |method_name|
                 define_method(method_name) do
@@ -25,7 +25,7 @@ module ActiveRecord
                   'relationship_type' => relationship_type
                 }
               rescue NotSpecifiedOrNotInvalidIdError, StandardError => e
-                puts "#{e.class}: #{e.message}"
+                add_log(self.class, e)
 
                 {
                   'relationship_type' => 'many-to-one',

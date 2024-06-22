@@ -5,7 +5,9 @@ module ActiveRecord
     module Column
       module Testable
         module AcceptedValuesTestable
-          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS = %i[type table_name name].freeze
+          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS = %i[@config type table_name name].freeze
+
+          delegate :add_log, to: :@config
 
           REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS.each do |method_name|
             define_method(method_name) do
@@ -40,7 +42,9 @@ module ActiveRecord
 
           def enums
             table_name.singularize.classify.constantize.defined_enums
-          rescue NameError
+          rescue NameError => e
+            add_log(self.class, e)
+
             {}
           end
 

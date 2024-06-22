@@ -8,6 +8,7 @@ module ActiveRecord
       include Singleton
 
       include ActiveRecord::Dbt::Configuration::DataSync
+      include ActiveRecord::Dbt::Configuration::Logger
       include ActiveRecord::Dbt::Configuration::Parser
       include ActiveRecord::Dbt::Configuration::UsedDbtPackage
 
