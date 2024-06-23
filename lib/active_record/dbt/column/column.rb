@@ -31,6 +31,7 @@ module ActiveRecord
           @description ||=
             descriptions.dig(:table_descriptions, table_name, :columns, name) ||
             I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
+            I18n.t("attributes.#{name}", default: nil) ||
             "Write a description of the #{table_name}.#{name} column."
         end
 

@@ -5,5 +5,5 @@ en:
     attributes:
       user:
         id: ID
-        created_at: Created At
-        updated_at: Updated At
+        created_at: User Created At
+        updated_at: User Updated At

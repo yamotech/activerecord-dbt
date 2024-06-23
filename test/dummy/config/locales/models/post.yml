@@ -14,5 +14,5 @@ en:
         user_id: User
         title: Title
         content: Content
-        created_at: Created At
-        updated_at: Updated At
+        created_at: Post Created At
+        updated_at: Post Updated At
