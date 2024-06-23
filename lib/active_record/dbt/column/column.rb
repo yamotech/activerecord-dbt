@@ -4,15 +4,16 @@ module ActiveRecord
   module Dbt
     module Column
       class Column
-        attr_reader :table_name, :column, :column_test
+        attr_reader :table_name, :column, :column_test, :primary_keys
 
         delegate :name, to: :column
         delegate :source_config, to: :@config
 
-        def initialize(table_name, column, column_test)
+        def initialize(table_name, column, column_test, primary_keys: [])
           @table_name = table_name
           @column = column
           @column_test = column_test
+          @primary_keys = primary_keys
           @config = ActiveRecord::Dbt::Config.instance
         end
 
@@ -29,10 +30,28 @@ module ActiveRecord
 
         def description
           @description ||=
-            source_config.dig(:table_descriptions, table_name, :columns, name) ||
+            table_description ||
             I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
             I18n.t("attributes.#{name}", default: nil) ||
+            column.comment ||
+            key_column_name ||
             "Write a description of the #{table_name}.#{name} column."
+        end
+
+        def table_description
+          source_config.dig(:table_descriptions, table_name, :columns, name)
+        end
+
+        def key_column_name
+          name if primary_key? || foreign_key?
+        end
+
+        def primary_key?
+          primary_keys.include?(name)
+        end
+
+        def foreign_key?
+          ActiveRecord::Base.connection.foreign_key_exists?(table_name, column: name)
         end
 
         def column_overrides

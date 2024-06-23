@@ -17,7 +17,12 @@ module ActiveRecord
               foreign_keys: foreign_keys
             )
 
-            ActiveRecord::Dbt::Column::Column.new(table_name, column, column_test)
+            ActiveRecord::Dbt::Column::Column.new(
+              table_name,
+              column,
+              column_test,
+              primary_keys: primary_keys
+            )
           end
         end
       end
