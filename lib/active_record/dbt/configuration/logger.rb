@@ -4,12 +4,13 @@ module ActiveRecord
   module Dbt
     module Configuration
       module Logger
+        DEFAULT_LOG_FILE_PATH = './log/active_record_dbt.log'
         EXCLUDE_EXCEPTION_CLASS_NAMES = %w[ArInternalMetadatum SchemaMigration].freeze
 
         attr_writer :logger
 
         def logger
-          @logger ||= ::Logger.new($stdout)
+          @logger ||= ::Logger.new(DEFAULT_LOG_FILE_PATH)
         end
 
         def add_log(class_name, exception)

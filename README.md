@@ -48,7 +48,7 @@ configuration | descrption
 --------- | ---------
 source_config_path | The path to the file that describes the items you want to set in source property. Default is `lib/dbt/source_config.yml`.
 data_sync_delayed | Is there a data delay? If set to `true`, `serverity: warn` will be set for `relationships` test. Default is `false`.
-logger | Log output destination. Default is `Logger.new($stdout)`.
+logger | Log output destination. Default is `Logger.new('./log/active_record_dbt.log')`.
 used_dbt_package_names | An array of `dbt` package names used.
 
 ##### For Example:
