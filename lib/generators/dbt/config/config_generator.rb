@@ -5,14 +5,14 @@ module Dbt
     class ConfigGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
 
-      def copy_source_description_file
-        template 'descriptions.yml.tt', description_path, application_name
+      def copy_source_config_file
+        template 'source_config.yml.tt', source_config_path, application_name
       end
 
       private
 
-      def description_path
-        ActiveRecord::Dbt::Config.instance.description_path
+      def source_config_path
+        ActiveRecord::Dbt::Config.instance.source_config_path
       end
 
       def application_name

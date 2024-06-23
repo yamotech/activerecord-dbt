@@ -8,7 +8,7 @@ module ActiveRecord
 
         attr_reader :table_test, :columns
 
-        delegate :descriptions, to: :@config
+        delegate :source_config, to: :@config
 
         def initialize(table_name, table_test, columns)
           super(table_name)
@@ -45,18 +45,18 @@ module ActiveRecord
 
         def logical_name
           @logical_name ||=
-            descriptions.dig(:table_descriptions, table_name, :logical_name) ||
+            source_config.dig(:table_descriptions, table_name, :logical_name) ||
             I18n.t("activerecord.models.#{table_name.singularize}", default: nil) ||
             "Write a description of the #{table_name} table."
         end
 
         def table_description
-          @table_description ||= descriptions.dig(:table_descriptions, table_name, :description)
+          @table_description ||= source_config.dig(:table_descriptions, table_name, :description)
         end
 
         def table_overrides
           @table_overrides ||=
-            descriptions.dig(:table_overrides, table_name) ||
+            source_config.dig(:table_overrides, table_name) ||
             {}
         end
       end

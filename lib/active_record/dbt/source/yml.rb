@@ -6,7 +6,7 @@ module ActiveRecord
       class Yml
         attr_reader :tables
 
-        delegate :descriptions, to: :@config
+        delegate :source_config, to: :@config
 
         def initialize(tables)
           @tables = tables
@@ -26,7 +26,7 @@ module ActiveRecord
         private
 
         def source_properties
-          descriptions[:sources]
+          source_config[:sources]
         end
       end
     end
