@@ -41,7 +41,7 @@ $ gem install activerecord-dbt
 Generate `config/initializers/dbt.rb`.
 
 ```bash
-$ bin/rails generate dbt:initializer
+$ bin/rails generate active_record:dbt:initializer
 ```
 
 configuration | descrption
@@ -76,7 +76,7 @@ end
 Generate `lib/dbt/source_config.yml`.
 
 ```bash
-$ bin/rails generate dbt:config
+$ bin/rails generate active_record:dbt:config
 ```
 
 The items that can be set in `table_descriptions` and `table_overrides` are listed in [Source properties | dbt Developer Hub](https://docs.getdbt.com/reference/source-properties).
@@ -145,7 +145,7 @@ table_overrides:
 #### Generate `tmp/dbt/src_#{source_name}.yml`
 
 ```bash
-$ bin/rails generate dbt:source
+$ bin/rails generate active_record:dbt:source
 ```
 
 ##### For Example:

@@ -2,7 +2,7 @@ Description:
     Create a initializer file for dbt.
 
 Example:
-    bin/rails generate dbt:initializer
+    bin/rails generate active_record:dbt:initializer
 
     This will create:
         config/initializers/dbt.rb

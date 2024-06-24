@@ -2,7 +2,7 @@ Description:
     Create config files for dbt.
 
 Example:
-    bin/rails generate dbt:config
+    bin/rails generate active_record:dbt:config
 
     This will create:
         lib/dbt/source_config.yml

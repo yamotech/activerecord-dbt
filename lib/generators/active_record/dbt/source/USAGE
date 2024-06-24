@@ -2,7 +2,7 @@ Description:
     Create a source file for dbt.
 
 Example:
-    bin/rails generate dbt:source
+    bin/rails generate active_record:dbt:source
 
     This will create:
         tmp/dbt/src_#{source_name}.yml
