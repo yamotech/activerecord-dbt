@@ -3,7 +3,7 @@ sources:
   meta:
     generated_by: activerecord-dbt
   description: |-
-    Write a description of the <%= application_name %> source.
+    Write a description of the '<%= application_name %>' source.
     You can write multiple lines.
 
 table_descriptions:

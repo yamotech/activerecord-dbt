@@ -35,7 +35,7 @@ module ActiveRecord
             I18n.t("attributes.#{name}", default: nil) ||
             column.comment ||
             key_column_name ||
-            "Write a description of the #{table_name}.#{name} column."
+            "Write a description of the '#{table_name}.#{name}' column."
         end
 
         def table_description

@@ -47,7 +47,7 @@ module ActiveRecord
           @logical_name ||=
             source_config.dig(:table_descriptions, table_name, :logical_name) ||
             I18n.t("activerecord.models.#{table_name.singularize}", default: nil) ||
-            "Write a description of the #{table_name} table."
+            "Write a logical_name of the '#{table_name}' table."
         end
 
         def table_description

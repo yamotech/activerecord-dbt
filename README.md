@@ -102,7 +102,7 @@ sources:
   meta:
     generated_by: activerecord-dbt
   description: |-
-    Write a description of the dummy source.
+    Write a description of the 'dummy' source.
     You can write multiple lines.
 
 table_descriptions:
@@ -162,7 +162,7 @@ sources:
   meta:
     generated_by: activerecord-dbt
   description: |-
-    Write a description of the dummy source.
+    Write a description of the 'dummy' source.
     You can write multiple lines.
   tables:
   - name: ar_internal_metadata
