@@ -28,6 +28,7 @@ module ActiveRecord
 
         private
 
+        # rubocop:disable Metrics/CyclomaticComplexity
         def description
           @description ||=
             column_description ||
@@ -38,6 +39,7 @@ module ActiveRecord
             default_column_description ||
             "Write a description of the '#{table_name}.#{name}' column."
         end
+        # rubocop:enable Metrics/CyclomaticComplexity
 
         def column_description
           source_config.dig(:table_descriptions, table_name, :columns, name)
