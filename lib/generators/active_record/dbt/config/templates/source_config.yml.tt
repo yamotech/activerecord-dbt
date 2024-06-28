@@ -6,6 +6,35 @@ sources:
     Write a description of the '<%= application_name %>' source.
     You can write multiple lines.
 
+table_overrides:
+  <table_name>:
+    meta: {<dictionary>}
+    identifier: <table_name>
+    loaded_at_field: <column_name>
+    tests:
+      - <test>
+    tags: [<string>]
+    freshness:
+      warn_after:
+        count: <positive_integer>
+        period: minute | hour | day
+      error_after:
+        count: <positive_integer>
+        period: minute | hour | day
+      filter: <where-condition>
+    quoting:
+      database: true | false
+      schema: true | false
+      identifier: true | false
+    external: {<dictionary>}
+    columns:
+      <column_name>:
+        meta: {<dictionary>}
+        quote: true | false
+        tests:
+          - <test>
+        tags: [<string>]
+
 defaults:
   table_descriptions:
     logical_name: Write a logical_name of the '#{table_name}' table.
@@ -37,32 +66,3 @@ table_descriptions:
       You can write multiple lines.
     columns:
       <colume_name>: Write a description of the column.
-
-table_overrides:
-  <table_name>:
-    meta: {<dictionary>}
-    identifier: <table_name>
-    loaded_at_field: <column_name>
-    tests:
-      - <test>
-    tags: [<string>]
-    freshness:
-      warn_after:
-        count: <positive_integer>
-        period: minute | hour | day
-      error_after:
-        count: <positive_integer>
-        period: minute | hour | day
-      filter: <where-condition>
-    quoting:
-      database: true | false
-      schema: true | false
-      identifier: true | false
-    external: {<dictionary>}
-    columns:
-      <column_name>:
-        meta: {<dictionary>}
-        quote: true | false
-        tests:
-          - <test>
-        tags: [<string>]

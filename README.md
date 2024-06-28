@@ -99,6 +99,31 @@ sources:
 
 ```
 
+##### table_overrides
+
+Set all items in the `tables` except `name` and `description`.
+
+For example:
+
+```yml
+table_overrides:
+  users:
+    loaded_at_field: created_at
+    freshness:
+      warn_after:
+        count: 3
+        period: day
+      error_after:
+        count: 5
+        period: day
+    columns:
+      created_at:
+        tests:
+          - not_null:
+              where: 'id != 1'
+
+```
+
 ##### defaults
 
 Set default values for `name` and `description` of `table`.
@@ -162,13 +187,19 @@ table_descriptions:
 
 ```
 
-##### table_overrides
+##### For Example:
 
-Set all items in the `tables` except `name` and `description`.
-
-For example:
+Change the settings according to your environment.
 
 ```yml
+sources:
+  name: dummy
+  meta:
+    generated_by: activerecord-dbt
+  description: |-
+    Write a description of the 'dummy' source.
+    You can write multiple lines.
+
 table_overrides:
   users:
     loaded_at_field: created_at
@@ -184,21 +215,6 @@ table_overrides:
         tests:
           - not_null:
               where: 'id != 1'
-
-```
-
-##### For Example:
-
-Change the settings according to your environment.
-
-```yml
-sources:
-  name: dummy
-  meta:
-    generated_by: activerecord-dbt
-  description: |-
-    Write a description of the 'dummy' source.
-    You can write multiple lines.
 
 defaults:
   table_descriptions:
@@ -225,22 +241,6 @@ table_descriptions:
       stores them in a neighboring table in that same database called `schema_migrations`.
     columns:
       version: The version number of the migration.
-
-table_overrides:
-  users:
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
-    columns:
-      created_at:
-        tests:
-          - not_null:
-              where: 'id != 1'
 
 ```
 
