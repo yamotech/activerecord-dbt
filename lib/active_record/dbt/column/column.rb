@@ -31,8 +31,8 @@ module ActiveRecord
         def description
           @description ||=
             column_description ||
-            I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
-            I18n.t("attributes.#{name}", default: nil) ||
+            translated_attribute_name ||
+            translated_default_attribute_name ||
             column.comment ||
             key_column_name ||
             default_column_description ||
@@ -43,10 +43,12 @@ module ActiveRecord
           source_config.dig(:table_descriptions, table_name, :columns, name)
         end
 
-        def default_column_description
-          source_config.dig(:defaults, :table_descriptions, :columns, :description)
-                       &.gsub('#{table_name}', table_name)
-                       &.gsub('#{column_name}', name)
+        def translated_attribute_name
+          I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil)
+        end
+
+        def translated_default_attribute_name
+          I18n.t("attributes.#{name}", default: nil)
         end
 
         def key_column_name
@@ -59,6 +61,12 @@ module ActiveRecord
 
         def foreign_key?
           ActiveRecord::Base.connection.foreign_key_exists?(table_name, column: name)
+        end
+
+        def default_column_description
+          source_config.dig(:defaults, :table_descriptions, :columns, :description)
+                       &.gsub('#{table_name}', table_name)
+                       &.gsub('#{column_name}', name)
         end
 
         def column_overrides
