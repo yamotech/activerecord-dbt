@@ -30,16 +30,23 @@ module ActiveRecord
 
         def description
           @description ||=
-            table_description ||
+            column_description ||
             I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil) ||
             I18n.t("attributes.#{name}", default: nil) ||
             column.comment ||
             key_column_name ||
+            default_column_description ||
             "Write a description of the '#{table_name}.#{name}' column."
         end
 
-        def table_description
+        def column_description
           source_config.dig(:table_descriptions, table_name, :columns, name)
+        end
+
+        def default_column_description
+          source_config.dig(:defaults, :table_descriptions, :columns, :description)
+                       &.gsub('#{table_name}', table_name)
+                       &.gsub('#{column_name}', name)
         end
 
         def key_column_name

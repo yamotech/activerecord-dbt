@@ -6,6 +6,12 @@ sources:
     Write a description of the '<%= application_name %>' source.
     You can write multiple lines.
 
+defaults:
+  table_descriptions:
+    logical_name: Write a logical_name of the '#{table_name}' table.
+    columns:
+      description: Write a description of the '#{table_name}.#{name}' column.
+
 table_descriptions:
   ar_internal_metadata:
     logical_name: Internal Metadata

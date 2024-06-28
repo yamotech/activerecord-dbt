@@ -47,11 +47,24 @@ module ActiveRecord
           @logical_name ||=
             source_config.dig(:table_descriptions, table_name, :logical_name) ||
             I18n.t("activerecord.models.#{table_name.singularize}", default: nil) ||
+            default_logical_name ||
             "Write a logical_name of the '#{table_name}' table."
         end
 
+        def default_logical_name
+          source_config.dig(:defaults, :table_descriptions, :logical_name)
+                       &.gsub('#{table_name}', table_name)
+        end
+
         def table_description
-          @table_description ||= source_config.dig(:table_descriptions, table_name, :description)
+          @table_description ||=
+            source_config.dig(:table_descriptions, table_name, :description) ||
+            default_table_description
+        end
+
+        def default_table_description
+          source_config.dig(:defaults, :table_descriptions, :description)
+                       &.gsub('#{table_name}', table_name)
         end
 
         def table_overrides

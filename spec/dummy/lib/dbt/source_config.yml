@@ -3,8 +3,15 @@ sources:
   meta:
     generated_by: activerecord-dbt
   description: |-
-    Write a description of the dummy source.
+    Write a description of the 'dummy' source.
     You can write multiple lines.
+
+defaults:
+  table_descriptions:
+    logical_name: Write a logical_name of the '#{table_name}' table.
+    description: Write a description of the '#{table_name}' table.
+    columns:
+      description: Write a description of the '#{table_name}.#{name}' column.
 
 table_descriptions:
   ar_internal_metadata:
@@ -15,6 +22,8 @@ table_descriptions:
     columns:
       key: Key
       value: Value
+      created_at: Created At
+      updated_at: Updated At
   schema_migrations:
     logical_name: Schema Migrations
     description: |-
