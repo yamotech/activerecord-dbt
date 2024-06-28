@@ -6,7 +6,7 @@ module ActiveRecord
       class Column
         attr_reader :table_name, :column, :column_test, :primary_keys
 
-        delegate :name, to: :column
+        delegate :name, :comment, to: :column
         delegate :source_config, to: :@config
 
         def initialize(table_name, column, column_test, primary_keys: [])
@@ -33,7 +33,7 @@ module ActiveRecord
             column_description ||
             translated_attribute_name ||
             translated_default_attribute_name ||
-            column.comment ||
+            comment ||
             key_column_name ||
             default_column_description ||
             "Write a description of the '#{table_name}.#{name}' column."
