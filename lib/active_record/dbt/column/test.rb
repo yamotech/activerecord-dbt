@@ -11,7 +11,7 @@ module ActiveRecord
 
         attr_reader :table_name, :column, :primary_keys, :foreign_keys
 
-        delegate :name, :type, to: :column
+        delegate :name, to: :column, prefix: true
         delegate :source_config, to: :@config
 
         def initialize(table_name, column, primary_keys: [], foreign_keys: [{}])
@@ -52,7 +52,7 @@ module ActiveRecord
 
         def tests_overrides
           @tests_overrides ||=
-            source_config.dig(:table_overrides, table_name, :columns, name, :tests) ||
+            source_config.dig(:table_overrides, table_name, :columns, column_name, :tests) ||
             []
         end
       end

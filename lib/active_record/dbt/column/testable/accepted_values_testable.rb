@@ -5,8 +5,9 @@ module ActiveRecord
     module Column
       module Testable
         module AcceptedValuesTestable
-          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS = %i[@config type table_name name].freeze
+          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS = %i[@config column table_name column_name].freeze
 
+          delegate :type, to: :column, prefix: true
           delegate :add_log, to: :@config
 
           REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS.each do |method_name|
@@ -16,7 +17,7 @@ module ActiveRecord
           end
 
           def accepted_values_test
-            return nil unless type == :boolean || enum_values.present?
+            return nil unless column_type == :boolean || enum_values.present?
 
             {
               'accepted_values' => {
@@ -29,7 +30,7 @@ module ActiveRecord
           private
 
           def values
-            type == :boolean ? [true, false] : enum_accepted_values
+            column_type == :boolean ? [true, false] : enum_accepted_values
           end
 
           def enum_accepted_values
@@ -37,7 +38,7 @@ module ActiveRecord
           end
 
           def enum_values
-            @enum_values ||= enums[name]&.values
+            @enum_values ||= enums[column_name]&.values
           end
 
           def enums
@@ -49,7 +50,7 @@ module ActiveRecord
           end
 
           def quote?
-            @quote ||= %i[integer boolean].exclude?(type)
+            @quote ||= %i[integer boolean].exclude?(column_type)
           end
         end
       end

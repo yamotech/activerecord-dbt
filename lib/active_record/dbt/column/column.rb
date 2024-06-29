@@ -6,7 +6,7 @@ module ActiveRecord
       class Column
         attr_reader :table_name, :column, :column_test, :primary_keys
 
-        delegate :name, :comment, to: :column
+        delegate :name, :comment, to: :column, prefix: true
         delegate :source_config, to: :@config
 
         def initialize(table_name, column, column_test, primary_keys: [])
@@ -19,7 +19,7 @@ module ActiveRecord
 
         def config
           {
-            'name' => name,
+            'name' => column_name,
             'description' => description,
             **column_overrides.except(:tests),
             'tests' => column_test.config
@@ -34,46 +34,46 @@ module ActiveRecord
             column_description ||
             translated_attribute_name ||
             translated_default_attribute_name ||
-            comment ||
+            column_comment ||
             key_column_name ||
             default_column_description ||
-            "Write a description of the '#{table_name}.#{name}' column."
+            "Write a description of the '#{table_name}.#{column_name}' column."
         end
         # rubocop:enable Metrics/CyclomaticComplexity
 
         def column_description
-          source_config.dig(:table_descriptions, table_name, :columns, name)
+          source_config.dig(:table_descriptions, table_name, :columns, column_name)
         end
 
         def translated_attribute_name
-          I18n.t("activerecord.attributes.#{table_name.singularize}.#{name}", default: nil)
+          I18n.t("activerecord.attributes.#{table_name.singularize}.#{column_name}", default: nil)
         end
 
         def translated_default_attribute_name
-          I18n.t("attributes.#{name}", default: nil)
+          I18n.t("attributes.#{column_name}", default: nil)
         end
 
         def key_column_name
-          name if primary_key? || foreign_key?
+          column_name if primary_key? || foreign_key?
         end
 
         def primary_key?
-          primary_keys.include?(name)
+          primary_keys.include?(column_name)
         end
 
         def foreign_key?
-          ActiveRecord::Base.connection.foreign_key_exists?(table_name, column: name)
+          ActiveRecord::Base.connection.foreign_key_exists?(table_name, column: column_name)
         end
 
         def default_column_description
           source_config.dig(:defaults, :table_descriptions, :columns, :description)
                        &.gsub('#{table_name}', table_name)
-                       &.gsub('#{column_name}', name)
+                       &.gsub('#{column_name}', column_name)
         end
 
         def column_overrides
           @column_overrides ||=
-            source_config.dig(:table_overrides, table_name, :columns, name) ||
+            source_config.dig(:table_overrides, table_name, :columns, column_name) ||
             {}
         end
       end

@@ -5,7 +5,7 @@ module ActiveRecord
     module Column
       module Testable
         module RelationshipsTestable
-          REQUIRED_RELATIONSHIPS_TESTABLE_METHODS = %i[@config foreign_keys name].freeze
+          REQUIRED_RELATIONSHIPS_TESTABLE_METHODS = %i[@config foreign_keys column_name].freeze
 
           include ActiveRecord::Dbt::DbtPackage::Dbterd::Column::Testable::RelationshipsMetaRelationshipType
 
@@ -39,7 +39,7 @@ module ActiveRecord
 
           def foreign_key
             @foreign_key ||= foreign_keys.find do |fk|
-              fk.dig(:options, :column) == name
+              fk.dig(:options, :column) == column_name
             end
           end
         end

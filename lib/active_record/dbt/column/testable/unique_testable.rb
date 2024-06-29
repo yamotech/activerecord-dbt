@@ -5,7 +5,7 @@ module ActiveRecord
     module Column
       module Testable
         module UniqueTestable
-          REQUIRED_UNIQUE_TESTABLE_METHODS = %i[table_name name primary_keys].freeze
+          REQUIRED_UNIQUE_TESTABLE_METHODS = %i[table_name column_name primary_keys].freeze
 
           REQUIRED_UNIQUE_TESTABLE_METHODS.each do |method_name|
             define_method(method_name) do
@@ -20,7 +20,7 @@ module ActiveRecord
           private
 
           def unique?
-            primary_keys.include?(name) || unique_columns.include?(name)
+            primary_keys.include?(column_name) || unique_columns.include?(column_name)
           end
 
           def unique_columns

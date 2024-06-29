@@ -139,7 +139,7 @@ defaults:
     logical_name: Write a logical_name of the '#{table_name}' table.
     description: Write a description of the '#{table_name}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{name}' column.
+      description: Write a description of the '#{table_name}.#{column_name}' column.
 
 ```
 
@@ -150,7 +150,7 @@ defaults:
   table_descriptions:
     logical_name: Write a logical_name of the '#{table_name}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{name}' column.
+      description: Write a description of the '#{table_name}.#{column_name}' column.
 
 ```
 
@@ -221,7 +221,7 @@ defaults:
     logical_name: Write a logical_name of the '#{table_name}' table.
     description: Write a description of the '#{table_name}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{name}' column.
+      description: Write a description of the '#{table_name}.#{column_name}' column.
 
 table_descriptions:
   ar_internal_metadata:
@@ -299,15 +299,15 @@ sources:
       - unique
       - not_null
     - name: name
-      description: Write a description of the 'companies.#{name}' column.
+      description: Write a description of the 'companies.name' column.
       tests:
       - not_null
     - name: establishment_date
-      description: Write a description of the 'companies.#{name}' column.
+      description: Write a description of the 'companies.establishment_date' column.
     - name: average_age
-      description: Write a description of the 'companies.#{name}' column.
+      description: Write a description of the 'companies.average_age' column.
     - name: published
-      description: Write a description of the 'companies.#{name}' column.
+      description: Write a description of the 'companies.published' column.
       tests:
       - not_null
       - accepted_values:
@@ -355,7 +355,7 @@ sources:
       tests:
       - not_null
     - name: status
-      description: Write a description of the 'posts.#{name}' column.
+      description: Write a description of the 'posts.status' column.
       tests:
       - accepted_values:
           values:
@@ -418,11 +418,11 @@ sources:
           meta:
             relationship_type: one-to-one
     - name: first_name
-      description: Write a description of the 'profiles.#{name}' column.
+      description: Write a description of the 'profiles.first_name' column.
       tests:
       - not_null
     - name: last_name
-      description: Write a description of the 'profiles.#{name}' column.
+      description: Write a description of the 'profiles.last_name' column.
       tests:
       - not_null
     - name: created_at
@@ -496,7 +496,7 @@ sources:
       - unique
       - not_null
     - name: name
-      description: Write a description of the 'tags.#{name}' column.
+      description: Write a description of the 'tags.name' column.
       tests:
       - unique
       - not_null
