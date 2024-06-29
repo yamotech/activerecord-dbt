@@ -67,8 +67,8 @@ module ActiveRecord
 
         def default_column_description
           source_config.dig(:defaults, :table_descriptions, :columns, :description)
-                       &.gsub('#{table_name}', table_name)
-                       &.gsub('#{column_name}', column_name)
+                       &.gsub(/{{\s*table_name\s*}}/, table_name)
+                       &.gsub(/{{\s*column_name\s*}}/, column_name)
         end
 
         def column_overrides

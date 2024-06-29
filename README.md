@@ -128,18 +128,18 @@ table_overrides:
 
 Set default values for `name` and `description` of `table`.
 
-In `logical_name` and `description` of `table_descriptions`, `'#{table_name}'` can refer to the table name.
-In the `description` of `columns`, you can refer to the table name by `'#{table_name}'` and the column name by `'#{column_name}'`.
+In `logical_name` and `description` of `table_descriptions`, `{{ table_name }}` can refer to the table name.
+In the `description` of `columns`, you can refer to the table name by `{{ table_name }}` and the column name by `{{ column_name }}`.
 
 For example:
 
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '#{table_name}' table.
-    description: Write a description of the '#{table_name}' table.
+    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    description: Write a description of the '{{ table_name }}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{column_name}' column.
+      description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
 ```
 
@@ -148,9 +148,9 @@ If nothing is set, it works the same as if the following were set.
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '#{table_name}' table.
+    logical_name: Write a logical_name of the '{{ table_name }}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{column_name}' column.
+      description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
 ```
 
@@ -218,10 +218,10 @@ table_overrides:
 
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '#{table_name}' table.
-    description: Write a description of the '#{table_name}' table.
+    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    description: Write a description of the '{{ table_name }}' table.
     columns:
-      description: Write a description of the '#{table_name}.#{column_name}' column.
+      description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
 table_descriptions:
   ar_internal_metadata:

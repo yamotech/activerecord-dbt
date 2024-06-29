@@ -57,7 +57,7 @@ module ActiveRecord
 
         def default_logical_name
           source_config.dig(:defaults, :table_descriptions, :logical_name)
-                       &.gsub('#{table_name}', table_name)
+                       &.gsub(/{{\s*table_name\s*}}/, table_name)
         end
 
         def table_description
@@ -68,7 +68,7 @@ module ActiveRecord
 
         def default_table_description
           source_config.dig(:defaults, :table_descriptions, :description)
-                       &.gsub('#{table_name}', table_name)
+                       &.gsub(/{{\s*table_name\s*}}/, table_name)
         end
 
         def table_overrides
