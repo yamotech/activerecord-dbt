@@ -7,14 +7,14 @@ module ActiveRecord
         source_root File.expand_path('templates', __dir__)
 
         def create_source_yml_file
-          create_file "tmp/dbt/src_#{source_name}.yml",
+          create_file "#{config.export_directory_path}/src_#{config.source_name}.yml",
                       ActiveRecord::Dbt::Factory::SourceFactory.build
         end
 
         private
 
-        def source_name
-          ActiveRecord::Dbt::Config.instance.source_name
+        def config
+          @config ||= ActiveRecord::Dbt::Config.instance
         end
       end
     end
