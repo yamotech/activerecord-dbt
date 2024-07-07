@@ -21,6 +21,7 @@ module ActiveRecord
           {
             'name' => column_name,
             'description' => description,
+            'meta' => { 'column_type' => column.type.to_s },
             **column_overrides.except(:tests),
             'tests' => column_test.config
           }.compact
