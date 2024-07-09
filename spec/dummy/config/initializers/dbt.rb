@@ -3,7 +3,7 @@
 require 'active_record/dbt'
 
 ActiveRecord::Dbt.configure do |c|
-  c.source_config_path = 'lib/dbt/source_config.yml'
+  c.config_directory_path = 'lib/dbt'
   c.export_directory_path = 'doc/dbt'
   c.data_sync_delayed = false
   c.logger = Logger.new($stdout)

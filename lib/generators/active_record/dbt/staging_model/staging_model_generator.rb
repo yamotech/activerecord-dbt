@@ -25,8 +25,10 @@ module ActiveRecord
         end
 
         def source_paths
+          config_directory_path = ActiveRecord::Dbt::Config.instance.config_directory_path
+
           [
-            File.expand_path('lib/dbt', Rails.root),
+            File.expand_path(config_directory_path, Rails.root),
             File.expand_path('./templates/', __dir__)
           ]
         end

@@ -5,5 +5,5 @@ Example:
     bin/rails generate active_record:dbt:config
 
     This will create:
-        lib/dbt/source_config.yml
-        lib/dbt/staging_model.sql.tt
+        #{config_directory_path}/source_config.yml
+        #{config_directory_path}/staging_model.sql.tt
