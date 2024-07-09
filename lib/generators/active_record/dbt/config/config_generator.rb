@@ -10,6 +10,11 @@ module ActiveRecord
           template 'source_config.yml.tt', source_config_path
         end
 
+        def copy_staging_model_sql_tt_file
+          copy_file File.expand_path('../staging_model/templates/staging_model.sql.tt', __dir__),
+                    'lib/dbt/staging_model.sql.tt'
+        end
+
         private
 
         def source_config_path

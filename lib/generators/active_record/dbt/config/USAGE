@@ -6,3 +6,4 @@ Example:
 
     This will create:
         lib/dbt/source_config.yml
+        lib/dbt/staging_model.sql.tt

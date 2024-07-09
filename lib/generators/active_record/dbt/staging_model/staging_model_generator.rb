@@ -17,11 +17,18 @@ module ActiveRecord
         private
 
         def sql
-          ActiveRecord::Dbt::Model::Staging::Sql.new(name)
+          @sql ||= ActiveRecord::Dbt::Model::Staging::Sql.new(name)
         end
 
         def yml
           @yml ||= ActiveRecord::Dbt::Factory::Model::StagingFactory.yml_build(name)
+        end
+
+        def source_paths
+          [
+            File.expand_path('lib/dbt', Rails.root),
+            File.expand_path('./templates/', __dir__)
+          ]
         end
       end
     end
