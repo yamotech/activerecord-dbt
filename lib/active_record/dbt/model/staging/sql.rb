@@ -29,6 +29,8 @@ module ActiveRecord
             columns.group_by do |column|
               if id?(column.name)
                 'ids'
+              elsif enum?(column.name)
+                'enums'
               else
                 column.type.to_s.pluralize
               end

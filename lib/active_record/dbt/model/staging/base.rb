@@ -6,7 +6,7 @@ module ActiveRecord
       module Staging
         module Base
           SORT_COLUMN_TYPES = %w[
-            ids
+            ids enums
             strings texts
             integers floats decimals
             binaries booleans
@@ -53,6 +53,14 @@ module ActiveRecord
 
           def id?(column_name)
             primary_key?(column_name) || foreign_key?(column_name)
+          end
+
+          def enum?(column_name)
+            table_name.singularize.classify.constantize.defined_enums.include?(column_name)
+          rescue NameError => e
+            add_log(self.class, e)
+
+            false
           end
 
           def foreign_key?(column_name)
