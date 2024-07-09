@@ -6,10 +6,7 @@ module ActiveRecord
       module TablesFactory
         def self.build
           ActiveRecord::Base.connection.tables.sort.map do |table_name|
-            table_test = ActiveRecord::Dbt::Table::Test.new(table_name)
-            columns = ActiveRecord::Dbt::Factory::ColumnsFactory.build(table_name)
-
-            ActiveRecord::Dbt::Table::Yml.new(table_name, table_test, columns)
+            ActiveRecord::Dbt::Factory::TableFactory.build(table_name)
           end
         end
       end
