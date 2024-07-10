@@ -1,5 +1,5 @@
 Description:
-    Create a initializer file for dbt.
+    Create an initializer file for dbt:.
 
 Example:
     bin/rails generate active_record:dbt:initializer

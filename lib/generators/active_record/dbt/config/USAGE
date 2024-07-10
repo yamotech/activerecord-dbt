@@ -1,5 +1,5 @@
 Description:
-    Create config files for dbt.
+    Create configuration files for dbt.
 
 Example:
     bin/rails generate active_record:dbt:config

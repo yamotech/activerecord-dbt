@@ -1,5 +1,5 @@
 Description:
-    Create a source file for dbt.
+    Generate a source file for dbt.
 
 Example:
     bin/rails generate active_record:dbt:source
