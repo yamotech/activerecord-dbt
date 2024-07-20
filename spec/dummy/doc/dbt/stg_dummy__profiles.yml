@@ -2,9 +2,7 @@
 version: 2
 models:
 - name: stg_dummy__profiles
-  description: |-
-    # Write a logical_name of the 'profiles' table.
-    Write a description of the 'profiles' table.
+  description: Write a logical_name of the 'profiles' table.
   columns:
   - name: profile_id
     description: profile_id

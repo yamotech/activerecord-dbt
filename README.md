@@ -154,7 +154,6 @@ Example:
 defaults:
   table_descriptions:
     logical_name: Write a logical_name of the '{{ table_name }}' table.
-    description: Write a description of the '{{ table_name }}' table.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -236,7 +235,6 @@ table_overrides:
 defaults:
   table_descriptions:
     logical_name: Write a logical_name of the '{{ table_name }}' table.
-    description: Write a description of the '{{ table_name }}' table.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -318,9 +316,7 @@ sources:
       tests:
       - not_null
   - name: companies
-    description: |-
-      # Write a logical_name of the 'companies' table.
-      Write a description of the 'companies' table.
+    description: Write a logical_name of the 'companies' table.
     columns:
     - name: id
       description: id
@@ -367,9 +363,7 @@ sources:
       tests:
       - not_null
   - name: posts
-    description: |-
-      # Post
-      Write a description of the 'posts' table.
+    description: Post
     columns:
     - name: id
       description: ID
@@ -421,9 +415,7 @@ sources:
           - 2
           quote: false
   - name: posts_tags
-    description: |-
-      # Write a logical_name of the 'posts_tags' table.
-      Write a description of the 'posts_tags' table.
+    description: Write a logical_name of the 'posts_tags' table.
     tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -459,9 +451,7 @@ sources:
               class: NameError
               message: uninitialized constant PostsTag
   - name: profiles
-    description: |-
-      # Write a logical_name of the 'profiles' table.
-      Write a description of the 'profiles' table.
+    description: Write a logical_name of the 'profiles' table.
     columns:
     - name: id
       description: id
@@ -507,9 +497,7 @@ sources:
       tests:
       - not_null
   - name: relationships
-    description: |-
-      # Write a logical_name of the 'relationships' table.
-      Write a description of the 'relationships' table.
+    description: Write a logical_name of the 'relationships' table.
     tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -571,9 +559,7 @@ sources:
       - unique
       - not_null
   - name: tags
-    description: |-
-      # Write a logical_name of the 'tags' table.
-      Write a description of the 'tags' table.
+    description: Write a logical_name of the 'tags' table.
     columns:
     - name: id
       description: id
@@ -602,9 +588,7 @@ sources:
       tests:
       - not_null
   - name: user_tags
-    description: |-
-      # Write a logical_name of the 'user_tags' table.
-      Write a description of the 'user_tags' table.
+    description: Write a logical_name of the 'user_tags' table.
     tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -653,9 +637,7 @@ sources:
       tests:
       - not_null
   - name: users
-    description: |-
-      # User
-      Write a description of the 'users' table.
+    description: User
     loaded_at_field: created_at
     freshness:
       warn_after:
@@ -794,7 +776,7 @@ File | Description
 Example:
 
 ```bash
-$ bin/rails generate active_record:dbt:staging_model profile
+$ bin/rails generate active_record:dbt:staging_model profiles
 ```
 
 ##### Generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`
@@ -877,9 +859,7 @@ Example:
 version: 2
 models:
 - name: stg_dummy__profiles
-  description: |-
-    # Write a logical_name of the 'profiles' table.
-    Write a description of the 'profiles' table.
+  description: Write a logical_name of the 'profiles' table.
   columns:
   - name: profile_id
     description: profile_id

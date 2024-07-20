@@ -61,14 +61,7 @@ module ActiveRecord
         end
 
         def table_description
-          @table_description ||=
-            source_config.dig(:table_descriptions, table_name, :description) ||
-            default_table_description
-        end
-
-        def default_table_description
-          source_config.dig(:defaults, :table_descriptions, :description)
-                       &.gsub(/{{\s*table_name\s*}}/, table_name)
+          @table_description ||= source_config.dig(:table_descriptions, table_name, :description)
         end
 
         def table_overrides
