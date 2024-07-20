@@ -29,28 +29,29 @@ module ActiveRecord
 
         private
 
-        # rubocop:disable Metrics/CyclomaticComplexity
         def description
           @description ||=
             column_description ||
             translated_attribute_name ||
-            translated_default_attribute_name ||
             column_comment ||
             key_column_name ||
             default_column_description ||
             "Write a description of the '#{table_name}.#{column_name}' column."
         end
-        # rubocop:enable Metrics/CyclomaticComplexity
 
         def column_description
           source_config.dig(:table_descriptions, table_name, :columns, column_name)
         end
 
         def translated_attribute_name
+          translated_column_name || translated_default_column_name
+        end
+
+        def translated_column_name
           I18n.t("activerecord.attributes.#{table_name.singularize}.#{column_name}", default: nil)
         end
 
-        def translated_default_attribute_name
+        def translated_default_column_name
           I18n.t("attributes.#{column_name}", default: nil)
         end
 
