@@ -1,0 +1,9 @@
+Description:
+    Create configuration files for dbt.
+
+Example:
+    bin/rails generate active_record:dbt:config
+
+    This will create:
+        #{config_directory_path}/source_config.yml
+        #{config_directory_path}/staging_model.sql.tt

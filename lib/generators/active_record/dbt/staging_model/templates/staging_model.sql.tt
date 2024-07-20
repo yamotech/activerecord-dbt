@@ -1,0 +1,29 @@
+with
+
+source as (
+
+    select * from {{ source('<%= sql.source_name %>', '<%= sql.table_name %>') }}
+
+),
+
+renamed as (
+
+    select
+
+        <%- sql.select_column_names.each_with_index do |(column_type, columns), column_type_index| -%>
+          -- <%= column_type %>
+          <%- columns.each_with_index do |column, column_index| -%>
+          <%- is_rename_primary_id = sql.primary_key_eql_id? && sql.primary_key?(column.name) -%>
+          <%- is_last_column = column_type_index == sql.select_column_names.size - 1 && column_index == columns.size - 1 -%>
+          <%= is_rename_primary_id ? "id as #{sql.rename_primary_id}" : column.name %><% unless is_last_column -%>,<%- end %>
+          <%- if column_type_index != sql.select_column_names.size - 1 && column_index == columns.size - 1 -%>
+
+          <%- end -%>
+          <%- end -%>
+        <%- end -%>
+
+    from source
+
+)
+
+select * from renamed

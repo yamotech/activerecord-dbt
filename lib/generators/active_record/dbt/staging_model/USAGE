@@ -1,0 +1,9 @@
+Description:
+    Generate staging model files for dbt that reference the specified TABLE_NAME.
+
+Example:
+    bin/rails generate active_record:dbt:staging_model TABLE_NAME
+
+    This will create:
+        #{export_directory_path}/stg_#{source_name}__#{table_name}.sql
+        #{export_directory_path}/stg_#{source_name}__#{table_name}.yml

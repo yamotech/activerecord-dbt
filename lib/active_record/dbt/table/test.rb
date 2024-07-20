@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+module ActiveRecord
+  module Dbt
+    module Table
+      class Test
+        include ActiveRecord::Dbt::DbtPackage::DbtUtils::Table::Testable::UniqueCombinationOfColumnsTestable
+
+        include ActiveRecord::Dbt::Table::Base
+
+        def config
+          [
+            *unique_combination_of_columns_test
+          ].compact.presence
+        end
+      end
+    end
+  end
+end

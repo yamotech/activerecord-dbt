@@ -1,0 +1,30 @@
+#standardSQL
+
+with source as (
+  select
+    <%- if sql.primary_key_eql_id? -%>
+    id as <%= sql.rename_primary_id %>
+    , * except(id)
+    <%- else -%>
+    *
+    <%- end -%>
+  from {{ source('<%= sql.source_name %>', '<%= sql.table_name %>') }}
+)
+
+, final as (
+  select
+  <%- sql.select_column_names.each_with_index do |(column_type, columns), column_type_index| -%>
+    -- <%= column_type %>
+    <%- columns.each_with_index do |column, column_index| -%>
+    <% unless column_type_index == 0 && column_index == 0 -%>, <%- end %><%= (sql.primary_key_eql_id? && sql.primary_key?(column.name) ? sql.rename_primary_id : column.name) %>
+    <%- if column_type_index != sql.select_column_names.size - 1 && column_index == columns.size - 1 -%>
+
+    <%- end -%>
+    <%- end -%>
+  <%- end -%>
+  from source
+)
+
+select
+  *
+from final

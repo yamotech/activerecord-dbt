@@ -1,0 +1,48 @@
+sources:
+  name: dummy
+  meta:
+    generated_by: activerecord-dbt
+  description: |-
+    Write a description of the 'dummy' source.
+    You can write multiple lines.
+
+table_overrides:
+  users:
+    loaded_at_field: created_at
+    freshness:
+      warn_after:
+        count: 3
+        period: day
+      error_after:
+        count: 5
+        period: day
+    columns:
+      created_at:
+        tests:
+          - not_null:
+              where: 'id != 1'
+
+defaults:
+  table_descriptions:
+    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    columns:
+      description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
+
+table_descriptions:
+  ar_internal_metadata:
+    logical_name: Internal Metadata
+    description: |-
+      By default Rails will store information about your Rails environment and schema
+      in an internal table named `ar_internal_metadata`.
+    columns:
+      key: Key
+      value: Value
+      created_at: Created At
+      updated_at: Updated At
+  schema_migrations:
+    logical_name: Schema Migrations
+    description: |-
+      Rails keeps track of which migrations have been committed to the database and
+      stores them in a neighboring table in that same database called `schema_migrations`.
+    columns:
+      version: The version number of the migration.
