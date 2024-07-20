@@ -17,8 +17,7 @@ module ActiveRecord
           {
             'version' => 2,
             'sources' => [
-              **source_properties,
-              'tables' => tables.map(&:config)
+              source_properties.merge('tables' => tables_properties)
             ]
           }
         end
@@ -27,6 +26,10 @@ module ActiveRecord
 
         def source_properties
           source_config[:sources]
+        end
+
+        def tables_properties
+          tables.map(&:config)
         end
       end
     end
