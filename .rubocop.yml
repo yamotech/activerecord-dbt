@@ -7,7 +7,8 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   Exclude:
-    - "spec/dummy/**/*"
+    - 'spec/dummy/**/*'
+    - 'vendor/**/*.rb'
 
 Rails:
   Enabled: true
