@@ -21,17 +21,24 @@ module ActiveRecord
                 return nil unless used_dbt_utils?
 
                 ActiveRecord::Base.connection.indexes(table_name).each_with_object([]) do |index, array|
-                  next if index.unique == false
-                  next if (unique_indexes = index.columns).size == 1
+                  next if unique_indexes?(index)
 
                   array.push(
                     {
                       'dbt_utils.unique_combination_of_columns' => {
-                        'combination_of_columns' => unique_indexes
+                        'combination_of_columns' => index.columns
                       }
                     }
                   )
                 end.presence
+              end
+
+              private
+
+              def unique_indexes?(index)
+                return true if index.unique == false
+
+                index.columns.size == 1
               end
             end
           end
