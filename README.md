@@ -1,6 +1,7 @@
 # ActiveRecord::Dbt
 
 [![Gem Version](https://badge.fury.io/rb/activerecord-dbt.svg)](https://badge.fury.io/rb/activerecord-dbt)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ef9a0a71c73dae7b8156/maintainability)](https://codeclimate.com/github/yamotech/activerecord-dbt/maintainability)
 
 `ActiveRecord::Dbt` generates dbt files from the information of the database connected via ActiveRecord.
 
