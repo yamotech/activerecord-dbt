@@ -25,15 +25,7 @@ module ActiveRecord
                   'relationship_type' => relationship_type
                 }
               rescue NotSpecifiedOrNotInvalidIdError, StandardError => e
-                add_log(self.class, e)
-
-                {
-                  'relationship_type' => 'many-to-one',
-                  'active_record_dbt_error' => {
-                    'class' => e.class.to_s,
-                    'message' => e.message.to_s
-                  }
-                }
+                relationships_meta_relationship_type_with_active_record_dbt_error(e)
               end
 
               private
@@ -130,6 +122,18 @@ module ActiveRecord
 
               def no_relationship?
                 foreign_key.nil? || relationship_type.blank?
+              end
+
+              def relationships_meta_relationship_type_with_active_record_dbt_error(error)
+                add_log(self.class, error)
+
+                {
+                  'relationship_type' => 'many-to-one',
+                  'active_record_dbt_error' => {
+                    'class' => error.class.to_s,
+                    'message' => error.message.to_s
+                  }
+                }
               end
 
               class NotSpecifiedOrNotInvalidIdError < StandardError; end
