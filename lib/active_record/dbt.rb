@@ -11,7 +11,5 @@ module ActiveRecord
 
       config
     end
-
-    class Error < StandardError; end
   end
 end
