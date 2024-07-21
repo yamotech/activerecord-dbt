@@ -19,7 +19,7 @@ module ActiveRecord
 
               def relationships_meta_relationship_type
                 return nil unless used_dbterd?
-                return nil if foreign_key.nil? || relationship_type.blank?
+                return nil if no_relationship?
 
                 {
                   'relationship_type' => relationship_type
@@ -126,6 +126,10 @@ module ActiveRecord
 
               def to_model
                 @to_model ||= foreign_key.to_table.classify.constantize
+              end
+
+              def no_relationship?
+                foreign_key.nil? || relationship_type.blank?
               end
 
               class NotSpecifiedOrNotInvalidIdError < StandardError; end
