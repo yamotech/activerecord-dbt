@@ -8,7 +8,7 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - 'spec/dummy/**/*'
-    - 'vendor/**/*.rb'
+    - 'vendor/bundle/**/*'
 
 Rails:
   Enabled: true
