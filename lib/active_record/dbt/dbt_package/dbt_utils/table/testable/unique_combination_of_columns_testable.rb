@@ -20,7 +20,7 @@ module ActiveRecord
               def unique_combination_of_columns_test
                 return nil unless used_dbt_utils?
 
-                ActiveRecord::Base.connection.indexes(table_name).each_with_object([]) do |index, array|
+                indexes.each_with_object([]) do |index, array|
                   next if unique_indexes?(index)
 
                   array.push(
@@ -34,6 +34,10 @@ module ActiveRecord
               end
 
               private
+
+              def indexes
+                ActiveRecord::Base.connection.indexes(table_name)
+              end
 
               def unique_indexes?(index)
                 return true if index.unique == false

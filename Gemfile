@@ -11,7 +11,7 @@ gem 'rails'
 gem 'puma'
 gem 'sqlite3', '~> 1.4'
 
-group :development do
+group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-performance'
