@@ -1,5 +1,7 @@
 # ActiveRecord::Dbt
 
+[![Gem Version](https://badge.fury.io/rb/activerecord-dbt.svg)](https://badge.fury.io/rb/activerecord-dbt)
+
 `ActiveRecord::Dbt` generates dbt files from the information of the database connected via ActiveRecord.
 
 Currently, it can generate `yaml` files for `sources` and `models` files for `staging`.
