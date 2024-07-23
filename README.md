@@ -58,6 +58,13 @@ data_sync_delayed | Indicates whether there is a data delay. If set to `true`, `
 logger | The destination for log output. The default is `Logger.new('./log/active_record_dbt.log')`.
 used_dbt_package_names | An array of `dbt` package names to use.
 
+List of packages that can currently be set with `used_dbt_package_names`.
+
+dbt Package Name | Link
+--------- | ---------
+dbt-labs/dbt-utils | [dbt-labs/dbt-utils: Utility functions for dbt projects.](https://github.com/dbt-labs/dbt-utils)
+datnguye/dbterd | [datnguye/dbterd: Generate the ERD as a code from dbt artifacts](https://github.com/datnguye/dbterd)
+
 Example:
 
 Adjust the settings according to your environment.
