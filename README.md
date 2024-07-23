@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ef9a0a71c73dae7b8156/maintainability)](https://codeclimate.com/github/yamotech/activerecord-dbt/maintainability)
 [![Ruby CI](https://github.com/yamotech/activerecord-dbt/actions/workflows/ruby-ci.yml/badge.svg)](https://github.com/yamotech/activerecord-dbt/actions/workflows/ruby-ci.yml)
 
-`ActiveRecord::Dbt` generates dbt files from the information of the database connected via ActiveRecord.
+`ActiveRecord::Dbt` generates [dbt](https://www.getdbt.com/) files from the information of the database connected via ActiveRecord.
 
 Currently, it can generate `yaml` files for `sources` and `models` files for `staging`.
 
@@ -57,6 +57,13 @@ export_directory_path | The path to the directory where configuration files are 
 data_sync_delayed | Indicates whether there is a data delay. If set to `true`, `severity: warn` is applied to the `relationships` test. The default is `false`.
 logger | The destination for log output. The default is `Logger.new('./log/active_record_dbt.log')`.
 used_dbt_package_names | An array of `dbt` package names to use.
+
+List of packages that can currently be set with `used_dbt_package_names`.
+
+dbt Package Name | Link
+--------- | ---------
+dbt-labs/dbt-utils | [dbt-labs/dbt-utils: Utility functions for dbt projects.](https://github.com/dbt-labs/dbt-utils)
+datnguye/dbterd | [datnguye/dbterd: Generate the ERD as a code from dbt artifacts](https://github.com/datnguye/dbterd)
 
 Example:
 
