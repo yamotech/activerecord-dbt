@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ef9a0a71c73dae7b8156/maintainability)](https://codeclimate.com/github/yamotech/activerecord-dbt/maintainability)
 [![Ruby CI](https://github.com/yamotech/activerecord-dbt/actions/workflows/ruby-ci.yml/badge.svg)](https://github.com/yamotech/activerecord-dbt/actions/workflows/ruby-ci.yml)
 
-`ActiveRecord::Dbt` generates dbt files from the information of the database connected via ActiveRecord.
+`ActiveRecord::Dbt` generates [dbt](https://www.getdbt.com/) files from the information of the database connected via ActiveRecord.
 
 Currently, it can generate `yaml` files for `sources` and `models` files for `staging`.
 
