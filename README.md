@@ -840,8 +840,7 @@ models:
   columns:
   - name: profile_id
     description: profile_id
-    meta:
-      column_type: integer
+    data_type: int64
     tests:
     - unique
     - not_null
@@ -852,8 +851,7 @@ models:
           relationship_type: one-to-one
   - name: user_id
     description: user_id
-    meta:
-      column_type: integer
+    data_type: int64
     tests:
     - unique
     - not_null
@@ -864,26 +862,22 @@ models:
           relationship_type: one-to-one
   - name: first_name
     description: Write a description of the 'profiles.first_name' column.
-    meta:
-      column_type: string
+    data_type: string
     tests:
     - not_null
   - name: last_name
     description: Write a description of the 'profiles.last_name' column.
-    meta:
-      column_type: string
+    data_type: string
     tests:
     - not_null
   - name: created_at
     description: Created At
-    meta:
-      column_type: datetime
+    data_type: datetime
     tests:
     - not_null
   - name: updated_at
     description: Updated At
-    meta:
-      column_type: datetime
+    data_type: datetime
     tests:
     - not_null
 
