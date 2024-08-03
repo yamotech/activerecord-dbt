@@ -5,13 +5,9 @@ module ActiveRecord
     module Column
       module Testable
         module NotNullTestable
-          REQUIRED_NOT_NULL_TESTABLE_METHODS = %i[column].freeze
+          extend ActiveRecord::Dbt::RequiredMethods
 
-          REQUIRED_NOT_NULL_TESTABLE_METHODS.each do |method_name|
-            define_method(method_name) do
-              raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
-            end
-          end
+          define_required_methods :column
 
           def not_null_test
             column.null == true ? nil : 'not_null'

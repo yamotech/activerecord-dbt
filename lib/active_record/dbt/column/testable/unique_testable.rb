@@ -5,13 +5,9 @@ module ActiveRecord
     module Column
       module Testable
         module UniqueTestable
-          REQUIRED_UNIQUE_TESTABLE_METHODS = %i[table_name column_name primary_keys].freeze
+          extend ActiveRecord::Dbt::RequiredMethods
 
-          REQUIRED_UNIQUE_TESTABLE_METHODS.each do |method_name|
-            define_method(method_name) do
-              raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
-            end
-          end
+          define_required_methods :table_name, :column_name, :primary_keys
 
           def unique_test
             unique? ? 'unique' : nil

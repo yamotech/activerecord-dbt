@@ -10,6 +10,8 @@ module ActiveRecord
         include ActiveRecord::Dbt::DataType::DwhPlatform::Redshift
         include ActiveRecord::Dbt::DataType::DwhPlatform::Snowflake
 
+        extend ActiveRecord::Dbt::RequiredMethods
+
         # [Platform-specific data types | dbt Developer Hub](https://docs.getdbt.com/reference/resource-properties/data-types)
         RUBY_TO_DWH_PLATFORM_TYPE_MAP = {
           'bigquery' => RUBY_TO_BIGQUERY_TYPES,
@@ -19,15 +21,9 @@ module ActiveRecord
           'spark' => RUBY_TO_SPARK_TYPES
         }.freeze
 
-        REQUIRED_DATATYPE_METHODS = %i[column @config].freeze
+        define_required_methods :column, :@config
 
         delegate :dwh_platform, to: :@config
-
-        REQUIRED_DATATYPE_METHODS.each do |method_name|
-          define_method(method_name) do
-            raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
-          end
-        end
 
         private
 

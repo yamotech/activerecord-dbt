@@ -11,7 +11,5 @@ module ActiveRecord
 
       config
     end
-
-    class RequiredImplementationMissingError < StandardError; end
   end
 end

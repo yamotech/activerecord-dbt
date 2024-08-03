@@ -5,16 +5,12 @@ module ActiveRecord
     module Column
       module Testable
         module AcceptedValuesTestable
-          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS = %i[@config column table_name column_name].freeze
+          extend ActiveRecord::Dbt::RequiredMethods
+
+          define_required_methods :@config, :column, :table_name, :column_name
 
           delegate :type, to: :column, prefix: true
           delegate :add_log, to: :@config
-
-          REQUIRED_ACCEPTED_VALUES_TESTABLE_METHODS.each do |method_name|
-            define_method(method_name) do
-              raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
-            end
-          end
 
           def accepted_values_test
             return nil unless column_type == :boolean || enum_values.present?

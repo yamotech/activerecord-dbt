@@ -7,15 +7,11 @@ module ActiveRecord
         module Table
           module Testable
             module UniqueCombinationOfColumnsTestable
-              REQUIRED_UNIQUE_COMBINATION_OF_COLUMNS_TESTABLE_METHODS = %i[table_name @config].freeze
+              extend ActiveRecord::Dbt::RequiredMethods
+
+              define_required_methods :table_name, :@config
 
               delegate :used_dbt_utils?, to: :@config
-
-              REQUIRED_UNIQUE_COMBINATION_OF_COLUMNS_TESTABLE_METHODS.each do |method_name|
-                define_method(method_name) do
-                  raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
-                end
-              end
 
               def unique_combination_of_columns_test
                 return nil unless used_dbt_utils?
