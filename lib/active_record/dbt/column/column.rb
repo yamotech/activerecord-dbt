@@ -4,6 +4,8 @@ module ActiveRecord
   module Dbt
     module Column
       class Column
+        include ActiveRecord::Dbt::DataType::Mapper
+
         attr_reader :table_name, :column, :column_test, :primary_keys
 
         delegate :name, :comment, to: :column, prefix: true
@@ -21,7 +23,7 @@ module ActiveRecord
           {
             'name' => column_name,
             'description' => description,
-            'meta' => { 'column_type' => column.type.to_s },
+            'data_type' => data_type,
             **column_overrides.except(:tests),
             'tests' => column_test.config
           }.compact

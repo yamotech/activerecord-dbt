@@ -24,7 +24,7 @@ module ActiveRecord
         end
 
         def selectable_dwh_platforms
-          @selectable_dwh_platforms ||= %w[bigquery postgres redshift snowflake spark]
+          @selectable_dwh_platforms ||= ActiveRecord::Dbt::DataType::Mapper::RUBY_TO_DWH_PLATFORM_TYPE_MAP.keys
         end
 
         class DoesNotExistOnTheDwhPlatformError < StandardError; end

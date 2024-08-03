@@ -316,25 +316,21 @@ sources:
     columns:
     - name: key
       description: Key
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - unique
       - not_null
     - name: value
       description: Value
-      meta:
-        column_type: string
+      data_type: string
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: companies
@@ -342,29 +338,24 @@ sources:
     columns:
     - name: id
       description: id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: name
       description: Write a description of the 'companies.name' column.
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - not_null
     - name: establishment_date
       description: Write a description of the 'companies.establishment_date' column.
-      meta:
-        column_type: string
+      data_type: string
     - name: average_age
       description: Write a description of the 'companies.average_age' column.
-      meta:
-        column_type: float
+      data_type: float64
     - name: published
       description: Write a description of the 'companies.published' column.
-      meta:
-        column_type: boolean
+      data_type: bool
       tests:
       - not_null
       - accepted_values:
@@ -374,14 +365,12 @@ sources:
           quote: false
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: posts
@@ -389,15 +378,13 @@ sources:
     columns:
     - name: id
       description: ID
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: user_id
       description: User
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -407,28 +394,23 @@ sources:
             relationship_type: many-to-one
     - name: title
       description: Title
-      meta:
-        column_type: string
+      data_type: string
     - name: content
       description: Content
-      meta:
-        column_type: text
+      data_type: string
     - name: created_at
       description: Post Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Post Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: status
       description: Write a description of the 'posts.status' column.
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - accepted_values:
           values:
@@ -446,8 +428,7 @@ sources:
     columns:
     - name: post_id
       description: post_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -460,8 +441,7 @@ sources:
               message: uninitialized constant PostsTag
     - name: tag_id
       description: tag_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -477,15 +457,13 @@ sources:
     columns:
     - name: id
       description: id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: user_id
       description: user_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
@@ -496,26 +474,22 @@ sources:
             relationship_type: one-to-one
     - name: first_name
       description: Write a description of the 'profiles.first_name' column.
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - not_null
     - name: last_name
       description: Write a description of the 'profiles.last_name' column.
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - not_null
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: relationships
@@ -528,15 +502,13 @@ sources:
     columns:
     - name: id
       description: id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: follower_id
       description: follower_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -546,8 +518,7 @@ sources:
             relationship_type: many-to-one
     - name: followed_id
       description: followed_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -557,14 +528,12 @@ sources:
             relationship_type: many-to-one
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: schema_migrations
@@ -575,8 +544,7 @@ sources:
     columns:
     - name: version
       description: The version number of the migration.
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - unique
       - not_null
@@ -585,28 +553,24 @@ sources:
     columns:
     - name: id
       description: id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: name
       description: Write a description of the 'tags.name' column.
-      meta:
-        column_type: string
+      data_type: string
       tests:
       - unique
       - not_null
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: user_tags
@@ -619,15 +583,13 @@ sources:
     columns:
     - name: id
       description: id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: user_id
       description: user_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -637,8 +599,7 @@ sources:
             relationship_type: many-to-one
     - name: tag_id
       description: tag_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - not_null
       - relationships:
@@ -648,14 +609,12 @@ sources:
             relationship_type: many-to-one
     - name: created_at
       description: Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: updated_at
       description: Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
   - name: users
@@ -671,28 +630,24 @@ sources:
     columns:
     - name: id
       description: ID
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - unique
       - not_null
     - name: created_at
       description: User Created At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null:
           where: id != 1
     - name: updated_at
       description: User Updated At
-      meta:
-        column_type: datetime
+      data_type: datetime
       tests:
       - not_null
     - name: company_id
       description: company_id
-      meta:
-        column_type: integer
+      data_type: int64
       tests:
       - relationships:
           to: source('dummy', 'companies')
