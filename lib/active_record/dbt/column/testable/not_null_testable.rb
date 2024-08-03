@@ -9,7 +9,7 @@ module ActiveRecord
 
           REQUIRED_NOT_NULL_TESTABLE_METHODS.each do |method_name|
             define_method(method_name) do
-              raise NotImplementedError, "You must implement #{self.class}##{__method__}"
+              raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
             end
           end
 
