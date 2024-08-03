@@ -7,15 +7,11 @@ module ActiveRecord
         module Column
           module Testable
             module RelationshipsMetaRelationshipType
-              REQUIRED_RELATIONSHIP_TYPE_TESTABLE_METHODS = %i[@config foreign_key].freeze
+              extend ActiveRecord::Dbt::RequiredMethods
+
+              define_required_methods :@config, :foreign_key
 
               delegate :used_dbterd?, :add_log, to: :@config
-
-              REQUIRED_RELATIONSHIP_TYPE_TESTABLE_METHODS.each do |method_name|
-                define_method(method_name) do
-                  raise NotImplementedError, "You must implement #{self.class}##{__method__}"
-                end
-              end
 
               def relationships_meta_relationship_type
                 return nil unless used_dbterd?

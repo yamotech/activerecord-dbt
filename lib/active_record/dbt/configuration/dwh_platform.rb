@@ -4,6 +4,10 @@ module ActiveRecord
   module Dbt
     module Configuration
       module DwhPlatform
+        extend ActiveRecord::Dbt::RequiredMethods
+
+        define_required_methods :source_config_path
+
         def dwh_platform=(dwh_platform)
           @dwh_platform = validate_dwh_platform(dwh_platform)
         end

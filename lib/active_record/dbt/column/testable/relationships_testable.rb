@@ -5,18 +5,14 @@ module ActiveRecord
     module Column
       module Testable
         module RelationshipsTestable
-          REQUIRED_RELATIONSHIPS_TESTABLE_METHODS = %i[@config foreign_keys column_name].freeze
-
           include ActiveRecord::Dbt::DbtPackage::Dbterd::Column::Testable::RelationshipsMetaRelationshipType
+
+          extend ActiveRecord::Dbt::RequiredMethods
+
+          define_required_methods :@config, :foreign_keys, :column_name
 
           delegate :source_name, :data_sync_delayed?, to: :@config
           delegate :to_table, to: :foreign_key
-
-          REQUIRED_RELATIONSHIPS_TESTABLE_METHODS.each do |method_name|
-            define_method(method_name) do
-              raise NotImplementedError, "You must implement #{self.class}##{__method__}"
-            end
-          end
 
           def relationships_test
             return nil if foreign_key.blank?
