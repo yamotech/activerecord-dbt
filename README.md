@@ -63,7 +63,7 @@ List of platforms that can currently be set with `dwh_platform`.
 
 Data Warehouse Platform | Link
 --------- | ---------
-bigquery | [BigQuery enterprise data warehouse | Google Cloud](https://cloud.google.com/bigquery?hl=en)
+bigquery | [BigQuery enterprise data warehouse - Google Cloud](https://cloud.google.com/bigquery?hl=en)
 postgres | [PostgreSQL: The world's most advanced open source database](https://www.postgresql.org/)
 redshift | [Cloud Data Warehouse - Amazon Redshift - AWS](https://aws.amazon.com/redshift/)
 snowflake | [The Snowflake AI Data Cloud - Mobilize Data, Apps, and AI](https://www.snowflake.com/en/)
