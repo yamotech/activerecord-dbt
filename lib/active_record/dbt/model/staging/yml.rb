@@ -43,19 +43,19 @@ module ActiveRecord
           def sort_columns(columns)
             columns.sort_by do |column|
               [
-                SORT_COLUMN_TYPES.index(column_type(column)) || -1,
+                SORT_COLUMN_TYPES.index(data_type(column)) || -1,
                 columns.index(column)
               ]
             end
           end
 
-          def column_type(column)
+          def data_type(column)
             if id?(column['name'])
               'ids'
             elsif enum?(column['name'])
               'enums'
             else
-              column.dig('meta', 'column_type').pluralize
+              column.fetch('data_type', 'unknown').pluralize
             end
           end
 
