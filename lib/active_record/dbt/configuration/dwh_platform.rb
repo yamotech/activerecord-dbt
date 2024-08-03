@@ -4,6 +4,14 @@ module ActiveRecord
   module Dbt
     module Configuration
       module DwhPlatform
+        REQUIRED_DWH_PLATFORM_METHODS = %i[source_config_path].freeze
+
+        REQUIRED_DWH_PLATFORM_METHODS.each do |method_name|
+          define_method(method_name) do
+            raise RequiredImplementationMissingError, "You must implement #{self.class}##{__method__}"
+          end
+        end
+
         def dwh_platform=(dwh_platform)
           @dwh_platform = validate_dwh_platform(dwh_platform)
         end
