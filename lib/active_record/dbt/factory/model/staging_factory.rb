@@ -12,7 +12,7 @@ module ActiveRecord
 
             struct.new(
               export_path: yml.export_path,
-              dump: YAML.dump(yml.config.deep_stringify_keys)
+              dump: yml.dump
             )
           end
         end
