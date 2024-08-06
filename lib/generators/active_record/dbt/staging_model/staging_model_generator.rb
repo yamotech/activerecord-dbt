@@ -21,7 +21,7 @@ module ActiveRecord
         end
 
         def yml
-          @yml ||= ActiveRecord::Dbt::Factory::Model::StagingFactory.yml_build(name)
+          @yml ||= ActiveRecord::Dbt::Factory::Model::StagingFactory.build(name)
         end
 
         def source_paths
