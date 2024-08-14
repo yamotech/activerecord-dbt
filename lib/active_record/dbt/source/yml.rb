@@ -13,6 +13,12 @@ module ActiveRecord
           @config = ActiveRecord::Dbt::Config.instance
         end
 
+        def dump
+          YAML.dump(config.deep_stringify_keys)
+        end
+
+        private
+
         def config
           {
             'version' => 2,
@@ -21,8 +27,6 @@ module ActiveRecord
             ]
           }
         end
-
-        private
 
         def source_properties
           source_config[:sources]

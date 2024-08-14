@@ -11,7 +11,7 @@ module ActiveRecord
         end
 
         def create_staging_model_yml_file
-          create_file yml.export_path, yml.yml_dump
+          create_file yml.export_path, yml.dump
         end
 
         private
@@ -21,7 +21,7 @@ module ActiveRecord
         end
 
         def yml
-          @yml ||= ActiveRecord::Dbt::Factory::Model::StagingFactory.yml_build(name)
+          @yml ||= ActiveRecord::Dbt::Factory::Model::StagingFactory.build(name)
         end
 
         def source_paths

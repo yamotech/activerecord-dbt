@@ -21,7 +21,13 @@ module ActiveRecord
             "#{basename}.yml"
           end
 
-          def config
+          def dump
+            YAML.dump(model_config.deep_stringify_keys)
+          end
+
+          private
+
+          def model_config
             {
               'version' => 2,
               'models' => [
@@ -33,8 +39,6 @@ module ActiveRecord
               ]
             }
           end
-
-          private
 
           def columns
             @columns ||= sort_columns(table.config['columns'])

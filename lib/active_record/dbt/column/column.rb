@@ -23,7 +23,7 @@ module ActiveRecord
           {
             'name' => column_name,
             'description' => description,
-            'data_type' => data_type,
+            'data_type' => data_type(column.type),
             **column_overrides.except(:tests),
             'tests' => column_test.config
           }.compact

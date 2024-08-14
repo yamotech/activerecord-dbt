@@ -21,14 +21,14 @@ module ActiveRecord
           'spark' => RUBY_TO_SPARK_TYPES
         }.freeze
 
-        define_required_methods :column, :@config
+        define_required_methods :@config
 
         delegate :dwh_platform, to: :@config
 
         private
 
-        def data_type
-          RUBY_TO_DWH_PLATFORM_TYPE_MAP[dwh_platform].fetch(column.type, 'unknown')
+        def data_type(type)
+          RUBY_TO_DWH_PLATFORM_TYPE_MAP[dwh_platform].fetch(type, 'unknown')
         end
       end
     end

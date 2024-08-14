@@ -5,14 +5,14 @@ module ActiveRecord
     module Factory
       module Model
         module StagingFactory
-          def self.yml_build(table_name)
+          def self.build(table_name)
             table_factory = ActiveRecord::Dbt::Factory::TableFactory.build(table_name)
             yml = ActiveRecord::Dbt::Model::Staging::Yml.new(table_factory)
-            struct = Struct.new(:export_path, :yml_dump, keyword_init: true)
+            struct = Struct.new(:export_path, :dump, keyword_init: true)
 
             struct.new(
               export_path: yml.export_path,
-              yml_dump: YAML.dump(yml.config.deep_stringify_keys)
+              dump: yml.dump
             )
           end
         end
