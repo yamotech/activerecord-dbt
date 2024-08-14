@@ -69,10 +69,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
               'description' => translated_attribute_name,
-              'tests' => [
-                unique? ? 'unique' : nil,
-                null? ? nil : 'not_null'
-              ].presence
+              'tests' => tests
             }.compact
           end
 
@@ -80,10 +77,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_key",
               'description' => "#{translated_attribute_name}(key)",
-              'tests' => [
-                unique? ? 'unique' : nil,
-                null? ? nil : 'not_null'
-              ].presence
+              'tests' => tests
             }.compact
           end
 
@@ -93,18 +87,30 @@ module ActiveRecord
                 {
                   'name' => "#{enum_column_name}_#{locale}",
                   'description' => "#{translated_attribute_name}(#{locale})",
-                  'tests' => [
-                    unique? ? 'unique' : nil,
-                    null? ? nil : 'not_null'
-                  ].presence
+                  'tests' => tests
                 }.compact
               )
             end
           end
 
+          def tests
+            [
+              unique_test,
+              not_null_test
+            ].compact.presence
+          end
+
+          def unique_test
+            unique? ? 'unique' : nil
+          end
+
           # MEMO: I think all enums are unique.
           def unique?
             true
+          end
+
+          def not_null_test
+            null? ? nil : 'not_null'
           end
 
           # MEMO: I think all enums are null.
