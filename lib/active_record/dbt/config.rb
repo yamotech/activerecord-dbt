@@ -40,7 +40,7 @@ module ActiveRecord
         @export_directory_path ||= DEFAULT_EXPORT_DIRECTORY_PATH
       end
 
-      def locale=(locale)
+      def locale=(locale = I18n.locale)
         I18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
         I18n.locale = locale
       end
