@@ -8,6 +8,7 @@ ActiveRecord::Dbt.configure do |c|
   c.dwh_platform = 'bigquery'
   c.data_sync_delayed = false
   c.logger = Logger.new($stdout)
+  c.locale = :en
   c.used_dbt_package_names = [
     'dbt-labs/dbt_utils',
     'datnguye/dbterd'

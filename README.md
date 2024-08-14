@@ -58,6 +58,7 @@ dwh_platform | Specify the data warehouse platform to which dbt connects. The de
 data_sync_delayed | Indicates whether there is a data delay. If set to `true`, `severity: warn` is applied to the `relationships` test. The default is `false`.
 logger | The destination for log output. The default is `Logger.new('./log/active_record_dbt.log')`.
 used_dbt_package_names | An array of `dbt` package names to use.
+locale | Set I18n locale. The default is `:en`.
 
 List of platforms that can currently be set with `dwh_platform`.
 
@@ -89,6 +90,7 @@ ActiveRecord::Dbt.configure do |c|
   c.config_directory_path = 'lib/dbt'
   c.export_directory_path = 'doc/dbt'
   c.data_sync_delayed = false
+  c.locale = :en
   c.used_dbt_package_names = [
     'dbt-labs/dbt_utils',
     'datnguye/dbterd'

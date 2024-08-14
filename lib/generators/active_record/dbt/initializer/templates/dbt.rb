@@ -7,5 +7,6 @@ ActiveRecord::Dbt.configure do |c|
   c.export_directory_path = 'doc/dbt'
   c.dwh_platform = 'bigquery'
   c.data_sync_delayed = false
+  c.locale = :en
   c.used_dbt_package_names = []
 end
