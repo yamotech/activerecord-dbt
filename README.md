@@ -58,7 +58,7 @@ dwh_platform | Specify the data warehouse platform to which dbt connects. The de
 data_sync_delayed | Indicates whether there is a data delay. If set to `true`, `severity: warn` is applied to the `relationships` test. The default is `false`.
 logger | The destination for log output. The default is `Logger.new('./log/active_record_dbt.log')`.
 used_dbt_package_names | An array of `dbt` package names to use.
-locale | Set I18n locale. The default is `:en`.
+locale | I18n locale. The default is `:en`.
 
 List of platforms that can currently be set with `dwh_platform`.
 
@@ -167,10 +167,10 @@ table_overrides:
 
 ##### defaults
 
-Set default values for the `name` and `description` of `tables`.
+Set the default value for the `description`(`logical_name`, `description`) of `tables`.
 
-In `logical_name` and `description` of `table_descriptions`, you can refer to the table name with `{{ table_name }}`.
-In the `description` of `columns`, you can refer to the table name with `{{ table_name }}` and the column name with `{{ column_name }}`.
+In the `logical_name` and `description` of `table_descriptions`, you can refer to the table name with `{{ table_name }}`.
+In the `description` of `table_descriptions.columns`, you can refer to the table name with `{{ table_name }}` and the column name with `{{ column_name }}`.
 
 Example:
 
@@ -833,6 +833,10 @@ from final
 
 Example:
 
+> [!NOTE]
+>
+> The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
+
 ```yaml
 ---
 version: 2
@@ -882,6 +886,116 @@ models:
     data_type: datetime
     tests:
     - not_null
+
+```
+
+### Generated dbt Seed Files
+
+#### dbt Seed Configuration
+
+In the `#{config_directory_path}/source_config.yml` file, describe the properties you want to set for the seed enum.
+You can configure `defaults` in this file.
+
+##### defaults
+
+Set the default value for the `description` of the `seeds` enum.
+
+In the `description` of `seed_descriptions.enum`, you can refer to the source name with `{{ source_name }}`, the translated table name with `{{ translated_table_name }}`, and the translated column name with `{{ translated_attribute_name }}`.
+
+Example:
+
+```yml
+defaults:
+  seed_descriptions:
+    enum:
+      description: "{{ source_name }} {{ translated_table_name }} {{ translated_attribute_name }} enum"
+
+```
+
+If nothing is set, it defaults to the following:
+
+```yml
+defaults:
+  seed_descriptions:
+    enum:
+      description: "{{ source_name }} {{ translated_table_name }} {{ translated_attribute_name }} enum"
+
+```
+
+#### Generate dbt Seed Enum Files
+
+Generate seed enum files for dbt:
+
+```bash
+$ bin/rails generate active_record:dbt:enum TABLE_NAME ENUM_COLUMN_NAME
+```
+
+Generate seed enum files for dbt from the specified `TABLE_NAME` and `ENUM_COLUMN_NAME`.
+
+File | Description
+--------- | ---------
+`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv` | Seed enum file for dbt.
+`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml` | Seed enum documentation file for dbt.
+
+Example:
+
+```bash
+$ bin/rails generate active_record:dbt:enum posts status
+```
+
+##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv`
+
+Example:
+
+```csv
+status_before_type_of_cast,status_key,status_en,status_ja
+0,draft,Draft,下書き
+1,published,Published,公開
+2,deleted,Deleted,削除
+
+```
+
+##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml`
+
+Example:
+
+> [!NOTE]
+>
+> The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
+
+```yaml
+---
+version: 2
+seeds:
+- name: seed_dummy__post_enum_statuses
+  description: dummy Post Status enum
+  config:
+    column_types:
+      status_before_type_of_cast: int64
+      status_key: string
+      status_en: string
+      status_ja: string
+columns:
+- name: status_before_type_of_cast
+  description: Status
+  tests:
+  - unique
+  - not_null
+- name: status_key
+  description: Status(key)
+  tests:
+  - unique
+  - not_null
+- name: status_en
+  description: Status(en)
+  tests:
+  - unique
+  - not_null
+- name: status_ja
+  description: Status(ja)
+  tests:
+  - unique
+  - not_null
 
 ```
 
