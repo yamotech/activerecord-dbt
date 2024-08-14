@@ -1,0 +1,53 @@
+---
+version: 2
+models:
+- name: stg_dummy__posts
+  description: Post
+  columns:
+  - name: post_id
+    description: ID
+    data_type: int64
+    tests:
+    - unique
+    - not_null
+    - relationships:
+        to: source('dummy', 'posts')
+        field: id
+        meta:
+          relationship_type: one-to-one
+  - name: user_id
+    description: User
+    data_type: int64
+    tests:
+    - not_null
+    - relationships:
+        to: source('dummy', 'users')
+        field: id
+        meta:
+          relationship_type: many-to-one
+  - name: status
+    description: Status
+    data_type: int64
+    tests:
+    - accepted_values:
+        values:
+        - 0
+        - 1
+        - 2
+        quote: false
+  - name: title
+    description: Title
+    data_type: string
+  - name: content
+    description: Content
+    data_type: string
+  - name: created_at
+    description: Post Created At
+    data_type: datetime
+    tests:
+    - not_null
+  - name: updated_at
+    description: Post Updated At
+    data_type: datetime
+    tests:
+    - not_null
