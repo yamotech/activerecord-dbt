@@ -8,6 +8,7 @@ module ActiveRecord
           attr_reader :table_name, :enum_column_name
 
           delegate :source_name, :export_directory_path, to: :@config
+          delegate :singularize, to: :table_name, prefix: true
 
           def initialize(table_name, enum_column_name)
             @table_name = table_name
@@ -21,12 +22,8 @@ module ActiveRecord
             "#{export_directory_path}/#{seed_name}"
           end
 
-          def singular_table_name
-            table_name.singularize
-          end
-
           def seed_name
-            "seed_#{source_name}__#{singular_table_name}_enum_#{enum_pluralized}"
+            "seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}"
           end
 
           def locales
@@ -34,7 +31,7 @@ module ActiveRecord
           end
 
           def application_record_klass
-            @application_record_klass ||= singular_table_name.classify.constantize
+            @application_record_klass ||= table_name_singularize.classify.constantize
           rescue NameError => _e
             raise DoesNotExistTableError, "#{table_name} table does not exist."
           end

@@ -5,6 +5,7 @@ module ActiveRecord
     module Column
       class Column
         include ActiveRecord::Dbt::DataType::Mapper
+        include ActiveRecord::Dbt::I18nWrapper::Translate
 
         attr_reader :table_name, :column, :column_test, :primary_keys
 
@@ -43,18 +44,6 @@ module ActiveRecord
 
         def column_description
           source_config.dig(:table_descriptions, table_name, :columns, column_name)
-        end
-
-        def translated_attribute_name
-          translated_column_name || translated_default_column_name
-        end
-
-        def translated_column_name
-          I18n.t("activerecord.attributes.#{table_name.singularize}.#{column_name}", default: nil)
-        end
-
-        def translated_default_column_name
-          I18n.t("attributes.#{column_name}", default: nil)
         end
 
         def key_column_name

@@ -6,7 +6,10 @@ module ActiveRecord
       module Enum
         class Yml
           include ActiveRecord::Dbt::DataType::Mapper
+          include ActiveRecord::Dbt::I18nWrapper::Translate
           include ActiveRecord::Dbt::Seed::Enum::Base
+
+          alias column_name enum_column_name
 
           def export_path
             "#{basename}.yml"
@@ -33,17 +36,7 @@ module ActiveRecord
           end
 
           def seed_description
-            "#{source_name} #{table_description} enum #{enum_description}".strip
-          end
-
-          # TODO: Duplcated
-          def table_description
-            I18n.t("activerecord.models.#{singular_table_name}", default: nil)
-          end
-
-          # TODO: Duplcated
-          def enum_description
-            I18n.t("activerecord.attributes.#{singular_table_name}.#{enum_column_name}", default: nil)
+            "#{source_name} #{translated_table_name} enum #{translated_attribute_name}".strip
           end
 
           def column_types
@@ -75,7 +68,7 @@ module ActiveRecord
           def before_type_of_cast_column
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
-              'description' => enum_description,
+              'description' => translated_attribute_name,
               'tests' => [
                 unique? ? 'unique' : nil,
                 null? ? nil : 'not_null'
@@ -86,7 +79,7 @@ module ActiveRecord
           def enum_key_column
             {
               'name' => "#{enum_column_name}_key",
-              'description' => "#{enum_description}(key)",
+              'description' => "#{translated_attribute_name}(key)",
               'tests' => [
                 unique? ? 'unique' : nil,
                 null? ? nil : 'not_null'
@@ -99,7 +92,7 @@ module ActiveRecord
               array.push(
                 {
                   'name' => "#{enum_column_name}_#{locale}",
-                  'description' => "#{enum_description}(#{locale})",
+                  'description' => "#{translated_attribute_name}(#{locale})",
                   'tests' => [
                     unique? ? 'unique' : nil,
                     null? ? nil : 'not_null'

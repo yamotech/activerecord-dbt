@@ -9,6 +9,8 @@ module ActiveRecord
         class Csv
           include ActiveRecord::Dbt::Seed::Enum::Base
 
+          delegate :singularize, to: :table_name, prefix: true
+
           def export_path
             "#{basename}.csv"
           end
@@ -68,7 +70,7 @@ module ActiveRecord
 
           def translated_enum_value(enum_key, locale)
             I18n.t(
-              "activerecord.enum.#{singular_table_name}.#{enum_column_name}.#{enum_key}",
+              "activerecord.enum.#{table_name_singularize}.#{enum_column_name}.#{enum_key}",
               locale: locale,
               default: nil
             )
