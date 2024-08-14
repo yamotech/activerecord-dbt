@@ -11,6 +11,8 @@ module ActiveRecord
           include ActiveRecord::Dbt::I18nWrapper::Translate
           include ActiveRecord::Dbt::Seed::Enum::Base
 
+          delegate :source_config, to: :@config
+
           alias column_name enum_column_name
 
           def export_path
@@ -38,7 +40,15 @@ module ActiveRecord
           end
 
           def seed_description
-            "#{source_name} #{translated_table_name} enum #{translated_attribute_name}".strip
+            default_seed_description ||
+              "#{source_name} #{translated_table_name} #{translated_attribute_name} enum".strip
+          end
+
+          def default_seed_description
+            source_config.dig(:defaults, :seed_descriptions, :enum, :description)
+                         &.gsub(/{{\s*source_name\s*}}/, source_name)
+                         &.gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
+                         &.gsub(/{{\s*translated_attribute_name\s*}}/, translated_attribute_name)
           end
 
           def column_types
