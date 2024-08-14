@@ -14,13 +14,12 @@ module ActiveRecord
               delegate :used_dbterd?, :add_log, to: :@config
 
               def relationships_meta_relationship_type
-                return nil unless used_dbterd?
-                return nil if no_relationship?
+                return nil if !used_dbterd? || no_relationship?
 
                 {
                   'relationship_type' => relationship_type
                 }
-              rescue NotSpecifiedOrNotInvalidIdError, StandardError => e
+              rescue NotSpecifiedOrNotInvalidIdError, NameError => e
                 relationships_meta_relationship_type_with_active_record_dbt_error(e)
               end
 
