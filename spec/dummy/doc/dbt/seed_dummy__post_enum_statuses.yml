@@ -1,0 +1,32 @@
+---
+version: 2
+seeds:
+- name: seed_dummy__post_enum_statuses
+  description: dummy Post Status enum
+  config:
+    column_types:
+      status_before_type_of_cast: int64
+      status_key: string
+      status_en: string
+      status_ja: string
+columns:
+- name: status_before_type_of_cast
+  description: Status
+  tests:
+  - unique
+  - not_null
+- name: status_key
+  description: Status(key)
+  tests:
+  - unique
+  - not_null
+- name: status_en
+  description: Status(en)
+  tests:
+  - unique
+  - not_null
+- name: status_ja
+  description: Status(ja)
+  tests:
+  - unique
+  - not_null
