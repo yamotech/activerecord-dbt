@@ -4,6 +4,7 @@ module ActiveRecord
   module Dbt
     module Table
       class Yml
+        include ActiveRecord::Dbt::I18nWrapper::Translate
         include ActiveRecord::Dbt::Table::Base
 
         attr_reader :table_test, :columns
@@ -49,10 +50,6 @@ module ActiveRecord
             translated_table_name ||
             default_logical_name ||
             "Write a logical_name of the '#{table_name}' table."
-        end
-
-        def translated_table_name
-          I18n.t("activerecord.models.#{table_name.singularize}", default: nil)
         end
 
         def default_logical_name

@@ -40,6 +40,9 @@ defaults:
     logical_name: Write a logical_name of the '{{ table_name }}' table.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
+  seed_descriptions:
+    enum:
+      description: "{{ source_name }} {{ translated_table_name }} {{ translated_attribute_name }} enum"
 
 table_descriptions:
   ar_internal_metadata:

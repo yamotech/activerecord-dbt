@@ -1,0 +1,9 @@
+Description:
+    Generate seed enum files for dbt from the specified TABLE_NAME and ENUM_COLUMN_NAME.
+
+Example:
+    bin/rails generate active_record:dbt:enum TABLE_NAME ENUM_COLUMN_NAME
+
+    This will create:
+        #{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv
+        #{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml
