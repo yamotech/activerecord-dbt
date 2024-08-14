@@ -20,7 +20,7 @@ module ActiveRecord
                 {
                   'relationship_type' => relationship_type
                 }
-              rescue NotSpecifiedOrNotInvalidIdError, StandardError => e
+              rescue NotSpecifiedOrNotInvalidIdError, NameError => e
                 relationships_meta_relationship_type_with_active_record_dbt_error(e)
               end
 
