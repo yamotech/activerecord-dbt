@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      post: ポスト
+    enum:
+      post:
+        status:
+          draft: 下書き
+          published: 公開
+          deleted: 削除
+    attributes:
+      post:
+        id: ID
+        user_id: ユーザー
+        title: タイトル
+        content: 内容
+        status: ステータス
+        created_at: ポスト作成日時
+        updated_at: ポスト更新日時
