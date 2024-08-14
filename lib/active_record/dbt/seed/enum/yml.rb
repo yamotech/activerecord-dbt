@@ -5,6 +5,8 @@ module ActiveRecord
     module Seed
       module Enum
         class Yml
+          include ActiveRecord::Dbt::Column::Testable::UniqueTestable
+          include ActiveRecord::Dbt::Column::Testable::NotNullTestable
           include ActiveRecord::Dbt::DataType::Mapper
           include ActiveRecord::Dbt::I18nWrapper::Translate
           include ActiveRecord::Dbt::Seed::Enum::Base
@@ -100,17 +102,9 @@ module ActiveRecord
             ].compact.presence
           end
 
-          def unique_test
-            unique? ? 'unique' : nil
-          end
-
           # MEMO: I think all enums are unique.
           def unique?
             true
-          end
-
-          def not_null_test
-            null? ? nil : 'not_null'
           end
 
           # MEMO: I think all enums are null.

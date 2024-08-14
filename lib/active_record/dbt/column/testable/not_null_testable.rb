@@ -10,7 +10,13 @@ module ActiveRecord
           define_required_methods :column
 
           def not_null_test
-            column.null == true ? nil : 'not_null'
+            null? ? nil : 'not_null'
+          end
+
+          private
+
+          def null?
+            column.null == true
           end
         end
       end
