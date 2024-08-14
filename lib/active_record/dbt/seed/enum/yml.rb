@@ -109,12 +109,12 @@ module ActiveRecord
             end
           end
 
-          # TODO: unique?
+          # MEMO: I think all enums are unique.
           def unique?
             true
           end
 
-          # TODO: null?
+          # MEMO: I think all enums are null.
           def null?
             false
           end
