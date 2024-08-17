@@ -20,12 +20,12 @@ module ActiveRecord
           end
 
           def dump
-            YAML.dump(seed_config.deep_stringify_keys)
+            YAML.dump(properties.deep_stringify_keys)
           end
 
           private
 
-          def seed_config
+          def properties
             {
               'version' => 2,
               'seeds' => [
