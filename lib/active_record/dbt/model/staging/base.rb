@@ -36,7 +36,7 @@ module ActiveRecord
           private
 
           def basename
-            "#{export_directory_path}/#{model_name}"
+            "#{export_directory_path}/models/staging/#{source_name}/#{model_name}"
           end
 
           def model_name

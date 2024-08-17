@@ -111,7 +111,7 @@ This will create the following files.
 File | Description
 --------- | ---------
 `#{config_directory_path}/source_config.yml` | Used to generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
-`#{config_directory_path}/staging_model.sql.tt` | Used to generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`.
+`#{config_directory_path}/staging_model.sql.tt` | Used to generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql`.
 
 ### Generate dbt Source File
 
@@ -756,8 +756,8 @@ Generate staging model files for dbt that reference the specified `TABLE_NAME`.
 
 File | Description
 --------- | ---------
-`#{export_directory_path}/stg_#{source_name}__#{table_name}.sql` | Staging model file for dbt.
-`#{export_directory_path}/stg_#{source_name}__#{table_name}.yml` | Staging model documentation file for dbt.
+`#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql` | Staging model file for dbt.
+`#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.yml` | Staging model documentation file for dbt.
 
 Example:
 
@@ -765,7 +765,7 @@ Example:
 $ bin/rails generate active_record:dbt:staging_model profiles
 ```
 
-##### Generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`
+##### Generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql`
 
 Example:
 
@@ -836,7 +836,7 @@ from final
 
 ```
 
-##### Generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.yml`
+##### Generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.yml`
 
 Example:
 
