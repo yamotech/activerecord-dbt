@@ -110,7 +110,7 @@ This will create the following files.
 
 File | Description
 --------- | ---------
-`#{config_directory_path}/source_config.yml` | Used to generate `#{export_directory_path}/src_#{source_name}.yml`.
+`#{config_directory_path}/source_config.yml` | Used to generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
 `#{config_directory_path}/staging_model.sql.tt` | Used to generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`.
 
 ### Generate dbt Source File
@@ -282,7 +282,7 @@ table_descriptions:
 
 ```
 
-#### Generate `#{export_directory_path}/src_#{source_name}.yml`
+#### Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`
 
 Generate a source file for dbt:
 
@@ -290,7 +290,7 @@ Generate a source file for dbt:
 $ bin/rails generate active_record:dbt:source
 ```
 
-Generate `#{export_directory_path}/src_#{source_name}.yml`.
+Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
 
 ##### Example:
 

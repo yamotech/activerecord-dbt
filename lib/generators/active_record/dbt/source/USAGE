@@ -5,4 +5,4 @@ Example:
     bin/rails generate active_record:dbt:source
 
     This will create:
-        #{export_directory_path}/src_#{source_name}.yml
+        #{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml
