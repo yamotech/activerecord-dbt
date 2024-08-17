@@ -22,7 +22,7 @@ module ActiveRecord
           @config = ActiveRecord::Dbt::Config.instance
         end
 
-        def config
+        def properties
           (data_tests.keys | data_tests_overrides_hash.keys).map do |key|
             data_tests_overrides_hash[key] || data_tests[key]
           end.presence

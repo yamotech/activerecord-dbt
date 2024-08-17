@@ -33,7 +33,7 @@ module ActiveRecord
               'models' => [
                 {
                   'name' => model_name,
-                  **table.config.except('name', 'columns'),
+                  **table.properties.except('name', 'columns'),
                   'columns' => override_columns
                 }
               ]
@@ -41,7 +41,7 @@ module ActiveRecord
           end
 
           def columns
-            @columns ||= sort_columns(table.config['columns'])
+            @columns ||= sort_columns(table.properties['columns'])
           end
 
           def sort_columns(columns)
