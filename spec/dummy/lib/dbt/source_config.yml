@@ -18,7 +18,7 @@ table_overrides:
         period: day
     columns:
       created_at:
-        tests:
+        data_tests:
           - not_null:
               where: 'id != 1'
 

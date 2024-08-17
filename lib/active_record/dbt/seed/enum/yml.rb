@@ -81,7 +81,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
               'description' => translated_attribute_name,
-              'tests' => tests
+              'data_tests' => data_tests
             }.compact
           end
 
@@ -89,7 +89,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_key",
               'description' => "#{translated_attribute_name}(key)",
-              'tests' => tests
+              'data_tests' => data_tests
             }.compact
           end
 
@@ -99,13 +99,13 @@ module ActiveRecord
                 {
                   'name' => "#{enum_column_name}_#{locale}",
                   'description' => "#{translated_attribute_name}(#{locale})",
-                  'tests' => tests
+                  'data_tests' => data_tests
                 }.compact
               )
             end
           end
 
-          def tests
+          def data_tests
             [
               unique_test,
               not_null_test

@@ -7,7 +7,7 @@ models:
   - name: post_id
     description: ID
     data_type: int64
-    tests:
+    data_tests:
     - unique
     - not_null
     - relationships:
@@ -18,7 +18,7 @@ models:
   - name: user_id
     description: User
     data_type: int64
-    tests:
+    data_tests:
     - not_null
     - relationships:
         to: source('dummy', 'users')
@@ -28,7 +28,7 @@ models:
   - name: status
     description: Status
     data_type: int64
-    tests:
+    data_tests:
     - accepted_values:
         values:
         - 0
@@ -44,10 +44,10 @@ models:
   - name: created_at
     description: Post Created At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null
   - name: updated_at
     description: Post Updated At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null
