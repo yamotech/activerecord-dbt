@@ -298,6 +298,14 @@ Generate `#{export_directory_path}/src_#{source_name}.yml`.
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
 
+> [!WARNING]
+>
+> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
+>
+> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
+>
+>> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
+
 ```yaml
 ---
 version: 2
@@ -836,6 +844,14 @@ Example:
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
 
+> [!WARNING]
+>
+> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
+>
+> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
+>
+>> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
+
 ```yaml
 ---
 version: 2
@@ -961,6 +977,14 @@ Example:
 > [!NOTE]
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
+
+> [!WARNING]
+>
+> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
+>
+> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
+>
+>> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
 
 ```yaml
 ---
