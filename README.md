@@ -158,7 +158,7 @@ table_overrides:
         period: day
     columns:
       created_at:
-        tests:
+        data_tests:
           - not_null:
               where: 'id != 1'
 
@@ -251,7 +251,7 @@ table_overrides:
         period: day
     columns:
       created_at:
-        tests:
+        data_tests:
           - not_null:
               where: 'id != 1'
 
@@ -318,7 +318,7 @@ sources:
     - name: key
       description: Key
       data_type: string
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: value
@@ -327,12 +327,12 @@ sources:
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: companies
     description: Write a logical_name of the 'companies' table.
@@ -340,13 +340,13 @@ sources:
     - name: id
       description: id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: name
       description: Write a description of the 'companies.name' column.
       data_type: string
-      tests:
+      data_tests:
       - not_null
     - name: establishment_date
       description: Write a description of the 'companies.establishment_date' column.
@@ -357,7 +357,7 @@ sources:
     - name: published
       description: Write a description of the 'companies.published' column.
       data_type: bool
-      tests:
+      data_tests:
       - not_null
       - accepted_values:
           values:
@@ -367,12 +367,12 @@ sources:
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: posts
     description: Post
@@ -380,13 +380,13 @@ sources:
     - name: id
       description: ID
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: user_id
       description: User
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'users')
@@ -402,17 +402,17 @@ sources:
     - name: created_at
       description: Post Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Post Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: status
       description: Write a description of the 'posts.status' column.
       data_type: int64
-      tests:
+      data_tests:
       - accepted_values:
           values:
           - 0
@@ -421,7 +421,7 @@ sources:
           quote: false
   - name: posts_tags
     description: Write a logical_name of the 'posts_tags' table.
-    tests:
+    data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
         - post_id
@@ -430,7 +430,7 @@ sources:
     - name: post_id
       description: post_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'posts')
@@ -443,7 +443,7 @@ sources:
     - name: tag_id
       description: tag_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'tags')
@@ -459,13 +459,13 @@ sources:
     - name: id
       description: id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: user_id
       description: user_id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
       - relationships:
@@ -476,26 +476,26 @@ sources:
     - name: first_name
       description: Write a description of the 'profiles.first_name' column.
       data_type: string
-      tests:
+      data_tests:
       - not_null
     - name: last_name
       description: Write a description of the 'profiles.last_name' column.
       data_type: string
-      tests:
+      data_tests:
       - not_null
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: relationships
     description: Write a logical_name of the 'relationships' table.
-    tests:
+    data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
         - follower_id
@@ -504,13 +504,13 @@ sources:
     - name: id
       description: id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: follower_id
       description: follower_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'users')
@@ -520,7 +520,7 @@ sources:
     - name: followed_id
       description: followed_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'users')
@@ -530,12 +530,12 @@ sources:
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: schema_migrations
     description: |-
@@ -546,7 +546,7 @@ sources:
     - name: version
       description: The version number of the migration.
       data_type: string
-      tests:
+      data_tests:
       - unique
       - not_null
   - name: tags
@@ -555,28 +555,28 @@ sources:
     - name: id
       description: id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: name
       description: Write a description of the 'tags.name' column.
       data_type: string
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: user_tags
     description: Write a logical_name of the 'user_tags' table.
-    tests:
+    data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
         - user_id
@@ -585,13 +585,13 @@ sources:
     - name: id
       description: id
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: user_id
       description: user_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'users')
@@ -601,7 +601,7 @@ sources:
     - name: tag_id
       description: tag_id
       data_type: int64
-      tests:
+      data_tests:
       - not_null
       - relationships:
           to: source('dummy', 'tags')
@@ -611,12 +611,12 @@ sources:
     - name: created_at
       description: Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: updated_at
       description: Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
   - name: users
     description: User
@@ -632,24 +632,24 @@ sources:
     - name: id
       description: ID
       data_type: int64
-      tests:
+      data_tests:
       - unique
       - not_null
     - name: created_at
       description: User Created At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null:
           where: id != 1
     - name: updated_at
       description: User Updated At
       data_type: datetime
-      tests:
+      data_tests:
       - not_null
     - name: company_id
       description: company_id
       data_type: int64
-      tests:
+      data_tests:
       - relationships:
           to: source('dummy', 'companies')
           field: id
@@ -846,7 +846,7 @@ models:
   - name: profile_id
     description: profile_id
     data_type: int64
-    tests:
+    data_tests:
     - unique
     - not_null
     - relationships:
@@ -857,7 +857,7 @@ models:
   - name: user_id
     description: user_id
     data_type: int64
-    tests:
+    data_tests:
     - unique
     - not_null
     - relationships:
@@ -868,22 +868,22 @@ models:
   - name: first_name
     description: Write a description of the 'profiles.first_name' column.
     data_type: string
-    tests:
+    data_tests:
     - not_null
   - name: last_name
     description: Write a description of the 'profiles.last_name' column.
     data_type: string
-    tests:
+    data_tests:
     - not_null
   - name: created_at
     description: Created At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null
   - name: updated_at
     description: Updated At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null
 
 ```
@@ -977,22 +977,22 @@ seeds:
 columns:
 - name: status_before_type_of_cast
   description: Status
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_key
   description: Status(key)
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_en
   description: Status(en)
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_ja
   description: Status(ja)
-  tests:
+  data_tests:
   - unique
   - not_null
 

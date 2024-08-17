@@ -7,7 +7,7 @@ models:
   - name: profile_id
     description: profile_id
     data_type: int64
-    tests:
+    data_tests:
     - unique
     - not_null
     - relationships:
@@ -18,7 +18,7 @@ models:
   - name: user_id
     description: user_id
     data_type: int64
-    tests:
+    data_tests:
     - unique
     - not_null
     - relationships:
@@ -29,20 +29,20 @@ models:
   - name: first_name
     description: Write a description of the 'profiles.first_name' column.
     data_type: string
-    tests:
+    data_tests:
     - not_null
   - name: last_name
     description: Write a description of the 'profiles.last_name' column.
     data_type: string
-    tests:
+    data_tests:
     - not_null
   - name: created_at
     description: Created At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null
   - name: updated_at
     description: Updated At
     data_type: datetime
-    tests:
+    data_tests:
     - not_null

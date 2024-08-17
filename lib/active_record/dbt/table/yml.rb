@@ -31,7 +31,7 @@ module ActiveRecord
             'name' => table_name,
             'description' => description,
             **table_overrides.except(:columns),
-            'tests' => table_test.config
+            'data_tests' => table_test.config
           }
         end
 

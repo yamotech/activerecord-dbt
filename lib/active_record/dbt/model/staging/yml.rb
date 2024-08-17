@@ -79,7 +79,7 @@ module ActiveRecord
           end
 
           def add_relationship_test(column)
-            column['tests'].push(relationships_test(column['name']))
+            column['data_tests'].push(relationships_test(column['name']))
           end
 
           def rename_primary_id_in_column(column)

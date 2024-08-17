@@ -23,14 +23,14 @@ module ActiveRecord
         end
 
         def config
-          (tests.keys | tests_overrides_hash.keys).map do |key|
-            tests_overrides_hash[key] || tests[key]
+          (data_tests.keys | data_tests_overrides_hash.keys).map do |key|
+            data_tests_overrides_hash[key] || data_tests[key]
           end.presence
         end
 
         private
 
-        def tests
+        def data_tests
           {
             'unique_test' => unique_test,
             'not_null_test' => not_null_test,
@@ -39,10 +39,10 @@ module ActiveRecord
           }.compact
         end
 
-        def tests_overrides_hash
-          @tests_overrides_hash ||=
-            tests_overrides.index_by do |tests_override|
-              "#{extract_key(tests_override)}_test"
+        def data_tests_overrides_hash
+          @data_tests_overrides_hash ||=
+            data_tests_overrides.index_by do |data_tests_override|
+              "#{extract_key(data_tests_override)}_test"
             end
         end
 
@@ -50,9 +50,9 @@ module ActiveRecord
           item.is_a?(Hash) ? item.keys.first : item
         end
 
-        def tests_overrides
-          @tests_overrides ||=
-            source_config.dig(:table_overrides, table_name, :columns, column_name, :tests) ||
+        def data_tests_overrides
+          @data_tests_overrides ||=
+            source_config.dig(:table_overrides, table_name, :columns, column_name, :data_tests) ||
             []
         end
       end

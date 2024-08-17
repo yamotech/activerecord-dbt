@@ -12,21 +12,21 @@ seeds:
 columns:
 - name: status_before_type_of_cast
   description: Status
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_key
   description: Status(key)
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_en
   description: Status(en)
-  tests:
+  data_tests:
   - unique
   - not_null
 - name: status_ja
   description: Status(ja)
-  tests:
+  data_tests:
   - unique
   - not_null
