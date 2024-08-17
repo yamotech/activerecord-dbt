@@ -2,9 +2,11 @@
 
 ## [Unreleased]
 
+- Rename `tests:` to `data_tests:`
+
 ## [0.3.0] - 2024-08-14
 
-- Generate seed enum files for dbt from the specified `TABLE_NAME` and `ENUM_COLUMN_NAME`.
+- Generate seed enum files for dbt from the specified `TABLE_NAME` and `ENUM_COLUMN_NAME`
 
 ## [0.2.0] - 2024-08-03
 
