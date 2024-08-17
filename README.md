@@ -949,8 +949,8 @@ Generate seed enum files for dbt from the specified `TABLE_NAME` and `ENUM_COLUM
 
 File | Description
 --------- | ---------
-`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv` | Seed enum file for dbt.
-`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml` | Seed enum documentation file for dbt.
+`#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv` | Seed enum file for dbt.
+`#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml` | Seed enum documentation file for dbt.
 
 Example:
 
@@ -958,7 +958,7 @@ Example:
 $ bin/rails generate active_record:dbt:enum posts status
 ```
 
-##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv`
+##### Generate `#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv`
 
 Example:
 
@@ -970,7 +970,7 @@ status_before_type_of_cast,status_key,status_en,status_ja
 
 ```
 
-##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml`
+##### Generate `#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml`
 
 Example:
 
