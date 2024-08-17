@@ -22,18 +22,18 @@ module ActiveRecord
           end
 
           def dump
-            YAML.dump(model_config.deep_stringify_keys)
+            YAML.dump(properties.deep_stringify_keys)
           end
 
           private
 
-          def model_config
+          def properties
             {
               'version' => 2,
               'models' => [
                 {
                   'name' => model_name,
-                  **table.config.except('name', 'columns'),
+                  **table.properties.except('name', 'columns'),
                   'columns' => override_columns
                 }
               ]
@@ -41,7 +41,7 @@ module ActiveRecord
           end
 
           def columns
-            @columns ||= sort_columns(table.config['columns'])
+            @columns ||= sort_columns(table.properties['columns'])
           end
 
           def sort_columns(columns)

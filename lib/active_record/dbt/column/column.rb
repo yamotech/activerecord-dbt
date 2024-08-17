@@ -20,13 +20,13 @@ module ActiveRecord
           @config = ActiveRecord::Dbt::Config.instance
         end
 
-        def config
+        def properties
           {
             'name' => column_name,
             'description' => description,
             'data_type' => data_type(column.type),
             **column_overrides.except(:data_tests),
-            'data_tests' => column_test.config
+            'data_tests' => column_test.properties
           }.compact
         end
 

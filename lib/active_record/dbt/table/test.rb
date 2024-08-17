@@ -8,7 +8,7 @@ module ActiveRecord
 
         include ActiveRecord::Dbt::Table::Base
 
-        def config
+        def properties
           [
             *unique_combination_of_columns_test
           ].compact.presence

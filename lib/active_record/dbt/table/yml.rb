@@ -17,10 +17,10 @@ module ActiveRecord
           @columns = columns
         end
 
-        def config
+        def properties
           {
             **table_properties,
-            'columns' => columns.map(&:config)
+            'columns' => columns.map(&:properties)
           }.compact
         end
 
@@ -31,7 +31,7 @@ module ActiveRecord
             'name' => table_name,
             'description' => description,
             **table_overrides.except(:columns),
-            'data_tests' => table_test.config
+            'data_tests' => table_test.properties
           }
         end
 

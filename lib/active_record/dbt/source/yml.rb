@@ -18,12 +18,12 @@ module ActiveRecord
         end
 
         def dump
-          YAML.dump(config.deep_stringify_keys)
+          YAML.dump(properties.deep_stringify_keys)
         end
 
         private
 
-        def config
+        def properties
           {
             'version' => 2,
             'sources' => [
@@ -37,7 +37,7 @@ module ActiveRecord
         end
 
         def tables_properties
-          tables.map(&:config)
+          tables.map(&:properties)
         end
       end
     end
