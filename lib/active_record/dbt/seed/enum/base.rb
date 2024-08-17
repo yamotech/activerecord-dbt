@@ -19,7 +19,7 @@ module ActiveRecord
           private
 
           def basename
-            "#{export_directory_path}/#{seed_name}"
+            "#{export_directory_path}/seeds/#{source_name}/#{seed_name}"
           end
 
           def seed_name

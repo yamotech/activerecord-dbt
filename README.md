@@ -110,8 +110,8 @@ This will create the following files.
 
 File | Description
 --------- | ---------
-`#{config_directory_path}/source_config.yml` | Used to generate `#{export_directory_path}/src_#{source_name}.yml`.
-`#{config_directory_path}/staging_model.sql.tt` | Used to generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`.
+`#{config_directory_path}/source_config.yml` | Used to generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
+`#{config_directory_path}/staging_model.sql.tt` | Used to generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql`.
 
 ### Generate dbt Source File
 
@@ -282,7 +282,7 @@ table_descriptions:
 
 ```
 
-#### Generate `#{export_directory_path}/src_#{source_name}.yml`
+#### Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`
 
 Generate a source file for dbt:
 
@@ -290,7 +290,7 @@ Generate a source file for dbt:
 $ bin/rails generate active_record:dbt:source
 ```
 
-Generate `#{export_directory_path}/src_#{source_name}.yml`.
+Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
 
 ##### Example:
 
@@ -756,8 +756,8 @@ Generate staging model files for dbt that reference the specified `TABLE_NAME`.
 
 File | Description
 --------- | ---------
-`#{export_directory_path}/stg_#{source_name}__#{table_name}.sql` | Staging model file for dbt.
-`#{export_directory_path}/stg_#{source_name}__#{table_name}.yml` | Staging model documentation file for dbt.
+`#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql` | Staging model file for dbt.
+`#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.yml` | Staging model documentation file for dbt.
 
 Example:
 
@@ -765,7 +765,7 @@ Example:
 $ bin/rails generate active_record:dbt:staging_model profiles
 ```
 
-##### Generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.sql`
+##### Generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.sql`
 
 Example:
 
@@ -836,7 +836,7 @@ from final
 
 ```
 
-##### Generate `#{export_directory_path}/stg_#{source_name}__#{table_name}.yml`
+##### Generate `#{export_directory_path}/models/staging/#{source_name}/stg_#{source_name}__#{table_name}.yml`
 
 Example:
 
@@ -949,8 +949,8 @@ Generate seed enum files for dbt from the specified `TABLE_NAME` and `ENUM_COLUM
 
 File | Description
 --------- | ---------
-`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv` | Seed enum file for dbt.
-`#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml` | Seed enum documentation file for dbt.
+`#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv` | Seed enum file for dbt.
+`#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml` | Seed enum documentation file for dbt.
 
 Example:
 
@@ -958,7 +958,7 @@ Example:
 $ bin/rails generate active_record:dbt:enum posts status
 ```
 
-##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv`
+##### Generate `#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.csv`
 
 Example:
 
@@ -970,7 +970,7 @@ status_before_type_of_cast,status_key,status_en,status_ja
 
 ```
 
-##### Generate `#{export_directory_path}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml`
+##### Generate `#{export_directory_path}/seeds/#{source_name}/seed_#{source_name}__#{table_name_singularize}_enum_#{enum_pluralized}.yml`
 
 Example:
 

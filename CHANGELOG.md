@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 - Rename `tests:` to `data_tests:`
+- Change output destination from `#{export_directory_path}/*.*` to `#{export_directory_path}/**/*.*`
 
 ## [0.3.0] - 2024-08-14
 

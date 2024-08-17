@@ -7,7 +7,7 @@ module ActiveRecord
         def self.build
           tables_factory = ActiveRecord::Dbt::Factory::TablesFactory.build
 
-          ActiveRecord::Dbt::Source::Yml.new(tables_factory).dump
+          ActiveRecord::Dbt::Source::Yml.new(tables_factory)
         end
       end
     end
