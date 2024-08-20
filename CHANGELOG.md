@@ -6,6 +6,7 @@
 - Change output destination from `#{export_directory_path}/*.*` to `#{export_directory_path}/**/*.*`
 - Rename `#config` to `#properties`
 - Fix `ArgumentError`
+- Changed to run in `development` environment only
 
 ## [0.3.0] - 2024-08-14
 
