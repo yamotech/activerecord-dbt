@@ -89,7 +89,7 @@ module ActiveRecord
               end
 
               def association_klass(association)
-                association.klass
+                association.class_name.constantize
               rescue NoMethodError
                 association.options.fetch(:through).to_s.classify.constantize
               end
