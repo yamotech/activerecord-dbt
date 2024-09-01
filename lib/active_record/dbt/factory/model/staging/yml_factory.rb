@@ -7,7 +7,7 @@ module ActiveRecord
         module Staging
           module YmlFactory
             def self.build(table_name)
-              table_factory = ActiveRecord::Dbt::Factory::TableFactory.build(table_name)
+              table_factory = ActiveRecord::Dbt::Factory::Table::YmlFactory.build(table_name)
               yml = ActiveRecord::Dbt::Model::Staging::Yml.new(table_factory)
               struct = Struct.new(:export_path, :dump, keyword_init: true)
 
