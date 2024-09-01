@@ -10,7 +10,7 @@ module ActiveRecord
           foreign_keys: ActiveRecord::Base.connection.foreign_keys(table_name)
         )
           ActiveRecord::Base.connection.columns(table_name).map do |column|
-            column_test = ActiveRecord::Dbt::Column::Test.new(
+            column_test = ActiveRecord::Dbt::Column::DataTest.new(
               table_name,
               column,
               primary_keys: primary_keys,

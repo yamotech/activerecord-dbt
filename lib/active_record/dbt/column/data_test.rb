@@ -3,7 +3,7 @@
 module ActiveRecord
   module Dbt
     module Column
-      class Test
+      class DataTest
         include ActiveRecord::Dbt::Column::Testable::AcceptedValuesTestable
         include ActiveRecord::Dbt::Column::Testable::NotNullTestable
         include ActiveRecord::Dbt::Column::Testable::RelationshipsTestable
