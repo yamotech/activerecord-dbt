@@ -3,8 +3,8 @@
 module ActiveRecord
   module Dbt
     module Table
-      class Test
-        include ActiveRecord::Dbt::DbtPackage::DbtUtils::Table::Testable::UniqueCombinationOfColumnsTestable
+      class DataTest
+        include ActiveRecord::Dbt::DbtPackage::DbtUtils::Table::DataTestable::UniqueCombinationOfColumnsDataTestable
 
         include ActiveRecord::Dbt::Table::Base
 

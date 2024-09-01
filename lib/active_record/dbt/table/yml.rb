@@ -7,13 +7,13 @@ module ActiveRecord
         include ActiveRecord::Dbt::I18nWrapper::Translate
         include ActiveRecord::Dbt::Table::Base
 
-        attr_reader :table_test, :columns
+        attr_reader :table_data_test, :columns
 
         delegate :source_config, to: :@config
 
-        def initialize(table_name, table_test, columns)
+        def initialize(table_name, table_data_test, columns)
           super(table_name)
-          @table_test = table_test
+          @table_data_test = table_data_test
           @columns = columns
         end
 
@@ -31,7 +31,7 @@ module ActiveRecord
             'name' => table_name,
             'description' => description,
             **table_overrides.except(:columns),
-            'data_tests' => table_test.properties
+            'data_tests' => table_data_test.properties
           }
         end
 

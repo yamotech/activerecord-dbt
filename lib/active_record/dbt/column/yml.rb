@@ -3,19 +3,19 @@
 module ActiveRecord
   module Dbt
     module Column
-      class Column
+      class Yml
         include ActiveRecord::Dbt::DataType::Mapper
         include ActiveRecord::Dbt::I18nWrapper::Translate
 
-        attr_reader :table_name, :column, :column_test, :primary_keys
+        attr_reader :table_name, :column, :column_data_test, :primary_keys
 
         delegate :name, :comment, to: :column, prefix: true
         delegate :source_config, to: :@config
 
-        def initialize(table_name, column, column_test, primary_keys: [])
+        def initialize(table_name, column, column_data_test, primary_keys: [])
           @table_name = table_name
           @column = column
-          @column_test = column_test
+          @column_data_test = column_data_test
           @primary_keys = primary_keys
           @config = ActiveRecord::Dbt::Config.instance
         end
@@ -26,7 +26,7 @@ module ActiveRecord
             'description' => description,
             'data_type' => data_type(column.type),
             **column_overrides.except(:data_tests),
-            'data_tests' => column_test.properties
+            'data_tests' => column_data_test.properties
           }.compact
         end
 

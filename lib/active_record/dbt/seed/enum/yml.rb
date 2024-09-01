@@ -5,8 +5,8 @@ module ActiveRecord
     module Seed
       module Enum
         class Yml
-          include ActiveRecord::Dbt::Column::Testable::UniqueTestable
-          include ActiveRecord::Dbt::Column::Testable::NotNullTestable
+          include ActiveRecord::Dbt::Column::DataTestable::UniqueDataTestable
+          include ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable
           include ActiveRecord::Dbt::DataType::Mapper
           include ActiveRecord::Dbt::I18nWrapper::Translate
           include ActiveRecord::Dbt::Seed::Enum::Base
