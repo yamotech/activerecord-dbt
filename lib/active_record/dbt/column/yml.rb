@@ -3,7 +3,7 @@
 module ActiveRecord
   module Dbt
     module Column
-      class Column
+      class Yml
         include ActiveRecord::Dbt::DataType::Mapper
         include ActiveRecord::Dbt::I18nWrapper::Translate
 

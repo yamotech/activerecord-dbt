@@ -17,7 +17,7 @@ module ActiveRecord
               foreign_keys: foreign_keys
             )
 
-            ActiveRecord::Dbt::Column::Column.new(
+            ActiveRecord::Dbt::Column::Yml.new(
               table_name,
               column,
               column_data_test,
