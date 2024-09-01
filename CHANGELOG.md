@@ -2,12 +2,15 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2024-09-01
+
 - Rename `tests:` to `data_tests:`
 - Change output destination from `#{export_directory_path}/*.*` to `#{export_directory_path}/**/*.*`
 - Rename `#config` to `#properties`
 - Fix `ArgumentError`
 - Changed to run in `development` environment only
 - Rename `Test` to `DataTest`
+- Rename `Factory` to `YmlFactory`
 
 ## [0.3.0] - 2024-08-14
 
