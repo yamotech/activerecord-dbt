@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe ActiveRecord::Dbt::Column::Testable::NotNullTestable do
-  let(:dummy_class) { Class.new { include ActiveRecord::Dbt::Column::Testable::NotNullTestable }.new }
+RSpec.describe ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable do
+  let(:dummy_class) { Class.new { include ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable }.new }
   let(:column) { instance_double(ActiveRecord::ConnectionAdapters::SQLite3::Column) }
 
   before do

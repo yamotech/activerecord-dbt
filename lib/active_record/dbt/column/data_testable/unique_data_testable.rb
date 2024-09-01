@@ -3,8 +3,8 @@
 module ActiveRecord
   module Dbt
     module Column
-      module Testable
-        module UniqueTestable
+      module DataTestable
+        module UniqueDataTestable
           extend ActiveRecord::Dbt::RequiredMethods
 
           define_required_methods :table_name, :column_name, :primary_keys

@@ -3,8 +3,8 @@
 module ActiveRecord
   module Dbt
     module Column
-      module Testable
-        module NotNullTestable
+      module DataTestable
+        module NotNullDataTestable
           extend ActiveRecord::Dbt::RequiredMethods
 
           define_required_methods :column

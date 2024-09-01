@@ -3,8 +3,8 @@
 module ActiveRecord
   module Dbt
     module Column
-      module Testable
-        module AcceptedValuesTestable
+      module DataTestable
+        module AcceptedValuesDataTestable
           extend ActiveRecord::Dbt::RequiredMethods
 
           define_required_methods :@config, :column, :table_name, :column_name

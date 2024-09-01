@@ -3,9 +3,9 @@
 module ActiveRecord
   module Dbt
     module Column
-      module Testable
-        module RelationshipsTestable
-          include ActiveRecord::Dbt::DbtPackage::Dbterd::Column::Testable::RelationshipsMetaRelationshipType
+      module DataTestable
+        module RelationshipsDataTestable
+          include ActiveRecord::Dbt::DbtPackage::Dbterd::Column::DataTestable::RelationshipsMetaRelationshipType
 
           extend ActiveRecord::Dbt::RequiredMethods
 

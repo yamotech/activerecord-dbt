@@ -4,10 +4,10 @@ module ActiveRecord
   module Dbt
     module Column
       class DataTest
-        include ActiveRecord::Dbt::Column::Testable::AcceptedValuesTestable
-        include ActiveRecord::Dbt::Column::Testable::NotNullTestable
-        include ActiveRecord::Dbt::Column::Testable::RelationshipsTestable
-        include ActiveRecord::Dbt::Column::Testable::UniqueTestable
+        include ActiveRecord::Dbt::Column::DataTestable::AcceptedValuesDataTestable
+        include ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable
+        include ActiveRecord::Dbt::Column::DataTestable::RelationshipsDataTestable
+        include ActiveRecord::Dbt::Column::DataTestable::UniqueDataTestable
 
         attr_reader :table_name, :column, :primary_keys, :foreign_keys
 

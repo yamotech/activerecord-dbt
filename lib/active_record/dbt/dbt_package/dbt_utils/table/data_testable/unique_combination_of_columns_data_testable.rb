@@ -5,8 +5,8 @@ module ActiveRecord
     module DbtPackage
       module DbtUtils
         module Table
-          module Testable
-            module UniqueCombinationOfColumnsTestable
+          module DataTestable
+            module UniqueCombinationOfColumnsDataTestable
               extend ActiveRecord::Dbt::RequiredMethods
 
               define_required_methods :table_name, :@config
