@@ -5,7 +5,7 @@ module ActiveRecord
     module Factory
       module TableFactory
         def self.build(table_name)
-          table_test = ActiveRecord::Dbt::Table::Test.new(table_name)
+          table_test = ActiveRecord::Dbt::Table::DataTest.new(table_name)
           columns = ActiveRecord::Dbt::Factory::ColumnsFactory.build(table_name)
 
           ActiveRecord::Dbt::Table::Yml.new(table_name, table_test, columns)
