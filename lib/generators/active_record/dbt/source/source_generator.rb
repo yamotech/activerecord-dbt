@@ -13,7 +13,7 @@ module ActiveRecord
         private
 
         def yml
-          @yml ||= ActiveRecord::Dbt::Factory::SourceFactory.build
+          @yml ||= ActiveRecord::Dbt::Factory::Source::YmlFactory.build
         end
       end
     end
