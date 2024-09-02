@@ -46,21 +46,12 @@ module ActiveRecord
 
           def sort_columns(columns)
             columns.sort_by do |column|
-              [
-                SORT_COLUMN_TYPES.index(data_type(column)) || -1,
-                columns.index(column)
-              ]
+              sort_column_names.index(column['name'])
             end
           end
 
-          def data_type(column)
-            if id?(column['name'])
-              'ids'
-            elsif enum?(column['name'])
-              'enums'
-            else
-              column.fetch('data_type', 'unknown').pluralize
-            end
+          def sort_column_names
+            @sort_column_names ||= select_column_names.values.flatten.map(&:name)
           end
 
           def override_columns

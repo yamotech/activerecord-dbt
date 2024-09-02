@@ -12,30 +12,6 @@ module ActiveRecord
           def export_path
             "#{basename}.sql"
           end
-
-          def select_column_names
-            columns_group_by_column_type.sort_by do |key, _|
-              SORT_COLUMN_TYPES.index(key)
-            end.to_h
-          end
-
-          private
-
-          def columns
-            ActiveRecord::Base.connection.columns(table_name)
-          end
-
-          def columns_group_by_column_type
-            columns.group_by do |column|
-              if id?(column.name)
-                'ids'
-              elsif enum?(column.name)
-                'enums'
-              else
-                column.type.to_s.pluralize
-              end
-            end
-          end
         end
       end
     end
