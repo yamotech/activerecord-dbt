@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Fix column order in `stg_*.yml`
+
 ## [0.4.0] - 2024-09-01
 
 - Rename `tests:` to `data_tests:`
