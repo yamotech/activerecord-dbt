@@ -7,13 +7,14 @@ module ActiveRecord
         module AcceptedValuesDataTestable
           extend ActiveRecord::Dbt::RequiredMethods
 
+          using ActiveRecord::Dbt::CoreExt::ActiveRecordExt
+
           define_required_methods :@config, :column, :table_name, :column_name
 
-          delegate :type, to: :column, prefix: true
           delegate :add_log, to: :@config
 
           def accepted_values_test
-            return nil unless column_type == :boolean || enum_values.present?
+            return nil if values.blank?
 
             {
               'accepted_values' => {
@@ -26,7 +27,15 @@ module ActiveRecord
           private
 
           def values
-            column_type == :boolean ? [true, false] : enum_accepted_values
+            if column_type == :boolean
+              [true, false]
+            elsif column.sql_type == 'tinyint(1)'
+              [0, 1]
+            elsif enum_values.present?
+              enum_accepted_values
+            else
+              []
+            end
           end
 
           def enum_accepted_values
@@ -47,6 +56,11 @@ module ActiveRecord
 
           def quote?
             @quote ||= %i[integer boolean].exclude?(column_type)
+          end
+
+          # MEMO: With `delegate :type, to: :column, prefix: true` I could not rewrite the type method with a refine.
+          def column_type
+            @column_type ||= column.type
           end
         end
       end

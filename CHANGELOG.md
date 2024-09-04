@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 - Fix column order in `stg_*.yml`
+- Fix `No matching signature for operator IN for argument types INT64 and {BOOL} at []`
 
 ## [0.4.0] - 2024-09-01
 

@@ -7,6 +7,8 @@ module ActiveRecord
         include ActiveRecord::Dbt::DataType::Mapper
         include ActiveRecord::Dbt::I18nWrapper::Translate
 
+        using ActiveRecord::Dbt::CoreExt::ActiveRecordExt
+
         attr_reader :table_name, :column, :column_data_test, :primary_keys
 
         delegate :name, :comment, to: :column, prefix: true
