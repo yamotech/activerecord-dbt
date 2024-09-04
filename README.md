@@ -135,6 +135,10 @@ sources:
   name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+        - ar_internal_metadata
+        - schema_migrations
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -237,6 +241,10 @@ sources:
   name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+        - ar_internal_metadata
+        - schema_migrations
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -315,6 +323,10 @@ sources:
 - name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+        - ar_internal_metadata
+        - schema_migrations
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
