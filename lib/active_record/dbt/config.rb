@@ -9,6 +9,7 @@ module ActiveRecord
 
       include ActiveRecord::Dbt::Configuration::DataSync
       include ActiveRecord::Dbt::Configuration::DwhPlatform
+      include ActiveRecord::Dbt::Configuration::Exclude
       include ActiveRecord::Dbt::Configuration::I18nConfiguration
       include ActiveRecord::Dbt::Configuration::Logger
       include ActiveRecord::Dbt::Configuration::Source

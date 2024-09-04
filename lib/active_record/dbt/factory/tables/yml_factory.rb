@@ -6,7 +6,10 @@ module ActiveRecord
       module Tables
         module YmlFactory
           def self.build
-            ActiveRecord::Base.connection.tables.sort.map do |table_name|
+            config = ActiveRecord::Dbt::Config.instance
+            table_names = ActiveRecord::Base.connection.tables - config.exclude_table_names
+
+            table_names.sort.map do |table_name|
               ActiveRecord::Dbt::Factory::Table::YmlFactory.build(table_name)
             end
           end
