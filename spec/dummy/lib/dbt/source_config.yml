@@ -4,8 +4,7 @@ sources:
     generated_by: activerecord-dbt
     exclude:
       table_names:
-        - ar_internal_metadata
-        - schema_migrations
+        - profiles
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
