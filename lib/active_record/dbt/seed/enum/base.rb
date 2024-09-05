@@ -5,15 +5,17 @@ module ActiveRecord
     module Seed
       module Enum
         module Base
+          include ActiveRecord::Dbt::Validation::TableNameValidator
+
           attr_reader :table_name, :enum_column_name
 
           delegate :source_name, :export_directory_path, to: :@config
           delegate :singularize, to: :table_name, prefix: true
 
           def initialize(table_name, enum_column_name)
-            @table_name = table_name
-            @enum_column_name = enum_column_name
             @config = ActiveRecord::Dbt::Config.instance
+            @table_name = validate_table_name(table_name, @config)
+            @enum_column_name = enum_column_name
           end
 
           private
