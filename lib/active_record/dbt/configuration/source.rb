@@ -33,6 +33,12 @@ module ActiveRecord
           end
         end
 
+        def exclude_table_names
+          @exclude_table_names ||=
+            source_config.dig(:sources, :meta, :exclude, :table_names) ||
+            []
+        end
+
         class SourceNameIsNullError < StandardError; end
       end
     end

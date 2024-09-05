@@ -5,6 +5,8 @@ module ActiveRecord
     module Model
       module Staging
         module Base
+          include ActiveRecord::Dbt::Validation::TableNameValidator
+
           using ActiveRecord::Dbt::CoreExt::ActiveRecordExt
 
           SORT_COLUMN_TYPES = %w[
@@ -19,8 +21,8 @@ module ActiveRecord
           delegate :source_name, :export_directory_path, to: :@config
 
           def initialize(table_name)
-            @table_name = table_name
             @config = ActiveRecord::Dbt::Config.instance
+            @table_name = validate_table_name(table_name, @config)
           end
 
           def select_column_names

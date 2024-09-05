@@ -6,6 +6,7 @@ module ActiveRecord
       class Yml
         include ActiveRecord::Dbt::DataType::Mapper
         include ActiveRecord::Dbt::I18nWrapper::Translate
+        include ActiveRecord::Dbt::Validation::TableNameValidator
 
         using ActiveRecord::Dbt::CoreExt::ActiveRecordExt
 
@@ -15,11 +16,11 @@ module ActiveRecord
         delegate :source_config, to: :@config
 
         def initialize(table_name, column, column_data_test, primary_keys: [])
-          @table_name = table_name
+          @config = ActiveRecord::Dbt::Config.instance
+          @table_name = validate_table_name(table_name, @config)
           @column = column
           @column_data_test = column_data_test
           @primary_keys = primary_keys
-          @config = ActiveRecord::Dbt::Config.instance
         end
 
         def properties

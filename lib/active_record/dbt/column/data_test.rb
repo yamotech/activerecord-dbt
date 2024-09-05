@@ -8,6 +8,7 @@ module ActiveRecord
         include ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable
         include ActiveRecord::Dbt::Column::DataTestable::RelationshipsDataTestable
         include ActiveRecord::Dbt::Column::DataTestable::UniqueDataTestable
+        include ActiveRecord::Dbt::Validation::TableNameValidator
 
         attr_reader :table_name, :column, :primary_keys, :foreign_keys
 
@@ -15,11 +16,11 @@ module ActiveRecord
         delegate :source_config, to: :@config
 
         def initialize(table_name, column, primary_keys: [], foreign_keys: [{}])
-          @table_name = table_name
+          @config = ActiveRecord::Dbt::Config.instance
+          @table_name = validate_table_name(table_name, @config)
           @column = column
           @primary_keys = primary_keys
           @foreign_keys = foreign_keys
-          @config = ActiveRecord::Dbt::Config.instance
         end
 
         def properties

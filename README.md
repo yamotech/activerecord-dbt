@@ -128,6 +128,12 @@ The available properties for `sources` and `table_overrides` are detailed in [So
 
 Set all properties except for `tables`.
 
+Set the items you want to exclude with `exlude` in `meta`.
+
+Configuration | Description
+--------- | ---------
+table_names | Specify which table names you do not want output in `sources`.
+
 Example:
 
 ```yml
@@ -135,6 +141,10 @@ sources:
   name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+        - ar_internal_metadata
+        - schema_migrations
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -237,6 +247,9 @@ sources:
   name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+        - profiles
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -262,6 +275,9 @@ defaults:
     logical_name: Write a logical_name of the '{{ table_name }}' table.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
+  seed_descriptions:
+    enum:
+      description: "{{ source_name }} {{ translated_table_name }} {{ translated_attribute_name }} enum"
 
 table_descriptions:
   ar_internal_metadata:
@@ -315,6 +331,9 @@ sources:
 - name: dummy
   meta:
     generated_by: activerecord-dbt
+    exclude:
+      table_names:
+      - profiles
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -420,7 +439,7 @@ sources:
       data_tests:
       - not_null
     - name: status
-      description: Write a description of the 'posts.status' column.
+      description: Status
       data_type: int64
       data_tests:
       - accepted_values:
@@ -463,46 +482,6 @@ sources:
             active_record_dbt_error:
               class: NameError
               message: uninitialized constant PostsTag
-  - name: profiles
-    description: Write a logical_name of the 'profiles' table.
-    columns:
-    - name: id
-      description: id
-      data_type: int64
-      data_tests:
-      - unique
-      - not_null
-    - name: user_id
-      description: user_id
-      data_type: int64
-      data_tests:
-      - unique
-      - not_null
-      - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: one-to-one
-    - name: first_name
-      description: Write a description of the 'profiles.first_name' column.
-      data_type: string
-      data_tests:
-      - not_null
-    - name: last_name
-      description: Write a description of the 'profiles.last_name' column.
-      data_type: string
-      data_tests:
-      - not_null
-    - name: created_at
-      description: Created At
-      data_type: datetime
-      data_tests:
-      - not_null
-    - name: updated_at
-      description: Updated At
-      data_type: datetime
-      data_tests:
-      - not_null
   - name: relationships
     description: Write a logical_name of the 'relationships' table.
     data_tests:
