@@ -128,6 +128,12 @@ The available properties for `sources` and `table_overrides` are detailed in [So
 
 Set all properties except for `tables`.
 
+Set the items you want to exclude with `exlude` in `meta`.
+
+Configuration | Description
+--------- | ---------
+table_names | Specify which table names you do not want output in `sources`.
+
 Example:
 
 ```yml
