@@ -12,6 +12,15 @@ module ActiveRecord
 
         attr_reader :table_name, :column, :column_data_test, :primary_keys
 
+        # MEMO: GitHub copilot taught me this.
+        SQL_KEYWORDS = %w[
+          ADD ALL ALTER AND ANY AS ASC BACKUP BETWEEN CASE CHECK COLUMN CONSTRAINT CREATE
+          DATABASE DEFAULT DELETE DESC DISTINCT DROP EXEC EXISTS FOREIGN FROM FULL GROUP
+          HAVING IN INDEX INNER INSERT INTO IS JOIN LEFT LIKE LIMIT NOT NULL OR ORDER OUTER
+          PRIMARY PROCEDURE RIGHT ROWNUM SELECT SET TABLE TOP TRUNCATE UNION UNIQUE UPDATE
+          VALUES VIEW WHERE
+        ].freeze
+
         delegate :name, :comment, to: :column, prefix: true
         delegate :source_config, to: :@config
 
@@ -27,6 +36,7 @@ module ActiveRecord
           {
             'name' => column_name,
             'description' => description,
+            'quote' => quote?,
             'data_type' => data_type(column.type),
             **column_overrides.except(:data_tests),
             'data_tests' => column_data_test.properties
@@ -65,6 +75,11 @@ module ActiveRecord
           source_config.dig(:defaults, :table_descriptions, :columns, :description)
                        &.gsub(/{{\s*table_name\s*}}/, table_name)
                        &.gsub(/{{\s*column_name\s*}}/, column_name)
+        end
+
+        # MEMO: [quote | dbt Developer Hub](https://docs.getdbt.com/reference/resource-properties/quote)
+        def quote?
+          SQL_KEYWORDS.include?(column_name.upcase) ? true : nil
         end
 
         def column_overrides
