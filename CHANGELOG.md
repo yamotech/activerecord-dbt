@@ -6,6 +6,7 @@
 - Fix `No matching signature for operator IN for argument types INT64 and {BOOL} at []`
 - Changed to be able to exclude specified table names from sources
 - Fix `Unrecognized name: None at []`
+- Fix `Syntax error: Unexpected keyword GROUP at []`
 
 ## [0.4.0] - 2024-09-01
 
