@@ -5,6 +5,8 @@ module ActiveRecord
     module Model
       module Staging
         module Base
+          using ActiveRecord::Dbt::CoreExt::ActiveRecordExt
+
           SORT_COLUMN_TYPES = %w[
             ids enums
             strings texts
