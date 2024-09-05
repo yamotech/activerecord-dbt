@@ -39,7 +39,7 @@ module ActiveRecord
           end
 
           def enum_accepted_values
-            enum_values.map { |key| quote? ? key.to_s : key }
+            enum_values.compact.map { |key| quote? ? key.to_s : key }
           end
 
           def enum_values
