@@ -41,14 +41,14 @@ module ActiveRecord
 
           def seed_description
             default_seed_description ||
-              "#{source_name} #{translated_table_name} #{translated_attribute_name} enum".strip
+              "#{source_name} #{translated_table_name} #{translated_column_name} enum".strip
           end
 
           def default_seed_description
             source_config.dig(:defaults, :seed_descriptions, :enum, :description)
                          &.gsub(/{{\s*source_name\s*}}/, source_name)
                          &.gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
-                         &.gsub(/{{\s*translated_attribute_name\s*}}/, translated_attribute_name)
+                         &.gsub(/{{\s*translated_column_name\s*}}/, translated_column_name)
           end
 
           def column_types
@@ -80,7 +80,7 @@ module ActiveRecord
           def before_type_of_cast_column
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
-              'description' => translated_attribute_name,
+              'description' => translated_column_name,
               'data_tests' => data_tests
             }.compact
           end
@@ -88,7 +88,7 @@ module ActiveRecord
           def enum_key_column
             {
               'name' => "#{enum_column_name}_key",
-              'description' => "#{translated_attribute_name}(key)",
+              'description' => "#{translated_column_name}(key)",
               'data_tests' => data_tests
             }.compact
           end
@@ -98,7 +98,7 @@ module ActiveRecord
               array.push(
                 {
                   'name' => "#{enum_column_name}_#{locale}",
-                  'description' => "#{translated_attribute_name}(#{locale})",
+                  'description' => "#{translated_column_name}(#{locale})",
                   'data_tests' => data_tests
                 }.compact
               )

@@ -48,7 +48,7 @@ module ActiveRecord
         def description
           @description ||=
             column_description ||
-            translated_attribute_name ||
+            translated_column_name ||
             column_comment ||
             key_column_name ||
             default_column_description ||
