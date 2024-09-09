@@ -17,13 +17,14 @@ module ActiveRecord
                 return nil unless used_dbt_utils?
 
                 indexes.each_with_object([]) do |index, array|
-                  next if unique_indexes?(index)
+                  next if single_column_index?(index)
 
                   array.push(
                     {
                       'dbt_utils.unique_combination_of_columns' => {
-                        'combination_of_columns' => index.columns
-                      }
+                        'combination_of_columns' => index.columns,
+                        'where' => condition_for_unique_combination_of_columns(index.columns)
+                      }.compact
                     }
                   )
                 end.presence
@@ -35,10 +36,22 @@ module ActiveRecord
                 ActiveRecord::Base.connection.indexes(table_name)
               end
 
-              def unique_indexes?(index)
+              def single_column_index?(index)
                 return true if index.unique == false
 
                 index.columns.size == 1
+              end
+
+              def condition_for_unique_combination_of_columns(unique_combination_of_columns)
+                columns.each_with_object([]) do |column, array|
+                  if unique_combination_of_columns.include?(column.name) && column.null == true
+                    array.push("#{column.name} is not null")
+                  end
+                end.join(' and ').presence
+              end
+
+              def columns
+                ActiveRecord::Base.connection.columns(table_name)
               end
             end
           end
