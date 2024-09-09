@@ -7,6 +7,7 @@
 - Changed to be able to exclude specified table names from sources
 - Fix `Unrecognized name: None at []`
 - Fix `Syntax error: Unexpected keyword GROUP at []`
+- Fix `dbt_utils.unique_combination_of_columns`
 
 ## [0.4.0] - 2024-09-01
 
