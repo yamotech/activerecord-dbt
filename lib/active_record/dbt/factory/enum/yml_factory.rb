@@ -10,6 +10,7 @@ module ActiveRecord
             column_name,
             primary_keys: ActiveRecord::Base.connection.primary_keys(table_name)
           )
+            table = ActiveRecord::Dbt::Table::Yml.new(table_name)
             column = ActiveRecord::Base.connection.columns(table_name).find{ |c| c.name == column_name }
             enum_column = ActiveRecord::Dbt::Column::Yml.new(
               table_name,
@@ -17,7 +18,7 @@ module ActiveRecord
               primary_keys: primary_keys
             )
 
-            ActiveRecord::Dbt::Seed::Enum::Yml.new(table_name, enum_column)
+            ActiveRecord::Dbt::Seed::Enum::Yml.new(table, enum_column)
           end
         end
       end

@@ -10,15 +10,16 @@ module ActiveRecord
           include ActiveRecord::Dbt::DataType::Mapper
           include ActiveRecord::Dbt::Seed::Enum::Base
 
-          attr_reader :enum_column
+          attr_reader :table, :enum_column
 
           delegate :source_config, to: :@config
 
           alias column_name enum_column_name
 
-          def initialize(table_name, enum_column)
+          def initialize(table, enum_column)
+            @table = table
             @enum_column = enum_column
-            super(table_name, enum_column.column_name)
+            super(table.table_name, enum_column.column_name)
           end
 
           def export_path
@@ -47,14 +48,14 @@ module ActiveRecord
 
           def seed_description
             default_seed_description ||
-              "#{source_name} #{translated_table_name} #{column_description} enum".strip
+              "#{source_name} #{logical_name} #{column_description} enum".strip
           end
 
           def default_seed_description
             return if source_config_description.nil?
 
             source_config_description.gsub(/{{\s*source_name\s*}}/, source_name)
-                                     .gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
+                                     .gsub(/{{\s*logical_name\s*}}/, logical_name)
                                      .gsub(/{{\s*column_description\s*}}/, column_description)
           end
 
@@ -63,9 +64,10 @@ module ActiveRecord
               source_config.dig(:defaults, :seed_descriptions, :enum, :description)
           end
 
-          # TODO: tmp
-          def translated_table_name
-            'test'
+          def logical_name
+            @logical_name ||=
+              table.logical_name ||
+              table_name
           end
 
           def column_description

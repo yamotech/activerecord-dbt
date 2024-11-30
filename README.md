@@ -277,7 +277,7 @@ defaults:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ translated_table_name }} {{ column_description }} enum"
+      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
 
 table_descriptions:
   ar_internal_metadata:
@@ -896,7 +896,7 @@ You can configure `defaults` in this file.
 
 Set the default value for the `description` of the `seeds` enum.
 
-In the `description` of `seed_descriptions.enum`, you can refer to the source name with `{{ source_name }}`, the translated table name with `{{ translated_table_name }}`, and the column description with `{{ column_description }}`.
+In the `description` of `seed_descriptions.enum`, you can refer to the source name with `{{ source_name }}`, the logical table name with `{{ logical_name }}`, and the column description with `{{ column_description }}`.
 
 Example:
 
@@ -904,7 +904,7 @@ Example:
 defaults:
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ translated_table_name }} {{ column_description }} enum"
+      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
 
 ```
 
@@ -914,7 +914,7 @@ If nothing is set, it defaults to the following:
 defaults:
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ translated_table_name }} {{ column_description }} enum"
+      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
 
 ```
 

@@ -11,7 +11,7 @@ module ActiveRecord
 
         delegate :source_config, to: :@config
 
-        def initialize(table_name, table_data_test, columns)
+        def initialize(table_name, table_data_test = Struct.new(:properties).new, columns = [])
           super(table_name)
           @table_data_test = table_data_test
           @columns = columns
@@ -22,6 +22,12 @@ module ActiveRecord
             **table_properties,
             'columns' => columns.map(&:properties)
           }.compact
+        end
+
+        def logical_name
+          config_logical_name ||
+            translated_table_name ||
+            default_logical_name
         end
 
         private
@@ -36,20 +42,22 @@ module ActiveRecord
         end
 
         def description
-          return logical_name if table_description.blank?
+          return table_description_title if table_description.blank?
 
           [
-            "# #{logical_name}",
+            "# #{table_description_title}",
             table_description
           ].join("\n")
         end
 
-        def logical_name
-          @logical_name ||=
-            source_config.dig(:table_descriptions, table_name, :logical_name) ||
-            translated_table_name ||
-            default_logical_name ||
+        def table_description_title
+          @table_description_title ||=
+            logical_name ||
             "Write a logical_name of the '#{table_name}' table."
+        end
+
+        def config_logical_name
+          source_config.dig(:table_descriptions, table_name, :logical_name)
         end
 
         def default_logical_name
