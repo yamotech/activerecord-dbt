@@ -24,7 +24,7 @@ module ActiveRecord
         delegate :name, :comment, to: :column, prefix: true
         delegate :source_config, to: :@config
 
-        def initialize(table_name, column, column_data_test, primary_keys: [])
+        def initialize(table_name, column, column_data_test = Struct.new(:properties).new, primary_keys: [])
           @config = ActiveRecord::Dbt::Config.instance
           @table_name = validate_table_name(table_name, @config)
           @column = column
@@ -43,19 +43,23 @@ module ActiveRecord
           }.compact
         end
 
+        def column_description
+          config_column_description ||
+            translated_column_name ||
+            column_comment ||
+            key_column_name ||
+            default_column_description
+        end
+
         private
 
         def description
           @description ||=
             column_description ||
-            translated_column_name ||
-            column_comment ||
-            key_column_name ||
-            default_column_description ||
             "Write a description of the '#{table_name}.#{column_name}' column."
         end
 
-        def column_description
+        def config_column_description
           source_config.dig(:table_descriptions, table_name, :columns, column_name)
         end
 
