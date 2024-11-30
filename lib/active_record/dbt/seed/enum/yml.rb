@@ -94,6 +94,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
               'description' => "#{column_description}(before_type_of_cast)",
+              'data_type' => data_type(before_type_of_cast_type),
               'data_tests' => data_tests
             }.compact
           end
@@ -102,6 +103,7 @@ module ActiveRecord
             {
               'name' => "#{enum_column_name}_key",
               'description' => "#{column_description}(key)",
+              'data_type' => data_type(:string),
               'data_tests' => data_tests
             }.compact
           end
@@ -112,6 +114,7 @@ module ActiveRecord
                 {
                   'name' => "#{enum_column_name}_#{locale}",
                   'description' => "#{column_description}(#{locale})",
+                  'data_type' => data_type(:string),
                   'data_tests' => data_tests
                 }.compact
               )
