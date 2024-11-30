@@ -126,13 +126,12 @@ The available properties for `sources` and `table_overrides` are detailed in [So
 
 ##### sources
 
-Set all properties except for `tables`.
-
-Set the items you want to exclude with `exlude` in `meta`.
+Set the configurations for `sources`.
 
 Configuration | Description
 --------- | ---------
-table_names | Specify which table names you do not want output in `sources`.
+project_name | Written to the beginning of the table or model `description`.
+table_names in `exclude` | Specify which table names you do not want output in `sources`.
 
 Example:
 
@@ -140,6 +139,7 @@ Example:
 sources:
   name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:
@@ -246,6 +246,7 @@ Adjust the settings according to your environment.
 sources:
   name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:
@@ -330,6 +331,7 @@ version: 2
 sources:
 - name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:

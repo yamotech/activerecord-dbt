@@ -1,6 +1,7 @@
 sources:
   name: <%= application_name %>
   meta:
+    project_name: <%= application_name %>
     generated_by: activerecord-dbt
     exclude:
       table_names:

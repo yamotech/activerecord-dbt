@@ -12,7 +12,7 @@ module ActiveRecord
 
           attr_reader :table, :enum_column
 
-          delegate :source_config, to: :@config
+          delegate :source_config, :project_name, to: :@config
 
           alias column_name enum_column_name
 
@@ -48,7 +48,7 @@ module ActiveRecord
 
           def seed_description
             default_seed_description ||
-              "#{source_name} #{logical_name} #{column_description} enum".strip
+              "#{project_name} #{logical_name} #{column_description} enum".strip
           end
 
           def default_seed_description

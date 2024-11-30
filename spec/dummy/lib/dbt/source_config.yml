@@ -1,6 +1,7 @@
 sources:
   name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:

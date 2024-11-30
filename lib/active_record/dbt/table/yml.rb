@@ -9,7 +9,7 @@ module ActiveRecord
 
         attr_reader :table_data_test, :columns
 
-        delegate :source_config, to: :@config
+        delegate :project_name, :source_config, to: :@config
 
         def initialize(table_name, table_data_test = Struct.new(:properties).new, columns = [])
           super(table_name)
@@ -45,7 +45,7 @@ module ActiveRecord
           return table_description_title if table_description.blank?
 
           [
-            "# #{table_description_title}",
+            "# #{project_name} #{table_description_title}",
             table_description
           ].join("\n")
         end
