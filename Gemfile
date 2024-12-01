@@ -9,7 +9,12 @@ gemspec
 gem 'rails'
 
 gem 'puma'
-gem 'sqlite3', '~> 1.4'
+
+if RUBY_VERSION >= '3.1'
+  gem 'sqlite3', '~> 2.1'
+else
+  gem 'sqlite3', '~> 1.4'
+end
 
 group :development, :test do
   gem 'rspec-rails'

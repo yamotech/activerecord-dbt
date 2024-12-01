@@ -8,6 +8,7 @@
 - Fix `Unrecognized name: None at []`
 - Fix `Syntax error: Unexpected keyword GROUP at []`
 - Fix `dbt_utils.unique_combination_of_columns`
+- Swap `translated_column_name` and `translated_attribute_name`
 
 ## [0.4.0] - 2024-09-01
 
