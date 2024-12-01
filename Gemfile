@@ -9,7 +9,7 @@ gemspec
 gem 'rails'
 
 gem 'puma'
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3'
 
 group :development, :test do
   gem 'rspec-rails'
