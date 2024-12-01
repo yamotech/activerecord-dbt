@@ -9,6 +9,7 @@
 - Fix `Syntax error: Unexpected keyword GROUP at []`
 - Fix `dbt_utils.unique_combination_of_columns`
 - Swap `translated_column_name` and `translated_attribute_name`
+- Fix `gsub': no implicit conversion of nil into String (TypeError)`
 
 ## [0.4.0] - 2024-09-01
 

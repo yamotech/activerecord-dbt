@@ -8,12 +8,19 @@ module ActiveRecord
           include ActiveRecord::Dbt::Column::DataTestable::UniqueDataTestable
           include ActiveRecord::Dbt::Column::DataTestable::NotNullDataTestable
           include ActiveRecord::Dbt::DataType::Mapper
-          include ActiveRecord::Dbt::I18nWrapper::Translate
           include ActiveRecord::Dbt::Seed::Enum::Base
+
+          attr_reader :table, :enum_column
 
           delegate :source_config, to: :@config
 
           alias column_name enum_column_name
+
+          def initialize(table, enum_column)
+            @table = table
+            @enum_column = enum_column
+            super(table.table_name, enum_column.column_name)
+          end
 
           def export_path
             "#{basename}.yml"
@@ -41,20 +48,32 @@ module ActiveRecord
 
           def seed_description
             default_seed_description ||
-              "#{source_name} #{translated_table_name} #{translated_column_name} enum".strip
+              "#{source_name} #{logical_name} #{column_description} enum".strip
           end
 
           def default_seed_description
             return if source_config_description.nil?
 
             source_config_description.gsub(/{{\s*source_name\s*}}/, source_name)
-                                     .gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
-                                     .gsub(/{{\s*translated_column_name\s*}}/, translated_column_name)
+                                     .gsub(/{{\s*logical_name\s*}}/, logical_name)
+                                     .gsub(/{{\s*column_description\s*}}/, column_description)
           end
 
           def source_config_description
             @source_config_description ||=
               source_config.dig(:defaults, :seed_descriptions, :enum, :description)
+          end
+
+          def logical_name
+            @logical_name ||=
+              table.logical_name ||
+              table_name
+          end
+
+          def column_description
+            @column_description ||=
+              enum_column.column_description ||
+              enum_column_name
           end
 
           def column_types
@@ -86,7 +105,7 @@ module ActiveRecord
           def before_type_of_cast_column
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
-              'description' => translated_column_name,
+              'description' => column_description,
               'data_tests' => data_tests
             }.compact
           end
@@ -94,7 +113,7 @@ module ActiveRecord
           def enum_key_column
             {
               'name' => "#{enum_column_name}_key",
-              'description' => "#{translated_column_name}(key)",
+              'description' => "#{column_description}(key)",
               'data_tests' => data_tests
             }.compact
           end
@@ -104,7 +123,7 @@ module ActiveRecord
               array.push(
                 {
                   'name' => "#{enum_column_name}_#{locale}",
-                  'description' => "#{translated_column_name}(#{locale})",
+                  'description' => "#{column_description}(#{locale})",
                   'data_tests' => data_tests
                 }.compact
               )

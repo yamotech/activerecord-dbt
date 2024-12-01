@@ -23,7 +23,7 @@ module ActiveRecord
         end
 
         def yml
-          @yml ||= ActiveRecord::Dbt::Seed::Enum::Yml.new(name, enum_column_name)
+          @yml ||= ActiveRecord::Dbt::Factory::Enum::YmlFactory.build(name, enum_column_name)
         end
       end
     end
