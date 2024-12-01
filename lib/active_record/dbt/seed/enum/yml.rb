@@ -45,10 +45,16 @@ module ActiveRecord
           end
 
           def default_seed_description
-            source_config.dig(:defaults, :seed_descriptions, :enum, :description)
-                         &.gsub(/{{\s*source_name\s*}}/, source_name)
-                         &.gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
-                         &.gsub(/{{\s*translated_column_name\s*}}/, translated_column_name)
+            return if source_config_description.nil?
+
+            source_config_description.gsub(/{{\s*source_name\s*}}/, source_name)
+                                     .gsub(/{{\s*translated_table_name\s*}}/, translated_table_name)
+                                     .gsub(/{{\s*translated_column_name\s*}}/, translated_column_name)
+          end
+
+          def source_config_description
+            @source_config_description ||=
+              source_config.dig(:defaults, :seed_descriptions, :enum, :description)
           end
 
           def column_types
