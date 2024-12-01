@@ -79,7 +79,7 @@ module ActiveRecord
 
         # MEMO: [quote | dbt Developer Hub](https://docs.getdbt.com/reference/resource-properties/quote)
         def quote?
-          SQL_KEYWORDS.include?(column_name.upcase) ? true : nil
+          true if SQL_KEYWORDS.include?(column_name.upcase)
         end
 
         def column_overrides
