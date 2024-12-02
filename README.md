@@ -981,7 +981,7 @@ seeds:
       status_ja: string
 columns:
 - name: status_before_type_of_cast
-  description: Status
+  description: Status(before_type_of_cast)
   data_tests:
   - unique
   - not_null
