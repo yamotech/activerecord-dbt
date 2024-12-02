@@ -105,7 +105,7 @@ module ActiveRecord
           def before_type_of_cast_column
             {
               'name' => "#{enum_column_name}_before_type_of_cast",
-              'description' => column_description,
+              'description' => "#{column_description}(before_type_of_cast)",
               'data_tests' => data_tests
             }.compact
           end
