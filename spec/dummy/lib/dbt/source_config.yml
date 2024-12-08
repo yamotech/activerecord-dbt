@@ -28,7 +28,7 @@ table_overrides:
 
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:

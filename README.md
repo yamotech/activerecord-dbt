@@ -180,15 +180,15 @@ table_overrides:
 
 Set the default value for the `description`(`logical_name`, `description`) of `tables`.
 
-In the `logical_name` and `description` of `table_descriptions`, you can refer to the table name with `{{ table_name }}`.
-In the `description` of `table_descriptions.columns`, you can refer to the table name with `{{ table_name }}` and the column name with `{{ column_name }}`.
+In the `logical_name` and `description` fields of `table_descriptions`, you can use `{{ table_name }}` to refer to the table name and `{{ project_name }}` to refer to the project name.
+In the `description` of `table_descriptions.columns`, you can use `{{ table_name }}` to refer to the table name and `{{ column_name }}` to refer to the column name.
 
 Example:
 
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -199,7 +199,7 @@ If nothing is set, it defaults to the following:
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -273,7 +273,7 @@ table_overrides:
 
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:

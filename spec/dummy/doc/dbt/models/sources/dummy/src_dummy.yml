@@ -38,7 +38,8 @@ sources:
       data_tests:
       - not_null
   - name: companies
-    description: Write a logical_name of the 'companies' table.
+    description: Write the logical_name of the 'companies' table in '{{ project_name
+      }}'.
     columns:
     - name: id
       description: id
@@ -123,7 +124,8 @@ sources:
           - 2
           quote: false
   - name: posts_tags
-    description: Write a logical_name of the 'posts_tags' table.
+    description: Write the logical_name of the 'posts_tags' table in '{{ project_name
+      }}'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -165,7 +167,8 @@ sources:
                       Object.const_get(camel_cased_word)
                             ^^^^^^^^^^
   - name: profiles
-    description: Write a logical_name of the 'profiles' table.
+    description: Write the logical_name of the 'profiles' table in '{{ project_name
+      }}'.
     columns:
     - name: id
       description: id
@@ -205,7 +208,8 @@ sources:
       data_tests:
       - not_null
   - name: relationships
-    description: Write a logical_name of the 'relationships' table.
+    description: Write the logical_name of the 'relationships' table in '{{ project_name
+      }}'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -261,7 +265,7 @@ sources:
       - unique
       - not_null
   - name: tags
-    description: Write a logical_name of the 'tags' table.
+    description: Write the logical_name of the 'tags' table in '{{ project_name }}'.
     columns:
     - name: id
       description: id
@@ -286,7 +290,8 @@ sources:
       data_tests:
       - not_null
   - name: user_tags
-    description: Write a logical_name of the 'user_tags' table.
+    description: Write the logical_name of the 'user_tags' table in '{{ project_name
+      }}'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
