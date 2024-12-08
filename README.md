@@ -250,7 +250,7 @@ sources:
     generated_by: activerecord-dbt
     exclude:
       table_names:
-        - profiles
+        - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -335,7 +335,7 @@ sources:
     generated_by: activerecord-dbt
     exclude:
       table_names:
-      - profiles
+      - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
