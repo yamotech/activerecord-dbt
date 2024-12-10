@@ -1022,7 +1022,7 @@ Example:
 version: 2
 seeds:
 - name: seed_dummy__post_enum_statuses
-  description: dummy Post Status enum
+  description: dummy_project Post Status enum
   config:
     column_types:
       status_before_type_of_cast: int64
@@ -1032,21 +1032,25 @@ seeds:
 columns:
 - name: status_before_type_of_cast
   description: Status(before_type_of_cast)
+  data_type: int64
   data_tests:
   - unique
   - not_null
 - name: status_key
   description: Status(key)
+  data_type: string
   data_tests:
   - unique
   - not_null
 - name: status_en
   description: Status(en)
+  data_type: string
   data_tests:
   - unique
   - not_null
 - name: status_ja
   description: Status(ja)
+  data_type: string
   data_tests:
   - unique
   - not_null
