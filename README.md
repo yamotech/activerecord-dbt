@@ -126,13 +126,12 @@ The available properties for `sources` and `table_overrides` are detailed in [So
 
 ##### sources
 
-Set all properties except for `tables`.
-
-Set the items you want to exclude with `exlude` in `meta`.
+Set the configurations for `sources`.
 
 Configuration | Description
 --------- | ---------
-table_names | Specify which table names you do not want output in `sources`.
+project_name | Written to the beginning of the table or model `description`.
+table_names in `exclude` | Specify which table names you do not want output in `sources`.
 
 Example:
 
@@ -140,6 +139,7 @@ Example:
 sources:
   name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:
@@ -180,15 +180,15 @@ table_overrides:
 
 Set the default value for the `description`(`logical_name`, `description`) of `tables`.
 
-In the `logical_name` and `description` of `table_descriptions`, you can refer to the table name with `{{ table_name }}`.
-In the `description` of `table_descriptions.columns`, you can refer to the table name with `{{ table_name }}` and the column name with `{{ column_name }}`.
+In the `logical_name` and `description` fields of `table_descriptions`, you can use `{{ table_name }}` to refer to the table name and `{{ project_name }}` to refer to the project name.
+In the `description` of `table_descriptions.columns`, you can use `{{ table_name }}` to refer to the table name and `{{ column_name }}` to refer to the column name.
 
 Example:
 
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -199,7 +199,7 @@ If nothing is set, it defaults to the following:
 ```yml
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
 
@@ -246,10 +246,11 @@ Adjust the settings according to your environment.
 sources:
   name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:
-        - profiles
+        - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
@@ -272,12 +273,12 @@ table_overrides:
 
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
+      description: "{{ project_name }} {{ table_logical_name }} {{ column_description }} enum"
 
 table_descriptions:
   ar_internal_metadata:
@@ -330,17 +331,18 @@ version: 2
 sources:
 - name: dummy
   meta:
+    project_name: dummy_project
     generated_by: activerecord-dbt
     exclude:
       table_names:
-      - profiles
+      - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
   tables:
   - name: ar_internal_metadata
     description: |-
-      # Internal Metadata
+      # dummy_project Internal Metadata
       By default Rails will store information about your Rails environment and schema
       in an internal table named `ar_internal_metadata`.
     columns:
@@ -364,7 +366,7 @@ sources:
       data_tests:
       - not_null
   - name: companies
-    description: Write a logical_name of the 'companies' table.
+    description: Write the logical_name of the 'companies' table in 'dummy_project'.
     columns:
     - name: id
       description: id
@@ -404,7 +406,7 @@ sources:
       data_tests:
       - not_null
   - name: posts
-    description: Post
+    description: dummy_project Post
     columns:
     - name: id
       description: ID
@@ -449,7 +451,7 @@ sources:
           - 2
           quote: false
   - name: posts_tags
-    description: Write a logical_name of the 'posts_tags' table.
+    description: Write the logical_name of the 'posts_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -468,7 +470,11 @@ sources:
             relationship_type: many-to-one
             active_record_dbt_error:
               class: NameError
-              message: uninitialized constant PostsTag
+              message: |-
+                uninitialized constant PostsTag
+
+                      Object.const_get(camel_cased_word)
+                            ^^^^^^^^^^
     - name: tag_id
       description: tag_id
       data_type: int64
@@ -481,9 +487,53 @@ sources:
             relationship_type: many-to-one
             active_record_dbt_error:
               class: NameError
-              message: uninitialized constant PostsTag
+              message: |-
+                uninitialized constant PostsTag
+
+                      Object.const_get(camel_cased_word)
+                            ^^^^^^^^^^
+  - name: profiles
+    description: Write the logical_name of the 'profiles' table in 'dummy_project'.
+    columns:
+    - name: id
+      description: id
+      data_type: int64
+      data_tests:
+      - unique
+      - not_null
+    - name: user_id
+      description: user_id
+      data_type: int64
+      data_tests:
+      - unique
+      - not_null
+      - relationships:
+          to: source('dummy', 'users')
+          field: id
+          meta:
+            relationship_type: one-to-one
+    - name: first_name
+      description: Write a description of the 'profiles.first_name' column.
+      data_type: string
+      data_tests:
+      - not_null
+    - name: last_name
+      description: Write a description of the 'profiles.last_name' column.
+      data_type: string
+      data_tests:
+      - not_null
+    - name: created_at
+      description: Created At
+      data_type: datetime
+      data_tests:
+      - not_null
+    - name: updated_at
+      description: Updated At
+      data_type: datetime
+      data_tests:
+      - not_null
   - name: relationships
-    description: Write a logical_name of the 'relationships' table.
+    description: Write the logical_name of the 'relationships' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -528,7 +578,7 @@ sources:
       - not_null
   - name: schema_migrations
     description: |-
-      # Schema Migrations
+      # dummy_project Schema Migrations
       Rails keeps track of which migrations have been committed to the database and
       stores them in a neighboring table in that same database called `schema_migrations`.
     columns:
@@ -539,7 +589,7 @@ sources:
       - unique
       - not_null
   - name: tags
-    description: Write a logical_name of the 'tags' table.
+    description: Write the logical_name of the 'tags' table in 'dummy_project'.
     columns:
     - name: id
       description: id
@@ -564,7 +614,7 @@ sources:
       data_tests:
       - not_null
   - name: user_tags
-    description: Write a logical_name of the 'user_tags' table.
+    description: Write the logical_name of the 'user_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -608,7 +658,7 @@ sources:
       data_tests:
       - not_null
   - name: users
-    description: User
+    description: dummy_project User
     loaded_at_field: created_at
     freshness:
       warn_after:
@@ -838,7 +888,7 @@ Example:
 version: 2
 models:
 - name: stg_dummy__profiles
-  description: Write a logical_name of the 'profiles' table.
+  description: Write the logical_name of the 'profiles' table in 'dummy_project'.
   columns:
   - name: profile_id
     description: profile_id
@@ -896,7 +946,7 @@ You can configure `defaults` in this file.
 
 Set the default value for the `description` of the `seeds` enum.
 
-In the `description` of `seed_descriptions.enum`, you can refer to the source name with `{{ source_name }}`, the logical table name with `{{ logical_name }}`, and the column description with `{{ column_description }}`.
+In the `description` of `seed_descriptions.enum`, you can refer to the project name with `{{ project_name }}`, the table logical table name with `{{ table_logical_name }}`, and the column description with `{{ column_description }}`.
 
 Example:
 
@@ -904,7 +954,7 @@ Example:
 defaults:
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
+      description: "{{ project_name }} {{ table_logical_name }} {{ column_description }} enum"
 
 ```
 
@@ -914,7 +964,7 @@ If nothing is set, it defaults to the following:
 defaults:
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
+      description: "{{ project_name }} {{ table_logical_name }} {{ column_description }} enum"
 
 ```
 

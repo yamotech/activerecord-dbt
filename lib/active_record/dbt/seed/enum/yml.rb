@@ -12,7 +12,8 @@ module ActiveRecord
 
           attr_reader :table, :enum_column
 
-          delegate :source_config, to: :@config
+          delegate :source_config, :project_name, to: :@config
+          delegate :fetch_logical_name, to: :table
 
           alias column_name enum_column_name
 
@@ -47,27 +48,14 @@ module ActiveRecord
           end
 
           def seed_description
-            default_seed_description ||
-              "#{source_name} #{logical_name} #{column_description} enum".strip
-          end
-
-          def default_seed_description
-            return if source_config_description.nil?
-
-            source_config_description.gsub(/{{\s*source_name\s*}}/, source_name)
-                                     .gsub(/{{\s*logical_name\s*}}/, logical_name)
+            source_config_description.gsub(/{{\s*project_name\s*}}/, project_name)
+                                     .gsub(/{{\s*table_logical_name\s*}}/, fetch_logical_name)
                                      .gsub(/{{\s*column_description\s*}}/, column_description)
           end
 
           def source_config_description
-            @source_config_description ||=
-              source_config.dig(:defaults, :seed_descriptions, :enum, :description)
-          end
-
-          def logical_name
-            @logical_name ||=
-              table.logical_name ||
-              table_name
+            source_config.dig(:defaults, :seed_descriptions, :enum, :description) ||
+              '{{ project_name }} {{ table_logical_name }} {{ column_description }} enum'
           end
 
           def column_description

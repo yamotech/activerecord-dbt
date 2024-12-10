@@ -9,7 +9,7 @@ module ActiveRecord
 
         attr_reader :table_data_test, :columns
 
-        delegate :source_config, to: :@config
+        delegate :project_name, :source_config, to: :@config
 
         def initialize(table_name, table_data_test = Struct.new(:properties).new, columns = [])
           super(table_name)
@@ -24,10 +24,10 @@ module ActiveRecord
           }.compact
         end
 
-        def logical_name
-          config_logical_name ||
-            translated_table_name ||
-            default_logical_name
+        def fetch_logical_name
+          @fetch_logical_name ||=
+            config_logical_name ||
+            translated_table_name
         end
 
         private
@@ -41,19 +41,18 @@ module ActiveRecord
           }
         end
 
-        def description
-          return table_description_title if table_description.blank?
-
-          [
-            "# #{table_description_title}",
-            table_description
-          ].join("\n")
+        def logical_name
+          @logical_name ||=
+            fetch_logical_name.present? ? "#{project_name} #{fetch_logical_name}" : default_logical_name
         end
 
-        def table_description_title
-          @table_description_title ||=
-            logical_name ||
-            "Write a logical_name of the '#{table_name}' table."
+        def description
+          return logical_name if table_description.blank?
+
+          [
+            "# #{logical_name}",
+            table_description
+          ].join("\n")
         end
 
         def config_logical_name
@@ -61,8 +60,13 @@ module ActiveRecord
         end
 
         def default_logical_name
-          source_config.dig(:defaults, :table_descriptions, :logical_name)
-                       &.gsub(/{{\s*table_name\s*}}/, table_name)
+          source_config_logical_name&.gsub(/{{\s*project_name\s*}}/, project_name)
+                                    &.gsub(/{{\s*table_name\s*}}/, table_name)
+        end
+
+        def source_config_logical_name
+          source_config.dig(:defaults, :table_descriptions, :logical_name) ||
+            "Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'."
         end
 
         def table_description

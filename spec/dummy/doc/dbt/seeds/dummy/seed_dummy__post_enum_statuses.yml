@@ -2,7 +2,7 @@
 version: 2
 seeds:
 - name: seed_dummy__post_enum_statuses
-  description: dummy Post Status enum
+  description: dummy_project Post Status enum
   config:
     column_types:
       status_before_type_of_cast: int64

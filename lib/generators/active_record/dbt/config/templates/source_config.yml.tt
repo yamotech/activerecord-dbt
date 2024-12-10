@@ -1,6 +1,7 @@
 sources:
   name: <%= application_name %>
   meta:
+    project_name: <%= application_name %>
     generated_by: activerecord-dbt
     exclude:
       table_names:
@@ -41,12 +42,12 @@ table_overrides:
 
 defaults:
   table_descriptions:
-    logical_name: Write a logical_name of the '{{ table_name }}' table.
+    logical_name: Write the logical_name of the '{{ table_name }}' table in '{{ project_name }}'.
     columns:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
+      description: "{{ project_name }} {{ table_logical_name }} {{ column_description }} enum"
 
 table_descriptions:
   ar_internal_metadata:
