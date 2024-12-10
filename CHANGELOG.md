@@ -11,6 +11,7 @@
 - Swap `translated_column_name` and `translated_attribute_name`
 - Fix `gsub': no implicit conversion of nil into String (TypeError)`
 - Update `ActiveRecord::Dbt::Seed::Enum::Yml#before_type_of_cast_column`
+- Add the `project_name` to the top of the `description`
 
 ## [0.4.0] - 2024-09-01
 
