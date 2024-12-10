@@ -24,9 +24,10 @@ module ActiveRecord
           }.compact
         end
 
-        def logical_name
-          @logical_name ||=
-            fetch_logical_name.present? ? "#{project_name} #{fetch_logical_name}" : default_logical_name
+        def fetch_logical_name
+          @fetch_logical_name ||=
+            config_logical_name ||
+            translated_table_name
         end
 
         private
@@ -40,6 +41,11 @@ module ActiveRecord
           }
         end
 
+        def logical_name
+          @logical_name ||=
+            fetch_logical_name.present? ? "#{project_name} #{fetch_logical_name}" : default_logical_name
+        end
+
         def description
           return logical_name if table_description.blank?
 
@@ -47,12 +53,6 @@ module ActiveRecord
             "# #{logical_name}",
             table_description
           ].join("\n")
-        end
-
-        def fetch_logical_name
-          @fetch_logical_name ||=
-            config_logical_name ||
-            translated_table_name
         end
 
         def config_logical_name

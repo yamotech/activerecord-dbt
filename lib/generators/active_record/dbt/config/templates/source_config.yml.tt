@@ -47,7 +47,7 @@ defaults:
       description: Write a description of the '{{ table_name }}.{{ column_name }}' column.
   seed_descriptions:
     enum:
-      description: "{{ source_name }} {{ logical_name }} {{ column_description }} enum"
+      description: "{{ project_name }} {{ table_logical_name }} {{ column_description }} enum"
 
 table_descriptions:
   ar_internal_metadata:
