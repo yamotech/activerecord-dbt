@@ -342,7 +342,7 @@ sources:
   tables:
   - name: ar_internal_metadata
     description: |-
-      # Internal Metadata
+      # dummy_project Internal Metadata
       By default Rails will store information about your Rails environment and schema
       in an internal table named `ar_internal_metadata`.
     columns:
@@ -366,7 +366,7 @@ sources:
       data_tests:
       - not_null
   - name: companies
-    description: Write a logical_name of the 'companies' table.
+    description: Write the logical_name of the 'companies' table in 'dummy_project'.
     columns:
     - name: id
       description: id
@@ -406,7 +406,7 @@ sources:
       data_tests:
       - not_null
   - name: posts
-    description: Post
+    description: dummy_project Post
     columns:
     - name: id
       description: ID
@@ -451,7 +451,7 @@ sources:
           - 2
           quote: false
   - name: posts_tags
-    description: Write a logical_name of the 'posts_tags' table.
+    description: Write the logical_name of the 'posts_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -470,7 +470,11 @@ sources:
             relationship_type: many-to-one
             active_record_dbt_error:
               class: NameError
-              message: uninitialized constant PostsTag
+              message: |-
+                uninitialized constant PostsTag
+
+                      Object.const_get(camel_cased_word)
+                            ^^^^^^^^^^
     - name: tag_id
       description: tag_id
       data_type: int64
@@ -483,9 +487,53 @@ sources:
             relationship_type: many-to-one
             active_record_dbt_error:
               class: NameError
-              message: uninitialized constant PostsTag
+              message: |-
+                uninitialized constant PostsTag
+
+                      Object.const_get(camel_cased_word)
+                            ^^^^^^^^^^
+  - name: profiles
+    description: Write the logical_name of the 'profiles' table in 'dummy_project'.
+    columns:
+    - name: id
+      description: id
+      data_type: int64
+      data_tests:
+      - unique
+      - not_null
+    - name: user_id
+      description: user_id
+      data_type: int64
+      data_tests:
+      - unique
+      - not_null
+      - relationships:
+          to: source('dummy', 'users')
+          field: id
+          meta:
+            relationship_type: one-to-one
+    - name: first_name
+      description: Write a description of the 'profiles.first_name' column.
+      data_type: string
+      data_tests:
+      - not_null
+    - name: last_name
+      description: Write a description of the 'profiles.last_name' column.
+      data_type: string
+      data_tests:
+      - not_null
+    - name: created_at
+      description: Created At
+      data_type: datetime
+      data_tests:
+      - not_null
+    - name: updated_at
+      description: Updated At
+      data_type: datetime
+      data_tests:
+      - not_null
   - name: relationships
-    description: Write a logical_name of the 'relationships' table.
+    description: Write the logical_name of the 'relationships' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -530,7 +578,7 @@ sources:
       - not_null
   - name: schema_migrations
     description: |-
-      # Schema Migrations
+      # dummy_project Schema Migrations
       Rails keeps track of which migrations have been committed to the database and
       stores them in a neighboring table in that same database called `schema_migrations`.
     columns:
@@ -541,7 +589,7 @@ sources:
       - unique
       - not_null
   - name: tags
-    description: Write a logical_name of the 'tags' table.
+    description: Write the logical_name of the 'tags' table in 'dummy_project'.
     columns:
     - name: id
       description: id
@@ -566,7 +614,7 @@ sources:
       data_tests:
       - not_null
   - name: user_tags
-    description: Write a logical_name of the 'user_tags' table.
+    description: Write the logical_name of the 'user_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
         combination_of_columns:
@@ -610,7 +658,7 @@ sources:
       data_tests:
       - not_null
   - name: users
-    description: User
+    description: dummy_project User
     loaded_at_field: created_at
     freshness:
       warn_after:
@@ -840,7 +888,7 @@ Example:
 version: 2
 models:
 - name: stg_dummy__profiles
-  description: Write a logical_name of the 'profiles' table.
+  description: Write the logical_name of the 'profiles' table in 'dummy_project'.
   columns:
   - name: profile_id
     description: profile_id
