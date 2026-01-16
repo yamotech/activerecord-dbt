@@ -423,10 +423,11 @@ sources:
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'users')
+            field: id
+            meta:
+              relationship_type: many-to-one
     - name: title
       description: Title
       data_type: string
@@ -467,34 +468,36 @@ sources:
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'posts')
-          field: id
-          meta:
-            relationship_type: many-to-one
-            active_record_dbt_error:
-              class: NameError
-              message: |-
-                uninitialized constant PostsTag
+          arguments:
+            to: source('dummy', 'posts')
+            field: id
+            meta:
+              relationship_type: many-to-one
+              active_record_dbt_error:
+                class: NameError
+                message: |-
+                  uninitialized constant PostsTag
 
-                      Object.const_get(camel_cased_word)
-                            ^^^^^^^^^^
+                        Object.const_get(camel_cased_word)
+                              ^^^^^^^^^^
     - name: tag_id
       description: tag_id
       data_type: int64
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'tags')
-          field: id
-          meta:
-            relationship_type: many-to-one
-            active_record_dbt_error:
-              class: NameError
-              message: |-
-                uninitialized constant PostsTag
+          arguments:
+            to: source('dummy', 'tags')
+            field: id
+            meta:
+              relationship_type: many-to-one
+              active_record_dbt_error:
+                class: NameError
+                message: |-
+                  uninitialized constant PostsTag
 
-                      Object.const_get(camel_cased_word)
-                            ^^^^^^^^^^
+                        Object.const_get(camel_cased_word)
+                              ^^^^^^^^^^
   - name: profiles
     description: Write the logical_name of the 'profiles' table in 'dummy_project'.
     columns:
@@ -511,10 +514,11 @@ sources:
       - unique
       - not_null
       - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: one-to-one
+          arguments:
+            to: source('dummy', 'users')
+            field: id
+            meta:
+              relationship_type: one-to-one
     - name: first_name
       description: Write a description of the 'profiles.first_name' column.
       data_type: string
@@ -555,20 +559,22 @@ sources:
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'users')
+            field: id
+            meta:
+              relationship_type: many-to-one
     - name: followed_id
       description: followed_id
       data_type: int64
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'users')
+            field: id
+            meta:
+              relationship_type: many-to-one
     - name: created_at
       description: Created At
       data_type: datetime
@@ -636,20 +642,22 @@ sources:
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'users')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'users')
+            field: id
+            meta:
+              relationship_type: many-to-one
     - name: tag_id
       description: tag_id
       data_type: int64
       data_tests:
       - not_null
       - relationships:
-          to: source('dummy', 'tags')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'tags')
+            field: id
+            meta:
+              relationship_type: many-to-one
     - name: created_at
       description: Created At
       data_type: datetime
@@ -693,10 +701,11 @@ sources:
       data_type: int64
       data_tests:
       - relationships:
-          to: source('dummy', 'companies')
-          field: id
-          meta:
-            relationship_type: many-to-one
+          arguments:
+            to: source('dummy', 'companies')
+            field: id
+            meta:
+              relationship_type: many-to-one
 
 ```
 
@@ -900,10 +909,11 @@ models:
     - unique
     - not_null
     - relationships:
-        to: source('dummy', 'profiles')
-        field: id
-        meta:
-          relationship_type: one-to-one
+        arguments:
+          to: source('dummy', 'profiles')
+          field: id
+          meta:
+            relationship_type: one-to-one
   - name: user_id
     description: user_id
     data_type: int64
@@ -911,10 +921,11 @@ models:
     - unique
     - not_null
     - relationships:
-        to: source('dummy', 'users')
-        field: id
-        meta:
-          relationship_type: one-to-one
+        arguments:
+          to: source('dummy', 'users')
+          field: id
+          meta:
+            relationship_type: one-to-one
   - name: first_name
     description: Write a description of the 'profiles.first_name' column.
     data_type: string
