@@ -394,10 +394,11 @@ sources:
       data_tests:
       - not_null
       - accepted_values:
-          values:
-          - true
-          - false
-          quote: false
+          arguments:
+            values:
+            - true
+            - false
+            quote: false
     - name: created_at
       description: Created At
       data_type: datetime
@@ -449,11 +450,12 @@ sources:
       data_type: int64
       data_tests:
       - accepted_values:
-          values:
-          - 0
-          - 1
-          - 2
-          quote: false
+          arguments:
+            values:
+            - 0
+            - 1
+            - 2
+            quote: false
   - name: posts_tags
     description: Write the logical_name of the 'posts_tags' table in 'dummy_project'.
     data_tests:

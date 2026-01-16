@@ -32,11 +32,12 @@ models:
     data_type: int64
     data_tests:
     - accepted_values:
-        values:
-        - 0
-        - 1
-        - 2
-        quote: false
+        arguments:
+          values:
+          - 0
+          - 1
+          - 2
+          quote: false
   - name: title
     description: Title
     data_type: string
