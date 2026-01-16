@@ -138,16 +138,17 @@ Example:
 ```yml
 sources:
   name: dummy
-  meta:
-    project_name: dummy_project
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-        - ar_internal_metadata
-        - schema_migrations
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
+  config:
+    meta:
+      project_name: dummy_project
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+          - ar_internal_metadata
+          - schema_migrations
 
 ```
 
@@ -245,15 +246,16 @@ Adjust the settings according to your environment.
 ```yml
 sources:
   name: dummy
-  meta:
-    project_name: dummy_project
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-        - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
+  config:
+    meta:
+      project_name: dummy_project
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+          - hoges
 
 table_overrides:
   users:
@@ -330,15 +332,16 @@ Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_na
 version: 2
 sources:
 - name: dummy
-  meta:
-    project_name: dummy_project
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-      - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
+  config:
+    meta:
+      project_name: dummy_project
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+        - hoges
   tables:
   - name: ar_internal_metadata
     description: |-

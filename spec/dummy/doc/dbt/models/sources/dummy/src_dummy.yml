@@ -2,15 +2,16 @@
 version: 2
 sources:
 - name: dummy
-  meta:
-    project_name: dummy_project
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-      - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
+  config:
+    meta:
+      project_name: dummy_project
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+        - hoges
   tables:
   - name: ar_internal_metadata
     description: |-

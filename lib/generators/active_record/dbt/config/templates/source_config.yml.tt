@@ -1,19 +1,21 @@
 sources:
   name: <%= application_name %>
-  meta:
-    project_name: <%= application_name %>
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-        - ar_internal_metadata
-        - schema_migrations
   description: |-
     Write a description of the '<%= application_name %>' source.
     You can write multiple lines.
+  config:
+    meta:
+      project_name: <%= application_name %>
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+          - ar_internal_metadata
+          - schema_migrations
 
 table_overrides:
   <table_name>:
-    meta: {<dictionary>}
+    config:
+      meta: {<dictionary>}
     identifier: <table_name>
     loaded_at_field: <column_name>
     data_tests:
@@ -34,7 +36,8 @@ table_overrides:
     external: {<dictionary>}
     columns:
       <column_name>:
-        meta: {<dictionary>}
+        config:
+          meta: {<dictionary>}
         quote: true | false
         data_tests:
           - <test>
