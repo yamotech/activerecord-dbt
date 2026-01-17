@@ -1043,31 +1043,31 @@ seeds:
       status_key: string
       status_en: string
       status_ja: string
-columns:
-- name: status_before_type_of_cast
-  description: Status(before_type_of_cast)
-  data_type: int64
-  data_tests:
-  - unique
-  - not_null
-- name: status_key
-  description: Status(key)
-  data_type: string
-  data_tests:
-  - unique
-  - not_null
-- name: status_en
-  description: Status(en)
-  data_type: string
-  data_tests:
-  - unique
-  - not_null
-- name: status_ja
-  description: Status(ja)
-  data_type: string
-  data_tests:
-  - unique
-  - not_null
+  columns:
+  - name: status_before_type_of_cast
+    description: Status(before_type_of_cast)
+    data_type: int64
+    data_tests:
+    - unique
+    - not_null
+  - name: status_key
+    description: Status(key)
+    data_type: string
+    data_tests:
+    - unique
+    - not_null
+  - name: status_en
+    description: Status(en)
+    data_type: string
+    data_tests:
+    - unique
+    - not_null
+  - name: status_ja
+    description: Status(ja)
+    data_type: string
+    data_tests:
+    - unique
+    - not_null
 
 ```
 
