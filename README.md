@@ -14,19 +14,14 @@ Currently, it can generate:
 
 > [!WARNING]
 >
-> Generated files are compatible with dbt v1.8+ (using `data_tests:`). If you are using an older version (v1.7 or below), manually rename `data_tests:` to `tests:` in the output.
+> dbt Version Compatibility
 >
-> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
+> Generated files are optimized for dbt v1.10+. For older versions, the following manual changes are required:
 >
->> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
-
-> [!WARNING]
->
-> Generated files are compatible with dbt v1.10+ (using `config:`). If you are using an older version (v1.9 or below), manually move some properties from under `config:` to the top level.
->
-> [Upgrading to v1.10 | dbt Developer Hub](https://docs.getdbt.com/docs/dbt-versions/core-upgrade/upgrading-to-v1.10#custom-inputs)
->
->> Some `properties` are moving to `configs`
+> | dbt Version | Required Changes |
+> |-------------|------------------|
+> | v1.7 or below | Rename `data_tests:` to `tests:` ([reference](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)) |
+> | v1.9 or below | Move properties from under `config:` to the top level ([reference](https://docs.getdbt.com/docs/dbt-versions/core-upgrade/upgrading-to-v1.10#custom-inputs)) |
 
 ## Table of Contents
 
