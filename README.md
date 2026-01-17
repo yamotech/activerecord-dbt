@@ -8,6 +8,22 @@
 
 Currently, it can generate `yaml` files for `sources` and `models` files for `staging`.
 
+> [!WARNING]
+>
+> Generated files are compatible with dbt v1.8+ (using `data_tests:`). If you are using an older version (v1.7 or below), manually rename `data_tests:` to `tests:` in the output.
+>
+> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
+>
+>> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
+
+> [!WARNING]
+>
+> Generated files are compatible with dbt v1.10+ (using `config:`). If you are using an older version (v1.9 or below), manually move some properties from under `config:` to the top level.
+>
+> [Upgrading to v1.10 | dbt Developer Hub](https://docs.getdbt.com/docs/dbt-versions/core-upgrade/upgrading-to-v1.10#custom-inputs)
+>
+>> Some `properties` are moving to `configs`
+
 ## Installation
 
 To install `activerecord-dbt`, add this line to your application's Gemfile:
@@ -320,14 +336,6 @@ Example:
 > [!NOTE]
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
-
-> [!WARNING]
->
-> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
->
-> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
->
->> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
 
 ```yaml
 ---
@@ -895,14 +903,6 @@ Example:
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
 
-> [!WARNING]
->
-> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
->
-> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
->
->> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
-
 ```yaml
 ---
 version: 2
@@ -1030,14 +1030,6 @@ Example:
 > [!NOTE]
 >
 > The output will be as shown below. It is recommended to indent the YAML file with a tool of your choice.
-
-> [!WARNING]
->
-> If you are using a version of dbt lower than v1.8, replace `tests:` with `data_tests:` in the generated file.
->
-> [Add data tests to your DAG | dbt Developer Hub](https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax)
->
->> Data tests were historically called "tests" in dbt as the only form of testing available. With the introduction of unit tests in v1.8, the key was renamed from `tests:` to `data_tests:`.
 
 ```yaml
 ---
