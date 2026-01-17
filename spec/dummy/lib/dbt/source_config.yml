@@ -13,14 +13,15 @@ sources:
 
 table_overrides:
   users:
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
+    config:
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 5
+          period: day
+      loaded_at_field: created_at
     columns:
       created_at:
         data_tests:

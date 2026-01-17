@@ -161,14 +161,15 @@ Example:
 ```yml
 table_overrides:
   users:
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
+    config:
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 5
+          period: day
+      loaded_at_field: created_at
     columns:
       created_at:
         data_tests:
@@ -239,7 +240,7 @@ table_descriptions:
 
 ```
 
-##### Example:
+Example:
 
 Adjust the settings according to your environment.
 
@@ -259,14 +260,15 @@ sources:
 
 table_overrides:
   users:
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
+    config:
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 5
+          period: day
+      loaded_at_field: created_at
     columns:
       created_at:
         data_tests:
@@ -313,7 +315,7 @@ $ bin/rails generate active_record:dbt:source
 
 Generate `#{export_directory_path}/models/sources/#{source_name}/src_#{source_name}.yml`.
 
-##### Example:
+Example:
 
 > [!NOTE]
 >
@@ -675,14 +677,15 @@ sources:
       - not_null
   - name: users
     description: dummy_project User
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
+    config:
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 5
+          period: day
+      loaded_at_field: created_at
     columns:
     - name: id
       description: ID
