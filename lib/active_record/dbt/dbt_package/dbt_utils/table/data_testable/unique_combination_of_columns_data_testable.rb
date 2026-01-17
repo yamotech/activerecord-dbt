@@ -22,8 +22,8 @@ module ActiveRecord
                   array.push(
                     {
                       'dbt_utils.unique_combination_of_columns' => {
-                        'combination_of_columns' => index.columns,
-                        'where' => condition_for_unique_combination_of_columns(index.columns)
+                        'arguments' => unique_combination_of_columns_arguments(index.columns),
+                        'config' => unique_combination_of_columns_config(index.columns)
                       }.compact
                     }
                   )
@@ -40,6 +40,21 @@ module ActiveRecord
                 return true if index.unique == false
 
                 index.columns.size == 1
+              end
+
+              def unique_combination_of_columns_arguments(combination_of_columns)
+                {
+                  'combination_of_columns' => combination_of_columns
+                }
+              end
+
+              def unique_combination_of_columns_config(combination_of_columns)
+                config_where = condition_for_unique_combination_of_columns(combination_of_columns)
+                return nil if config_where.blank?
+
+                {
+                  'where' => config_where
+                }
               end
 
               def condition_for_unique_combination_of_columns(unique_combination_of_columns)

@@ -460,9 +460,10 @@ sources:
     description: Write the logical_name of the 'posts_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
-        combination_of_columns:
-        - post_id
-        - tag_id
+        arguments:
+          combination_of_columns:
+          - post_id
+          - tag_id
     columns:
     - name: post_id
       description: post_id
@@ -545,9 +546,10 @@ sources:
     description: Write the logical_name of the 'relationships' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
-        combination_of_columns:
-        - follower_id
-        - followed_id
+        arguments:
+          combination_of_columns:
+          - follower_id
+          - followed_id
     columns:
     - name: id
       description: id
@@ -628,9 +630,10 @@ sources:
     description: Write the logical_name of the 'user_tags' table in 'dummy_project'.
     data_tests:
     - dbt_utils.unique_combination_of_columns:
-        combination_of_columns:
-        - user_id
-        - tag_id
+        arguments:
+          combination_of_columns:
+          - user_id
+          - tag_id
     columns:
     - name: id
       description: id
