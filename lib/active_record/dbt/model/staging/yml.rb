@@ -96,7 +96,7 @@ module ActiveRecord
           end
 
           def relationships_config
-            return {} unless data_sync_delayed?
+            return nil unless data_sync_delayed?
 
             {
               'severity' => 'warn'
