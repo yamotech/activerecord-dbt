@@ -30,7 +30,7 @@ Currently, it can generate:
   - [Configuration](#configuration)
   - [Generate dbt Source File](#generate-dbt-source-file)
   - [Generate dbt Staging Files](#generate-dbt-staging-files)
-  - [Generate dbt Seed Files](#generated-dbt-seed-files)
+  - [Generate dbt Seed Files](#generate-dbt-seed-files)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -965,7 +965,7 @@ models:
 
 ```
 
-### Generated dbt Seed Files
+### Generate dbt Seed Files
 
 #### dbt Seed Configuration
 
