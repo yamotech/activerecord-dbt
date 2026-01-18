@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-- None
+- Replace `YAML.load_file` with `YAML.safe_load_file` to prevent potential arbitrary code execution when loading configuration files
 
 ## [0.5.0] - 2026-01-18
 
