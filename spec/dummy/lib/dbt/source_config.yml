@@ -1,25 +1,27 @@
 sources:
   name: dummy
-  meta:
-    project_name: dummy_project
-    generated_by: activerecord-dbt
-    exclude:
-      table_names:
-        - hoges
+  config:
+    meta:
+      project_name: dummy_project
+      generated_by: activerecord-dbt
+      exclude:
+        table_names:
+          - hoges
   description: |-
     Write a description of the 'dummy' source.
     You can write multiple lines.
 
 table_overrides:
   users:
-    loaded_at_field: created_at
-    freshness:
-      warn_after:
-        count: 3
-        period: day
-      error_after:
-        count: 5
-        period: day
+    config:
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 5
+          period: day
+      loaded_at_field: created_at
     columns:
       created_at:
         data_tests:

@@ -35,13 +35,13 @@ module ActiveRecord
 
         def project_name
           @project_name ||=
-            source_config.dig(:sources, :meta, :project_name) ||
+            source_config.dig(:sources, :config, :meta, :project_name) ||
             source_name
         end
 
         def exclude_table_names
           @exclude_table_names ||=
-            source_config.dig(:sources, :meta, :exclude, :table_names) ||
+            source_config.dig(:sources, :config, :meta, :exclude, :table_names) ||
             []
         end
 

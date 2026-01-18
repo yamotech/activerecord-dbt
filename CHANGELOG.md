@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- None
+
+## [0.5.0] - 2026-01-18
+
 - Fix column order in `stg_*.yml`
 - Fix `No matching signature for operator IN for argument types INT64 and {BOOL} at []`
 - Changed to be able to exclude specified table names from sources
@@ -13,6 +17,10 @@
 - Update `ActiveRecord::Dbt::Seed::Enum::Yml#before_type_of_cast_column`
 - Add the `project_name` to the top of the `description`
 - Add `data_type` to enum column
+- Update generated dbt files for dbt v1.10+ compatibility (`arguments:`, `config:` structure)
+- Update README (fix descriptions, add version compatibility warning, add table of contents)
+- Add Ruby 3.4 and 4.0 to CI matrix
+- Update RuboCop configuration to use `plugins:` instead of `require:`
 
 ## [0.4.0] - 2024-09-01
 

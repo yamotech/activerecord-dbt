@@ -81,11 +81,25 @@ module ActiveRecord
           def relationships_test(column_name)
             {
               'relationships' => {
-                'severity' => data_sync_delayed? ? 'warn' : nil,
-                'to' => "source('#{source_name}', '#{table_name}')",
-                'field' => column_name,
-                'meta' => relationships_meta_relationship_type
+                'arguments' => relationships_arguments(column_name),
+                'config' => relationships_config
               }.compact
+            }
+          end
+
+          def relationships_arguments(column_name)
+            {
+              'to' => "source('#{source_name}', '#{table_name}')",
+              'field' => column_name,
+              'meta' => relationships_meta_relationship_type
+            }
+          end
+
+          def relationships_config
+            return nil unless data_sync_delayed?
+
+            {
+              'severity' => 'warn'
             }
           end
 

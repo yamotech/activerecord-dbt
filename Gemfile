@@ -6,15 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Specify your gem's dependencies in activerecord-dbt.gemspec.
 gemspec
 
-gem 'rails'
+gem 'rails', '~> 8.0'
 
 gem 'puma'
 
-if RUBY_VERSION >= '3.1'
-  gem 'sqlite3', '~> 2.1'
-else
-  gem 'sqlite3', '~> 1.4'
-end
+gem 'sqlite3', '~> 2.1'
 
 group :development, :test do
   gem 'rspec-rails'

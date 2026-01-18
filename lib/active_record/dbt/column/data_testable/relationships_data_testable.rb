@@ -19,10 +19,8 @@ module ActiveRecord
 
             {
               'relationships' => {
-                'severity' => data_sync_delayed? ? 'warn' : nil,
-                'to' => "source('#{source_name}', '#{to_table}')",
-                'field' => primary_key,
-                'meta' => relationships_meta_relationship_type
+                'arguments' => relationships_arguments,
+                'config' => relationships_config
               }.compact
             }
           end
@@ -37,6 +35,22 @@ module ActiveRecord
             @foreign_key ||= foreign_keys.find do |fk|
               fk.dig(:options, :column) == column_name
             end
+          end
+
+          def relationships_arguments
+            {
+              'to' => "source('#{source_name}', '#{to_table}')",
+              'field' => primary_key,
+              'meta' => relationships_meta_relationship_type
+            }
+          end
+
+          def relationships_config
+            return nil unless data_sync_delayed?
+
+            {
+              'severity' => 'warn'
+            }
           end
         end
       end

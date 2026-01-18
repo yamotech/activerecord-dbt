@@ -18,8 +18,10 @@ module ActiveRecord
 
             {
               'accepted_values' => {
-                'values' => values,
-                'quote' => quote?
+                'arguments' => {
+                  'values' => values,
+                  'quote' => quote?
+                }
               }
             }
           end

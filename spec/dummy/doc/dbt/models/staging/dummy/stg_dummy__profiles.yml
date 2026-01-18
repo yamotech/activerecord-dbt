@@ -11,10 +11,11 @@ models:
     - unique
     - not_null
     - relationships:
-        to: source('dummy', 'profiles')
-        field: id
-        meta:
-          relationship_type: one-to-one
+        arguments:
+          to: source('dummy', 'profiles')
+          field: id
+          meta:
+            relationship_type: one-to-one
   - name: user_id
     description: user_id
     data_type: int64
@@ -22,10 +23,11 @@ models:
     - unique
     - not_null
     - relationships:
-        to: source('dummy', 'users')
-        field: id
-        meta:
-          relationship_type: one-to-one
+        arguments:
+          to: source('dummy', 'users')
+          field: id
+          meta:
+            relationship_type: one-to-one
   - name: first_name
     description: Write a description of the 'profiles.first_name' column.
     data_type: string
