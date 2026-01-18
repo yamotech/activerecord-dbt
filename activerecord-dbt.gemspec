@@ -24,5 +24,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activerecord', '~> 8.0'
   spec.add_dependency 'activesupport', '~> 8.0'
+  spec.add_dependency 'csv', `~> 3.0`
   spec.add_dependency 'zeitwerk', '~> 2.6'
 end
