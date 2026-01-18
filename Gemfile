@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Specify your gem's dependencies in activerecord-dbt.gemspec.
 gemspec
 
-gem 'rails'
+gem 'rails', '~> 8.0'
 
 gem 'puma'
 
